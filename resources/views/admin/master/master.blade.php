@@ -21,11 +21,12 @@
 </head>
 <body>
 
+        @include('admin.partials.head')
+        @include('admin.partials.sidebar')
 
-
+         <div class="main-panel">
         @yield('content')
-
-
+      </div>
     <!-- Scripts -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.min.js') }}"></script>

@@ -17,6 +17,18 @@
                             <div class="card card-hidden">
                                 <div class="header text-center">Giriş Ekranı</div>
                                 <div class="content">
+                                  <div class="form-group">
+                                      <label for="exampleFormControlSelect1">ŞUBE SEÇİNİZ</label>
+                                        <select class="form-control" id="exampleFormControlSelect1">
+                                          <option>MERKEZ</option>
+                                          <option>KARTAL</option>
+                                          <option>ATAŞEHİR</option>
+                                          <option>MALTEPE</option>
+                                          <option>KADIKÖY</option>
+                                        </select>
+                                      </div>
+
+
                                     <div class="form-group">
                                         <label>Email Adresiniz</label>
                                         <input type="email" placeholder="E-mail Adresiniz" class="form-control" name="email">

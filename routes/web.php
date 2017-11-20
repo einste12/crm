@@ -19,10 +19,10 @@ Auth::routes();
 
 
 
-
+Route::get('/dashboard', 'DashBoardController@index')->name('dashboard');
 
 Route::group(['middleware' => 'auth'], function()
 {
-    Route::get('/dashboard', 'DashBoardController@index')->name('dashboard');
+
 
 });
