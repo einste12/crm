@@ -32,3 +32,5 @@ class CreateTemsilcisTable extends Migration
         Schema::dropIfExists('temsilcis');
     }
 }
+
+deneme
