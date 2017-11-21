@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGelenTekliflersTable extends Migration
+class CreateTekliflersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -56,6 +56,6 @@ class CreateGelenTekliflersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gelen_tekliflers');
+        Schema::dropIfExists('tekliflers');
     }
 }

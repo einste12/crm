@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTercumanBasvurusTable extends Migration
+class CreateTercumanVeritabaniTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTercumanBasvurusTable extends Migration
      */
     public function up()
     {
-        Schema::create('tercuman_basvurus', function (Blueprint $table) {
+        Schema::create('tercuman_veritabanis', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Name');
             $table->string('Mail')->unique();
@@ -41,6 +41,6 @@ class CreateTercumanBasvurusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tercuman_basvurus');
+        Schema::dropIfExists('tercuman_veritabanis');
     }
 }
