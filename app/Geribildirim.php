@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TercumanIsTakip extends Model
+class Geribildirim extends Model
 {
   public $timestamp ="false";
 
-  protected $table = 'tercumantakip';
+  protected $table = 'geribildirim';
 }

@@ -15,14 +15,24 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
+Route::get('/logout', function () {
+  Auth::logout();
+  Session::flush();
+
+ return Redirect::route('login');
+});
+
+
 Auth::routes();
-
-
-
-Route::get('/dashboard', 'DashBoardController@index')->name('dashboard');
 
 Route::group(['middleware' => 'auth'], function()
 {
+
+Route::get('/dashboard', 'DashBoardController@index')->name('dashboard');
+Route::get('/devameden', 'DashBoardController@devameden')->name('devameden');
+Route::get('/tamamlanan', 'DashBoardController@tamamlanan')->name('tamamlanan');
+Route::get('/iptalteklif', 'DashBoardController@iptalteklif')->name('iptalteklif');
 
 
 });

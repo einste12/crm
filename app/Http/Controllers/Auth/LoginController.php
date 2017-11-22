@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use App\NerdenGirdi;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Input;
 class LoginController extends Controller
 {
     /*
@@ -25,7 +27,15 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+     public function authenticated(){
+         $NerdenGirdi = new NerdenGirdi;
+         $NerdenGirdi->user_id = \Auth::user()->id;
+         $NerdenGirdi->sube_id = Input::get('sube');
+         $NerdenGirdi->Tarih   =Carbon::now();
+         $NerdenGirdi->save();
+
+       }
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.

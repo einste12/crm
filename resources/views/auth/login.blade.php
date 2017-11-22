@@ -12,16 +12,16 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
                         <form method="POST" action="{{ route('login')}}">
-
+                       {{ csrf_field() }}
                         <!--   if you want to have the card without animation please remove the ".card-hidden" class   -->
                             <div class="card card-hidden">
                                 <div class="header text-center">Giriş Ekranı</div>
                                 <div class="content">
                                   <div class="form-group">
                                       <label for="exampleFormControlSelect1">ŞUBE SEÇİNİZ</label>
-                                        <select class="form-control" id="exampleFormControlSelect1">
-                                          <option>MERKEZ</option>
-                                          <option>KARTAL</option>
+                                        <select class="form-control" id="exampleFormControlSelect1" name="sube">
+                                          <option value="1">MERKEZ</option>
+                                          <option value="2">KARTAL</option>
                                           <option>ATAŞEHİR</option>
                                           <option>MALTEPE</option>
                                           <option>KADIKÖY</option>

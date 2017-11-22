@@ -24,7 +24,7 @@
             </div>
             <div class="info">
                 <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                    Tania Andrew
+                    {{ Auth::user()->name }}
                     <b class="caret"></b>
                 </a>
                 <div class="collapse" id="collapseExample">
@@ -53,13 +53,13 @@
                 </a>
                 <div class="collapse" id="componentsExamples">
                     <ul class="nav">
-                        <li><a href="components/buttons.html">Buttons</a></li>
-                        <li><a href="components/grid.html">Grid System</a></li>
-                        <li><a href="components/icons.html">Icons</a></li>
-                        <li><a href="components/notifications.html">Notifications</a></li>
+                        <li><a href="{{ route('dashboard') }}">Gelen Teklifler</a></li>
+                        <li><a href="{{ route('devameden') }}">Devam Eden Teklifler</a></li>
+                        <li><a href="{{ route('tamamlanan') }}">Tamamlanan Teklifler</a></li>
+                        <li><a href="{{ route('iptalteklif') }}">İptal Edilen Teklifler</a></li>
                         <li><a href="components/panels.html">Panels</a></li>
                         <li><a href="components/sweet-alert.html">Sweet Alert</a></li>
-                        <li><a href="components/typography.html">Typography</a></li>
+                        <li><a href="{{ route('logout') }}">Çıkış Yap</a></li>
                     </ul>
                 </div>
             </li>
