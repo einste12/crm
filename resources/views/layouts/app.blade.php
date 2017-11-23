@@ -43,6 +43,8 @@
     <script src="{{ asset('js/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('js/light-bootstrap-dashboard.js') }}"></script>
 
+      {!! Toastr::render() !!}
+
     <script type="text/javascript">
     $().ready(function(){
         lbd.checkFullPageBackgroundImage();

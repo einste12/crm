@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Teklifler;
-
+use Session;
+use Toastr;
 use DB;
 
 class DashBoardController extends Controller
@@ -165,10 +166,16 @@ class DashBoardController extends Controller
             return redirect()->route('devameden');
 
 
-
     }
 
+  public function gelenteklifsil($id){
 
+    $teklifsil = Teklifler::find($id);
+    $teklifsil->delete();
+
+      return redirect()->route('onaybekleyen')->with('message','Kaydınız Başarıyla Silindi.');
+
+    }
 
 
 

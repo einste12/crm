@@ -45,6 +45,8 @@
     <script src="{{ asset('js/light-bootstrap-dashboard.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"
 
+
+
     <script type="text/javascript">
     $().ready(function(){
         lbd.checkFullPageBackgroundImage();

@@ -2,6 +2,14 @@
 
 @section('content')
 
+  @if(Session::has('message'))
+        <div class="row">
+          <div class="col-md-12">
+           <div class="alert alert-success text-center"> {{ Session::get('message') }}</div>
+          </div>
+        </div>
+  @endif
+
   <table class="table table-striped">
      <thead>
        <tr>
@@ -42,10 +50,13 @@
          <td>{{ $teklifler->Fiyat }}</td>
          <td>{{ $teklifler->TemsilciGelenTeklifNot }}</td>
          <td>{{ $teklifler->TercumanID }}</td>
-         <td><a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal">ONAYLA</a></td>
+         <td>
+           <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal">ONAYLA</a>
+           <a href="{{ route('gelenteklifsil',['id'=>$teklifler->id]) }}" class="btn btn-danger">SİL</a>
+         </td>
        </tr>
      @empty
-       <H3>ŞUANDA ONAY BEKLEYEN TEKLİF BULUNMAMAKTADIR</H3>
+       <H3 style="text-align:center; color:red;">ŞUANDA ONAY BEKLEYEN TEKLİF BULUNMAMAKTADIR!</H3>
      @endforelse
      </tbody>
    </table>

@@ -35,6 +35,7 @@ Route::get('/tamamlanan', 'DashBoardController@tamamlanan')->name('tamamlanan');
 Route::get('/iptalteklif', 'DashBoardController@iptalteklif')->name('iptalteklif');
 
 Route::post('/gelenteklifonayla', 'DashBoardController@gelenteklifonayla')->name('gelenteklifonayla');
+Route::get('/gelenteklifsil/{id}', 'DashBoardController@gelenteklifsil')->name('gelenteklifsil');
 
 
 });
