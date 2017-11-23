@@ -17,7 +17,7 @@
        </tr>
      </thead>
      <tbody>
-       @foreach ($teklif as $teklifler)
+       @foreach($teklif as $teklifler)
        <tr>
          <td>{{ $teklifler->id }}</td>
          <td>{{ $teklifler->GelenTeklifTarihi }}</td>
@@ -28,13 +28,16 @@
          <td>{{ $teklifler->HedefDil }}</td>
          <td>{{ $teklifler->TastikSekli }}</td>
          <td>{{ $teklifler->MusteriTalebi }}</td>
-
        </tr>
        @endforeach
      </tbody>
    </table>
 
 {{ $teklif->links() }}
+
+
+
+
 
 
 

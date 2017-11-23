@@ -17,6 +17,7 @@
          <th>TEKLİF VEREN TEMSİLCİ</th>
          <th>FİYAT </th>
          <th>TEMSİLCİ TARAFINDAN YOLLANAN NOT</th>
+         <th>İŞLEMLER</th>
        </tr>
      </thead>
      <tbody>
@@ -39,6 +40,11 @@
    </table>
 
 {{ $devamteklif->links() }}
+
+
+
+
+
 
 
 

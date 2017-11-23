@@ -26,7 +26,7 @@ class DashBoardController extends Controller
 
           $query->where([
              'silindi'     =>0,
-             'onaydurumu' =>1,
+             'onaydurumu' =>0,
           ]);
 
       })
@@ -39,6 +39,43 @@ class DashBoardController extends Controller
 
         return view('dashboard',['teklif'=>$gelenteklif]);
     }
+
+
+
+
+    public function onaybekleyen()
+    {
+      $onaybekleyen = DB::table('teklifler')
+      ->where(function ($query) {
+
+          $query->where([
+             'silindi'     =>0,
+             'onaydurumu' =>1,
+          ]);
+
+      })
+      ->select(['id','GelenTeklifTarihi','TeklifVerilenTarih','isimSoyisim','Fiyat','TeklifVerenTemsilci','Email','Telefon','KaynakDil','HedefDil','TastikSekli','MusteriTalebi','TemsilciGelenTeklifNot','TercumanID','Kapora'])
+      ->orderBy('teklifverilentarih','DESC')
+      ->paginate(100);
+
+
+
+
+        return view('admin.pages.onaybekleyen',['onaybekleyen'=>$onaybekleyen]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //DEVAM EDEN TEKLİFLER//
@@ -112,6 +149,23 @@ class DashBoardController extends Controller
 
 
         return view('admin.pages.iptalteklif',['iptalteklif'=>$iptalteklif]);
+    }
+
+
+    public function gelenteklifonayla(Request $request){
+
+            $id = request()->input('bookId');
+            $temsilci = request()->input('onaylayantemsilci');
+
+            $teklif = Teklifler::find($id);
+
+            $teklif->OnaylayanTemsilciID=$temsilci;
+            $teklif->OnayDurumu =2;
+            $teklif->update();
+            return redirect()->route('devameden');
+
+
+
     }
 
 

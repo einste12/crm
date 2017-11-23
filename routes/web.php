@@ -28,11 +28,13 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function()
 {
-
+Route::get('/onaybekleyen', 'DashBoardController@onaybekleyen')->name('onaybekleyen');
 Route::get('/dashboard', 'DashBoardController@index')->name('dashboard');
 Route::get('/devameden', 'DashBoardController@devameden')->name('devameden');
 Route::get('/tamamlanan', 'DashBoardController@tamamlanan')->name('tamamlanan');
 Route::get('/iptalteklif', 'DashBoardController@iptalteklif')->name('iptalteklif');
+
+Route::post('/gelenteklifonayla', 'DashBoardController@gelenteklifonayla')->name('gelenteklifonayla');
 
 
 });

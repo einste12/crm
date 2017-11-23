@@ -39,9 +39,9 @@
 
         <ul class="nav">
             <li class="active">
-                <a href="dashboard.html">
+                <a href="{{ route('dashboard') }}">
                     <i class="pe-7s-graph"></i>
-                    <p>Dashboard</p>
+                    <p>GELEN TEKLİFLER</p>
                 </a>
             </li>
             <li>
@@ -53,7 +53,7 @@
                 </a>
                 <div class="collapse" id="componentsExamples">
                     <ul class="nav">
-                        <li><a href="{{ route('dashboard') }}">Gelen Teklifler</a></li>
+                        <li><a href="{{ route('onaybekleyen')}}">Onay Bekleyen Teklifler</a></li>
                         <li><a href="{{ route('devameden') }}">Devam Eden Teklifler</a></li>
                         <li><a href="{{ route('tamamlanan') }}">Tamamlanan Teklifler</a></li>
                         <li><a href="{{ route('iptalteklif') }}">İptal Edilen Teklifler</a></li>
