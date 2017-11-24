@@ -25,8 +25,13 @@
             <div class="info">
                 <a data-toggle="collapse" href="#collapseExample" class="collapsed">
                     {{ Auth::user()->name }}
-                    <b class="caret"></b>
+
                 </a>
+                  <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+                    {{ $genel_subeler[Auth::user()->Yer-1]->name }}
+
+                  </a>
+
                 <div class="collapse" id="collapseExample">
                     <ul class="nav">
                         <li><a href="#">My Profile</a></li>

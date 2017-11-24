@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\NerdenGirdi;
+use App\Subeler_User;
+use App\User;
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 class LoginController extends Controller
@@ -28,11 +30,16 @@ class LoginController extends Controller
      * @var string
      */
      public function authenticated(){
-         $NerdenGirdi = new NerdenGirdi;
-         $NerdenGirdi->user_id = \Auth::user()->id;
-         $NerdenGirdi->sube_id = Input::get('sube');
-         $NerdenGirdi->Tarih   =Carbon::now();
-         $NerdenGirdi->save();
+         $user = User::find(Auth::user()->id);
+         $user->yer= Input::get('sube');
+         $user->update();
+
+
+         $Subeler_User = new Subeler_User;
+         $Subeler_User->user_id = \Auth::user()->id;
+         $Subeler_User->sube_id = Input::get('sube');
+         $Subeler_User->Tarih   =Carbon::now();
+         $Subeler_User->save();
 
        }
     protected $redirectTo = '/dashboard';

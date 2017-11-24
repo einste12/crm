@@ -16,16 +16,12 @@
          <th>İD</th>
          <th>GELEN TEKLİF TARİHİ</th>
          <th>TEKLİF VERİLEN TARİH</th>
-         <th>İSİM VE SOYİSİM</th>
-         <th>TELEFON</th>
-         <th>EMAİL</th>
-         <th>KAYNAK DİL</th>
-         <th>HEDEF DİL</th>
-         <th>KAPORA</th>
+         <th>MÜŞTERİ BİLGİLERİ</th>
+         <th>DİLLER</th>
+         <th>FİYAT VE KAPORA</th>
          <th>TASTİK ŞEKLİ</th>
          <th>MÜŞTERİ TALEBİ</th>
          <th>TEKLİF VEREN TEMSİLCİ</th>
-         <th>FİYAT</th>
          <th>TEMSİLCİ GELEN NOT</th>
          <th>TERCUMAN ID</th>
          <th>İŞLEMLER</th>
@@ -38,21 +34,30 @@
          <td>{{ $teklifler->id }}</td>
          <td>{{ $teklifler->GelenTeklifTarihi }}</td>
          <td>{{ $teklifler->TeklifVerilenTarih }}</td>
-         <td>{{ $teklifler->isimSoyisim }}</td>
-         <td>{{ $teklifler->Telefon }}</td>
-         <td>{{ $teklifler->Email }}</td>
-         <td>{{ $teklifler->KaynakDil }}</td>
-         <td>{{ $teklifler->HedefDil }}</td>
-         <td>{{ $teklifler->Kapora }}</td>
+
+         <td>
+         {{ $teklifler->isimSoyisim }}</br>
+         {{ $teklifler->Telefon }}</br>
+         {{ $teklifler->Email }}
+       </td>
+
+         <td>{{ $teklifler->KaynakDil }}</br>
+             {{ $teklifler->HedefDil }}
+       </td>
+         <td>
+         {{ $teklifler->Kapora }}</br>
+         {{ $teklifler->Fiyat }}</td>
          <td>{{ $teklifler->TastikSekli }}</td>
          <td>{{ $teklifler->MusteriTalebi }}</td>
          <td>{{ $teklifler->TeklifVerenTemsilci}}  </td>
-         <td>{{ $teklifler->Fiyat }}</td>
+
          <td>{{ $teklifler->TemsilciGelenTeklifNot }}</td>
          <td>{{ $teklifler->TercumanID }}</td>
          <td>
            <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal">ONAYLA</a>
-           <a href="{{ route('gelenteklifsil',['id'=>$teklifler->id]) }}" class="btn btn-danger">SİL</a>
+           <a href="{{ route('onaybekleyensil',['id'=>$teklifler->id]) }}" class="btn btn-danger">SİL</a>
+           <a href="{{ route('onaybekleyenedit',['id'=>$teklifler->id]) }}" class="btn btn-danger">DÜZENLE</a>
+           <a href="{{ route('onaybekleyenyazdir',['id'=>$teklifler->id]) }}" class="btn btn-danger">YAZDIR</a>
          </td>
        </tr>
      @empty

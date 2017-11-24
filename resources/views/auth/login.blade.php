@@ -20,11 +20,9 @@
                                   <div class="form-group">
                                       <label for="exampleFormControlSelect1">ŞUBE SEÇİNİZ</label>
                                         <select class="form-control" id="exampleFormControlSelect1" name="sube">
-                                          <option value="1">MERKEZ</option>
-                                          <option value="2">KARTAL</option>
-                                          <option>ATAŞEHİR</option>
-                                          <option>MALTEPE</option>
-                                          <option>KADIKÖY</option>
+                                          @foreach($subeler as $subelers)
+                                          <option value="{{ $subelers->id }}">{{ $subelers->name }}</option>
+                                         @endforeach
                                         </select>
                                       </div>
 

@@ -12,6 +12,9 @@
 */
 
 Route::get('/', function () {
+
+
+
     return view('auth.login');
 });
 
@@ -22,6 +25,8 @@ Route::get('/logout', function () {
 
  return Redirect::route('login');
 });
+
+
 
 
 Auth::routes();
@@ -35,7 +40,13 @@ Route::get('/tamamlanan', 'DashBoardController@tamamlanan')->name('tamamlanan');
 Route::get('/iptalteklif', 'DashBoardController@iptalteklif')->name('iptalteklif');
 
 Route::post('/gelenteklifonayla', 'DashBoardController@gelenteklifonayla')->name('gelenteklifonayla');
+
+Route::get('/onaybekleyensil/{id}', 'DashBoardController@onaybekleyensil')->name('onaybekleyensil');
 Route::get('/gelenteklifsil/{id}', 'DashBoardController@gelenteklifsil')->name('gelenteklifsil');
+
+Route::get('/onaybekleyenedit/{id}', 'DashBoardController@onaybekleyenedit')->name('onaybekleyenedit');
+Route::get('/onaybekleyenyazdir/{id}', 'DashBoardController@onaybekleyenyazdir')->name('onaybekleyenyazdir');
+Route::post('/onaybekleyenupdate/{id}', 'DashBoardController@onaybekleyenupdate')->name('onaybekleyenupdate');
 
 
 });

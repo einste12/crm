@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Temsilciler;
+use App\Subeler;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -18,6 +19,14 @@ class AppServiceProvider extends ServiceProvider
 
         $temsilci =Temsilciler::all();
         view()->share('temsilci',$temsilci);
+
+
+        $subeler =Subeler::all();
+        view()->share('subeler',$subeler);
+
+        $genel_subeler = [];
+        $genel_subeler =Subeler::all();
+        view()->share('genel_subeler',$subeler);
 
 
 

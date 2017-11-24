@@ -7,6 +7,8 @@ use App\Teklifler;
 use Session;
 use Toastr;
 use DB;
+use Auth;
+use App\Subeler;
 
 class DashBoardController extends Controller
 {
@@ -20,6 +22,7 @@ class DashBoardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
       $gelenteklif = DB::table('teklifler')
@@ -93,7 +96,7 @@ class DashBoardController extends Controller
           ]);
 
       })
-      ->select(['id','GelenTeklifTarihi','isimSoyisim','Fiyat','TeklifVerenTemsilci','Email','Telefon','KaynakDil','HedefDil','TastikSekli','MusteriTalebi','TemsilciGelenTeklifNot'])
+      ->select(['id','TeklifVerilenTarih','HedefDil','KaynakDil','GelenTeklifTarihi','isimSoyisim','Kapora','Fiyat','TeklifVerenTemsilci','Email','Telefon','KaynakDil','HedefDil','TastikSekli','MusteriTalebi','TemsilciGelenTeklifNot'])
       ->orderBy('teklifverilentarih','DESC')
       ->paginate(100);
 
@@ -168,7 +171,7 @@ class DashBoardController extends Controller
 
     }
 
-  public function gelenteklifsil($id){
+  public function onaybekleyensil($id){
 
     $teklifsil = Teklifler::find($id);
     $teklifsil->delete();
@@ -176,6 +179,57 @@ class DashBoardController extends Controller
       return redirect()->route('onaybekleyen')->with('message','Kaydınız Başarıyla Silindi.');
 
     }
+
+
+      public function gelenteklifsil($id){
+
+        $teklifsil = Teklifler::find($id);
+        $teklifsil->delete();
+
+          return redirect()->route('dashboard')->with('message','Kaydınız Başarıyla Silindi.');
+
+        }
+
+
+
+    public function onaybekleyenedit($id)
+
+    {
+
+      $teklif = Teklifler::find($id);
+      return view('admin.pages.onaybekleyenedit',['teklif'=>$teklif]);
+
+
+
+    }
+
+    public function onaybekleyenupdate(Request $request,$id)
+
+      {
+
+        $update = Teklifler::find($id);
+        $input = $request->all();
+        $update->update($input);
+
+        return redirect()->back()->with('message','Başarıyla Güncellenmiştir.');
+
+      }
+
+
+
+      public function onaybekleyenyazdir($id)
+
+      {
+
+        $teklif = Teklifler::find($id);
+        return view('admin.pages.onaybekleyenyazdir',['onay'=>$teklif]);
+
+
+
+      }
+
+
+
 
 
 

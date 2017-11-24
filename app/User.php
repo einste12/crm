@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','yer',
     ];
 
     public $timestamps = false;
@@ -28,4 +28,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function subeler(){
+
+        return $this->belongsToMany('App\Subeler','sube_user','user_id','sube_id');
+     }
+
+
+
+
+
 }

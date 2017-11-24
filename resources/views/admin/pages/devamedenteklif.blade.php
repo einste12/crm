@@ -8,14 +8,13 @@
      <thead>
        <tr>
          <th>İD</th>
-         <th>TARİH</th>
-         <th>ADSOYAD</th>
-         <th>TELEFON</th>
-         <th>MAİL</th>
+         <th>TEKLİF TARİHİ</th>
+         <th>TEKLİF VERİLEN TARİH VE TEMSİLCİ</th>
+         <th>MÜŞTERİ BİLGİLERİ</th>
          <th>TASDİK ŞEKLİ</th>
+         <th>DİLLER</th>
          <th>MÜŞTERİ NOT</th>
-         <th>TEKLİF VEREN TEMSİLCİ</th>
-         <th>FİYAT </th>
+         <th>FİYAT ve KAPORA </th>
          <th>TEMSİLCİ TARAFINDAN YOLLANAN NOT</th>
          <th>İŞLEMLER</th>
        </tr>
@@ -25,13 +24,26 @@
        <tr>
          <td>{{ $teklifler->id }}</td>
          <td>{{ $teklifler->GelenTeklifTarihi }}</td>
-         <td>{{ $teklifler->isimSoyisim }}</td>
-         <td>{{ $teklifler->Telefon }}</td>
-         <td>{{ $teklifler->Email }}</td>
+         <td>
+          {{ $teklifler->TeklifVerilenTarih}}</br>
+          {{ $teklifler->TeklifVerenTemsilci}}
+         </td>
+         <td>
+          {{ $teklifler->isimSoyisim }}</br>
+          {{ $teklifler->Telefon }}</br>
+          {{ $teklifler->Email }}
+         </td>
          <td>{{ $teklifler->TastikSekli }}</td>
+
+         <td>
+          {{$teklifler->KaynakDil}} > </br>
+          {{$teklifler->HedefDil}}
+        </td>
          <td>{{ $teklifler->MusteriTalebi }}</td>
-         <td>{{ $teklifler->TeklifVerenTemsilci}}  </td>
-         <td>{{ $teklifler->Fiyat }}</td>
+
+         <td>{{ $teklifler->Fiyat }}</br>
+              {{$teklifler->Kapora}}
+          </td>
          <td>{{ $teklifler->TemsilciGelenTeklifNot }}</td>
 
        </tr>

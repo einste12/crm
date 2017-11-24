@@ -1,6 +1,14 @@
 @extends('admin.master.master')
 
 @section('content')
+  
+  @if(Session::has('message'))
+        <div class="row">
+          <div class="col-md-12">
+           <div class="alert alert-success text-center"> {{ Session::get('message') }}</div>
+          </div>
+        </div>
+  @endif
 
 
 
@@ -10,13 +18,12 @@
        <tr>
          <th>İD</th>
          <th>TARİH</th>
-         <th>ADSOYAD</th>
-         <th>TELEFON</th>
-         <th>MAİL</th>
-         <th>KAYNAK DİL</th>
-         <th>HEDEF DİL</th>
+         <th>MÜŞTERİ BİLGİLERİ</th>
+         <th>DİLLER</th>
          <th>TASDİK ŞEKLİ</th>
+         <th>DOSYA</th>
          <th>MÜŞTERİ NOT</th>
+         <th>İŞLEMLER</th>
        </tr>
      </thead>
      <tbody>
@@ -24,13 +31,21 @@
        <tr>
          <td>{{ $teklifler->id }}</td>
          <td>{{ $teklifler->GelenTeklifTarihi }}</td>
-         <td>{{ $teklifler->isimSoyisim }}</td>
-         <td>{{ $teklifler->Email }}</td>
-         <td>{{ $teklifler->Telefon }}</td>
-         <td>{{ $teklifler->KaynakDil }}</td>
-         <td>{{ $teklifler->HedefDil }}</td>
+         <td>{{ $teklifler->isimSoyisim }}</br>
+             {{ $teklifler->Email }}</br>
+             {{ $teklifler->Telefon }}
+       </td>
+         <td>
+          {{ $teklifler->KaynakDil }} > </br>
+          {{ $teklifler->HedefDil }}
+       </td>
          <td>{{ $teklifler->TastikSekli }}</td>
+         <td>DENEME DOSYA ALANI</td>
          <td>{{ $teklifler->MusteriTalebi }}</td>
+         <td>
+           <a href="{{ route('gelenteklifsil',['id'=>$teklifler->id]) }}" class="btn btn-danger">SİL</a>
+
+         </td>
        </tr>
        @endforeach
      </tbody>
