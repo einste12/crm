@@ -1,7 +1,7 @@
 @extends('admin.master.master')
 
 @section('content')
-  
+
   @if(Session::has('message'))
         <div class="row">
           <div class="col-md-12">
@@ -17,7 +17,7 @@
      <thead>
        <tr>
          <th>İD</th>
-         <th>TARİH</th>
+         <th>GELEN TEKLİF TARİHİ</th>
          <th>MÜŞTERİ BİLGİLERİ</th>
          <th>DİLLER</th>
          <th>TASDİK ŞEKLİ</th>

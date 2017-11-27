@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="orange" data-image="../assets/img/full-screen-image-3.jpg">
+<div class="sidebar" data-color="orange" data-image="">
     <!--
 
         Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
@@ -7,12 +7,12 @@
     -->
 
     <div class="logo">
-        <a href="http://www.creative-tim.com" class="logo-text">
+        <a href="" class="logo-text">
             Creative Tim
         </a>
     </div>
 <div class="logo logo-mini">
-  <a href="http://www.creative-tim.com" class="logo-text">
+  <a href="" class="logo-text">
     Ct
   </a>
 </div>
@@ -20,7 +20,7 @@
   <div class="sidebar-wrapper">
         <div class="user">
             <div class="photo">
-                <img src="../assets/img/default-avatar.png" />
+                <img src="#" />
             </div>
             <div class="info">
                 <a data-toggle="collapse" href="#collapseExample" class="collapsed">
@@ -62,8 +62,6 @@
                         <li><a href="{{ route('devameden') }}">Devam Eden Teklifler</a></li>
                         <li><a href="{{ route('tamamlanan') }}">Tamamlanan Teklifler</a></li>
                         <li><a href="{{ route('iptalteklif') }}">İptal Edilen Teklifler</a></li>
-                        <li><a href="components/panels.html">Panels</a></li>
-                        <li><a href="components/sweet-alert.html">Sweet Alert</a></li>
                         <li><a href="{{ route('logout') }}">Çıkış Yap</a></li>
                     </ul>
                 </div>

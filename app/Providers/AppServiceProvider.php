@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Temsilciler;
 use App\Subeler;
+use App\TercumanVeritabani;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -17,8 +18,11 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        $temsilci =Temsilciler::all();
+        $temsilci = Temsilciler::orderBy('id', 'ASC')->get();
         view()->share('temsilci',$temsilci);
+
+        $tercuman = TercumanVeritabani::all();
+        view()->share('tercuman',$tercuman);
 
 
         $subeler =Subeler::all();
@@ -27,6 +31,8 @@ class AppServiceProvider extends ServiceProvider
         $genel_subeler = [];
         $genel_subeler =Subeler::all();
         view()->share('genel_subeler',$subeler);
+
+
 
 
 

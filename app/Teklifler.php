@@ -16,6 +16,14 @@ protected $fillable = [
     'GonderilenGun','GonderilenSaat','GonderilenMailEvrakTuru','FormUrl','SurekliMusteri','SubeID','iptalEtmeTarihi','GelenTeklifTarihi',
 ];
 
-
   protected $table = 'teklifler';
+
+
+
+
+public function tercuman()
+{
+  return $this->hasMany('App\TercumanVeritabani','TercumanID','id');
+}
+
 }

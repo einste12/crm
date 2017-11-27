@@ -7,6 +7,7 @@ use App\Teklifler;
 use Session;
 use Toastr;
 use DB;
+use App\TercumanVeritabani;
 use Auth;
 use App\Subeler;
 
@@ -96,14 +97,14 @@ class DashBoardController extends Controller
           ]);
 
       })
-      ->select(['id','TeklifVerilenTarih','HedefDil','KaynakDil','GelenTeklifTarihi','isimSoyisim','Kapora','Fiyat','TeklifVerenTemsilci','Email','Telefon','KaynakDil','HedefDil','TastikSekli','MusteriTalebi','TemsilciGelenTeklifNot'])
+      ->select(['id','TercumanID','TeklifVerilenTarih','HedefDil','KaynakDil','GelenTeklifTarihi','isimSoyisim','Kapora','Fiyat','TeklifVerenTemsilci','Email','Telefon','KaynakDil','HedefDil','TastikSekli','MusteriTalebi','TemsilciGelenTeklifNot'])
       ->orderBy('teklifverilentarih','DESC')
       ->paginate(100);
 
 
+      $tercuman = TercumanVeritabani::all();
 
-
-        return view('admin.pages.devamedenteklif',['devamteklif'=>$devamteklif]);
+        return view('admin.pages.devamedenteklif',['devamteklif'=>$devamteklif,'tercumansss'=>$tercuman]);
     }
 
 
@@ -224,11 +225,75 @@ class DashBoardController extends Controller
         $teklif = Teklifler::find($id);
         return view('admin.pages.onaybekleyenyazdir',['onay'=>$teklif]);
 
+      }
+
+
+
+//DEVAM EDENLER BAŞLANGIÇ
+
+
+
+    public function tekliftamamla(Request $request){
+
+
+            $id = request()->input('devamedenid');
+
+            $temsilci = request()->input('devamionaylayantemsilci');
+            $EvrakTeslimTarihi=request()->input('EvrakTeslimTarihi');
+
+            $teklif = Teklifler::find($id);
+
+            $teklif->EvrakTeslimTarihi  =$EvrakTeslimTarihi;
+            $teklif->OnaylayanTemsilciID=$temsilci;
+            $teklif->OnayDurumu =3;
+            $teklif->update();
+            return redirect()->route('tamamlanan')->with('message','Devam Eden Teklifiniz Tamamlanan Tekliflere Alınmıştır.');
+
+
+    }
+
+    public function devamedensil($id){
+
+      $teklifsil = Teklifler::find($id);
+      $teklifsil->delete();
+
+        return redirect()->route('devameden')->with('message','Kaydınız Başarıyla Silindi.');
+
+      }
+
+
+
+      public function devamedenedit($id)
+
+      {
+
+        $teklif = Teklifler::find($id);
+        return view('admin.pages.devamedenedit',['teklif'=>$teklif]);
+
 
 
       }
 
 
+      public function devamedenupdate(Request $request,$id)
+
+        {
+
+          $update = Teklifler::find($id);
+          $input = $request->all();
+          $update->update($input);
+          return redirect()->route('devameden')->with('message','Başarıyla Güncellenmiştir.');
+        }
+
+
+        public function devamedenyazdir($id)
+
+        {
+
+          $teklif = Teklifler::find($id);
+          return view('admin.pages.devamedenyazdir',['onay'=>$teklif]);
+
+        }
 
 
 

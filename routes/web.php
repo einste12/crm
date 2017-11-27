@@ -48,5 +48,13 @@ Route::get('/onaybekleyenedit/{id}', 'DashBoardController@onaybekleyenedit')->na
 Route::get('/onaybekleyenyazdir/{id}', 'DashBoardController@onaybekleyenyazdir')->name('onaybekleyenyazdir');
 Route::post('/onaybekleyenupdate/{id}', 'DashBoardController@onaybekleyenupdate')->name('onaybekleyenupdate');
 
+//DEVAM EDEN ROUTE BAŞLANGIÇ
+Route::post('/tekliftamamla', 'DashBoardController@tekliftamamla')->name('tekliftamamla');
+Route::get('/devamedensil/{id}', 'DashBoardController@devamedensil')->name('devamedensil');
+Route::get('/devamedenedit/{id}', 'DashBoardController@devamedenedit')->name('devamedenedit');
+Route::post('/devamedenupdate/{id}', 'DashBoardController@devamedenupdate')->name('devamedenupdate');
+Route::get('/devamedenyazdir/{id}', 'DashBoardController@devamedenyazdir')->name('devamedenyazdir');
+
+
 
 });

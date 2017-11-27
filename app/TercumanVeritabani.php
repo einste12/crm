@@ -9,4 +9,13 @@ class TercumanVeritabani extends Model
   public $timestamp ="false";
 
   protected $table = 'tercumanveritabani';
+
+
+public function teklif()
+
+{
+  return $this->belongsTo('App\Teklifler','id','TercumanID');
+}
+
+
 }
