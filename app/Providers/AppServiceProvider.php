@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Temsilciler;
 use App\Subeler;
+use App\Diller;
 use App\TercumanVeritabani;
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
 
         $tercuman = TercumanVeritabani::all();
         view()->share('tercuman',$tercuman);
+
+
+        $diller =Diller::orderBy('sirala', 'ASC')->get();
+        view()->share('diller',$diller);
 
 
         $subeler =Subeler::all();

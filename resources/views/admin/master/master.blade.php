@@ -17,7 +17,7 @@
     <link href="{{ asset('css/light-bootstrap-dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('css/demo.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/pe-icon-7-stroke.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
 </head>
 <body>
 
@@ -28,7 +28,7 @@
         @yield('content')
       </div>
     <!-- Scripts -->
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
+
     <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>

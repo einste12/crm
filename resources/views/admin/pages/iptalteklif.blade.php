@@ -8,16 +8,11 @@
      <thead>
        <tr>
          <th>İD</th>
-         <th>TARİH</th>
-         <th>EVRAK İPTAL TARİHİ</th>
-         <th>KAYNAK DİL</th>
-         <th>HEDEF DİL</th>
-         <th>İsim Soyisim</th>
-         <th>Kapora</th>
-         <th>Telefon</th>
-         <th>Email</th>
-         <th>Tasdik Şekli</th>
-         <th>fİYAT</th>
+         <th>İPTAL EDİLEN TARİH</th>
+         <th>DİLLER</th>
+         <th>TASDİK ŞEKLİ</th>
+         <th>MÜŞTERİ BİLGİLERİ</th>
+         <th>FİYAT VE KAPORA</th>
          <th>İPTAL EDEN TEMSİLCİ</td>
          <th>İPTAL NEDENİ</td>
        </tr>
@@ -26,17 +21,22 @@
        @foreach ($iptalteklif as $teklifler)
        <tr>
          <td>{{ $teklifler->id }}</td>
-         <td>{{ $teklifler->GelenTeklifTarihi }}</td>
          <td>{{ $teklifler->iptalEtmeTarihi }}</td>
-         <td>{{ $teklifler->KaynakDil }}</td>
-         <td>{{ $teklifler->HedefDil }}</td>
-         <td>{{ $teklifler->isimSoyisim }}</td>
-          <td>{{ $teklifler->Kapora }}</td>
-         <td>{{ $teklifler->Telefon }}</td>
-         <td>{{ $teklifler->Email }}</td>
-         <td>{{ $teklifler->TastikSekli }}</td>
-         <td>{{ $teklifler->Fiyat }}</td>
-         <td>{{ $teklifler->iptalEdenTemsilciID}}  </td>
+         <td>
+           {{ $teklifler->KaynakDil }} > </br>
+           {{ $teklifler->HedefDil }}
+         </td>
+         <td>@if($teklifler->TastikSekli==1) Yeminli Tercume  @elseif ($teklifler->TastikSekli==2) Noter Tasdikli Tercume @else($teklifler->TastikSekli==3) Apostil Tercume @endif</td>
+         <td>
+          {{ $teklifler->isimSoyisim }}</br>
+          {{ $teklifler->Telefon }}</br>
+          {{ $teklifler->Email }}
+        </td>
+         <td>
+          {{ $teklifler->Kapora }}</br>
+          {{ $teklifler->Fiyat }}
+         </td>
+         <td>{{  $temsilcissss[$teklifler->iptalEdenTemsilciID-1]->isimSoyisim }}  </td>
          <td>{{ $teklifler->iptalNedeni  }}  </td>
        </tr>
        @endforeach

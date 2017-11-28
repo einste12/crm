@@ -22,9 +22,9 @@
          <th>Fiyat Ve Kapora</th>
         <th>DOSYA</th>
          <th>MÜŞTERİ TALEBİ</th>
-         <th>TEKLİF VEREN TEMSİLCİ</td>
-         <th>ONAY VEREN TEMSİLCİ</td>
-         <th>TEMSİLCİ NOT</td>
+         <th>ONAY VEREN TEMSİLCİ</th>
+         <th>TEMSİLCİ NOT</th>
+         <th>İŞLEMLER</th>
        </tr>
      </thead>
      <tbody>
@@ -32,22 +32,35 @@
        <tr>
          <td>{{ $teklifler->id }}</td>
 
-         <td>{{ $teklifler->EvrakTeslimTarihi }}</td>
-         <td>{{ $teklifler->KaynakDil }}
-         {{ $teklifler->HedefDil }}</td>
-         <td>{{ $teklifler->TastikSekli }}</td>
-         <td>{{ $teklifler->isimSoyisim }}
+         <td>
+           {{ $teklifler->EvrakTeslimTarihi }}
+         </td>
+         <td>
+           {{ $teklifler->KaynakDil }} > </br>
+           {{ $teklifler->HedefDil }}
+       </td>
+         <td>@if($teklifler->TastikSekli==1) Yeminli Tercume  @elseif ($teklifler->TastikSekli==2) Noter Tasdikli Tercume @else($teklifler->TastikSekli==3) Apostil Tercume @endif</td>
+         <td>
+             {{ $teklifler->isimSoyisim }}
              {{ $teklifler->Telefon }}
-             {{ $teklifler->Email }}<td>
-          <td>   {{ $teklifler->Kapora }}
-                 {{ $teklifler->Fiyat }}
+             {{ $teklifler->Email }}
+         </td>
+          <td>
+            {{ $teklifler->Kapora }}
+            {{ $teklifler->Fiyat }}
           </td>
 
           <td>DENEME DOSYA</td>
          <td>{{ $teklifler->MusteriTalebi }}</td>
-         <td>{{ $teklifler->TeklifVerenTemsilci}}  </td>
-         <td>{{ $teklifler->OnaylayanTemsilciID  }}  </td>
+         <td>{{ $temsilcisss[$teklifler->OnaylayanTemsilciID-1]->isimSoyisim }}  </td>
+
          <td>{{ $teklifler->TemsilciGelenTeklifNot }}</td>
+         <td>
+           <a href="{{ route('tamamlanansil',['id'=>$teklifler->id]) }}" class="btn btn-danger">SİL</a>
+           <a href="{{ route('tamamlananedit',['id'=>$teklifler->id]) }}" class="btn btn-danger">DÜZENLE</a>
+           <a href="{{ route('tamamlananyazdir',['id'=>$teklifler->id]) }}" class="btn btn-success">YAZDIR</a>
+
+         </td>
        </tr>
        @endforeach
      </tbody>

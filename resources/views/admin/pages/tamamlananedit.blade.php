@@ -11,7 +11,7 @@
   @endif
 
 
-  <form action="{{route('devamedenupdate',$teklif->id)}}" method="POST">
+  <form action="{{route('tamamlananupdate',$teklif->id)}}" method="POST">
     {{ csrf_field() }}
     <div class="form-group">
       <label for="exampleInputEmail1">İsim Ve Soyisim</label>
@@ -26,12 +26,20 @@
       <input type="email" class="form-control" value="{{  $teklif->Email  }}"   name="Email">
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail1">Kaynak Dil</label>
-      <input type="text" class="form-control"  value="{{ $teklif->KaynakDil }}" name="KaynakDil">
+        <label for="exampleFormControlSelect1">Kaynak Dil</label>
+          <select class="form-control" id="exampleFormControlSelect1" name="KaynakDil">
+            @foreach($diller as $dillers)
+            <option @if($teklif->KaynakDil ==$dillers->DilAdi ) selected @endif value="{{ $dillers->DilAdi }}">{{ $dillers->DilAdi }}</option>
+           @endforeach
+          </select>
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail1">Hedef Dil</label>
-      <input type="text" class="form-control"  value="{{ $teklif->HedefDil }}"  name="HedefDil">
+        <label for="exampleFormControlSelect1">HedefDil</label>
+          <select class="form-control" id="exampleFormControlSelect1" name="HedefDil">
+            @foreach($diller as $dillers)
+            <option @if($teklif->HedefDil ==$dillers->DilAdi ) selected @endif value="{{ $dillers->DilAdi }}">{{ $dillers->DilAdi }}</option>
+           @endforeach
+          </select>
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Kapora</label>
@@ -50,8 +58,12 @@
       <input type="text" class="form-control"  value="{{ $teklif->MusteriTalebi }}" name="MusteriTalebi">
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail1">Teklif Veren Temsilci</label>
-      <input type="text" class="form-control"  value="{{ $teklif->TeklifVerenTemsilci }}" name="TeklifVerenTemsilci">
+        <label for="exampleFormControlSelect1">ONAY VEREN TEMSİLCİ</label>
+          <select class="form-control" id="exampleFormControlSelect1" name="TercumanID">
+            @foreach($temsilci as $temsilcis)
+            <option @if($teklif->TeklifVerenTemsilci ==$temsilcis->id ) selected @endif value="{{ $temsilcis->id }}">{{ $temsilcis->isimSoyisim }}</option>
+           @endforeach
+          </select>
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Fiyat</label>
@@ -61,14 +73,7 @@
       <label for="exampleInputEmail1">Temsilci Gelen Not</label>
       <input type="text" class="form-control"  value="{{ $teklif->TemsilciGelenTeklifNot }}"  name="TemsilciGelenTeklifNot">
     </div>
-    <div class="form-group">
-        <label for="exampleFormControlSelect1">TERCUMAN SEÇİNİZ</label>
-          <select class="form-control" id="exampleFormControlSelect1" name="TercumanID">
-            @foreach($tercuman as $tercumans)
-            <option @if($teklif->TercumanID ==$tercumans->id ) selected @endif value="{{ $tercumans->id }}">{{ $tercumans->isimSoyisim }}</option>
-           @endforeach
-          </select>
-        </div>
+
 
     <button type="submit" class="btn btn-success">GÜNCELLE</button>
   </form>

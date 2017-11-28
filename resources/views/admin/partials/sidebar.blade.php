@@ -44,6 +44,10 @@
 
         <ul class="nav">
             <li class="active">
+              <a href="{{ route('yeniisekle') }}">
+                  <i class="pe-7s-graph"></i>
+                  <p>YENİ İŞ EKLE</p>
+              </a>
                 <a href="{{ route('dashboard') }}">
                     <i class="pe-7s-graph"></i>
                     <p>GELEN TEKLİFLER</p>

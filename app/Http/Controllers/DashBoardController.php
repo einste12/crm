@@ -7,6 +7,7 @@ use App\Teklifler;
 use Session;
 use Toastr;
 use DB;
+use App\Temsilciler;
 use App\TercumanVeritabani;
 use Auth;
 use App\Subeler;
@@ -128,8 +129,8 @@ class DashBoardController extends Controller
 
 
 
-
-        return view('admin.pages.tamamlananteklif',['tamamlananteklif'=>$devamteklif]);
+        $temsilci =Temsilciler::all();
+        return view('admin.pages.tamamlananteklif',['tamamlananteklif'=>$devamteklif,'temsilcisss'=>$temsilci]);
     }
 
 
@@ -152,8 +153,8 @@ class DashBoardController extends Controller
 
 
 
-
-        return view('admin.pages.iptalteklif',['iptalteklif'=>$iptalteklif]);
+        $temsilci =Temsilciler::all();
+        return view('admin.pages.iptalteklif',['iptalteklif'=>$iptalteklif,'temsilcissss'=>$temsilci]);
     }
 
 
@@ -295,7 +296,86 @@ class DashBoardController extends Controller
 
         }
 
+//TAMAMLANAN BÖLÜMÜ
+
+    public function tamamlanansil($id){
+
+      $teklifsil = Teklifler::find($id);
+      $teklifsil->delete();
+
+        return redirect()->route('tamamlanan')->with('message','Kaydınız Başarıyla Silindi.');
+
+      }
 
 
+
+      public function tamamlananedit($id)
+
+      {
+
+        $teklif = Teklifler::find($id);
+        return view('admin.pages.tamamlananedit',['teklif'=>$teklif]);
+
+
+
+      }
+
+
+      public function tamamlananupdate(Request $request,$id)
+
+        {
+
+          $update = Teklifler::find($id);
+          $input = $request->all();
+          $update->update($input);
+          return redirect()->route('tamamlanan')->with('message','Başarıyla Güncellenmiştir.');
+        }
+
+
+        public function tamamlananyazdir($id)
+
+        {
+
+          $teklif = Teklifler::find($id);
+          return view('admin.pages.tamamlananyazdir',['onay'=>$teklif]);
+
+        }
+
+
+        public function yeniisekle()
+
+          {
+            return view('admin.pages.yeniisekle');
+          }
+
+
+        public function isekle(Request $request)
+
+            {
+
+                $Teklifler = new Teklifler;
+                $Teklifler->GelenTeklifTarihi = $request->input('GelenTeklifTarihi');
+                $Teklifler->isimSoyisim = $request->input('isimSoyisim');
+                $Teklifler->Telefon = $request->input('Telefon');
+                $Teklifler->Email = $request->input('Email');
+                $Teklifler->KaynakDil = $request->input('KaynakDil');
+                $Teklifler->HedefDil = $request->input('HedefDil');
+                $Teklifler->Fiyat = $request->input('Fiyat');
+                $Teklifler->Kapora = $request->input('Kapora');
+                $Teklifler->TercumanID = $request->input('TercumanID');
+                $Teklifler->TastikSekli = $request->input('TastikSekli');
+                $Teklifler->OnayDurumu = $request->input('OnayDurumu');
+                $Teklifler->TeklifVerenTemsilci = $request->input('TeklifVerenTemsilci');
+                $Teklifler->TemsilciGelenTeklifNot = $request->input('TemsilciGelenTeklifNot');
+                $Teklifler->SurekliMusteri = $request->input('SurekliMusteri');
+
+                $Teklifler->save();
+
+                return redirect()->back()->with('message','Başarıyla Kayıt Yapılmıştır');
+
+
+
+
+            }
 
 }

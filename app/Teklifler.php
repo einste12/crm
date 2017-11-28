@@ -26,4 +26,21 @@ public function tercuman()
   return $this->hasMany('App\TercumanVeritabani','TercumanID','id');
 }
 
+
+public function temsilci()
+{
+  return $this->hasMany('App\Temsilciler','TeklifVerenTemsilci','id');
+}
+
+
+public function temsilci2()
+{
+  return $this->hasMany('App\Temsilciler','OnaylayanTemsilciID','id');
+}
+
+public function temsilci3()
+{
+  return $this->hasMany('App\Temsilciler','iptalEdenTemsilciID','id');
+}
+
 }

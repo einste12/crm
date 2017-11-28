@@ -56,5 +56,18 @@ Route::post('/devamedenupdate/{id}', 'DashBoardController@devamedenupdate')->nam
 Route::get('/devamedenyazdir/{id}', 'DashBoardController@devamedenyazdir')->name('devamedenyazdir');
 
 
+//TAMAMLANAN ROUTE BAŞLANGIÇ
+Route::get('/tamamlanansil/{id}', 'DashBoardController@tamamlanansil')->name('tamamlanansil');
+Route::get('/tamamlananedit/{id}', 'DashBoardController@tamamlananedit')->name('tamamlananedit');
+Route::post('/tamamlananupdate/{id}', 'DashBoardController@tamamlananupdate')->name('tamamlananupdate');
+Route::get('/tamamlananyazdir/{id}', 'DashBoardController@tamamlananyazdir')->name('tamamlananyazdir');
+
+
+
+Route::get('/yeniisekle', 'DashBoardController@yeniisekle')->name('yeniisekle');
+
+
+Route::post('/isekle', 'DashBoardController@isekle')->name('isekle');
+
 
 });
