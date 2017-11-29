@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
         $temsilci = Temsilciler::orderBy('id', 'ASC')->get();
         view()->share('temsilci',$temsilci);
 
-        $tercuman = TercumanVeritabani::all();
+        $tercuman = TercumanVeritabani::paginate(10);
         view()->share('tercuman',$tercuman);
 
 

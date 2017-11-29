@@ -21,5 +21,12 @@ public function teklif()
   return $this->belongsTo('App\Teklifler','id','TercumanID');
 }
 
+public function tercumandilbilgileri()
+{
+
+  return $this->belongsToMany('App\Tercumandilbilgileri','id','TercumanID');
+
+}
+
 
 }

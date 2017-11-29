@@ -7,7 +7,7 @@ use App\Teklifler;
 use Session;
 use Toastr;
 use DB;
-use Tercumandilbilgileri;
+use App\Tercumandilbilgileri;
 use App\Temsilciler;
 use App\TercumanVeritabani;
 use Auth;
@@ -410,16 +410,19 @@ class DashBoardController extends Controller
 
                 $last_id = $TercumanVeritabani->id;
 
+
+
+
                           $index = 0;
                           while(true){
-                            if($request->input('TercumeTuru'.$index)){
+                            if($request->input('kaynakdil'.$index)){
 
                               $Tercumandilbilgileri = new Tercumandilbilgileri;
                               $Tercumandilbilgileri->TercumanID = $last_id;
-                              $Tercumandilbilgileri->tercume_turu = $request->input('TercumeTuru'.$index);
+                              $Tercumandilbilgileri->tercume_turu = $request->input('tercumeturu'.$index);
                               $Tercumandilbilgileri->KaynakDil = $request->input('kaynakdil'.$index);
                               $Tercumandilbilgileri->HedefDil = $request->input('hedefdil'.$index);
-                              $Tercumandilbilgileri->BirimFiyat = $request->input('karakterFiyati'.$index);
+                              $Tercumandilbilgileri->BirimFiyat = $request->input('birimfiyat'.$index);
                               $Tercumandilbilgileri->save();
 
                           }else{
@@ -429,8 +432,6 @@ class DashBoardController extends Controller
 
                           }
 
-
-
                 }else{
 
                     echo "BİR HATA OLUŞTU";
@@ -438,12 +439,18 @@ class DashBoardController extends Controller
                 }
 
 
-
-
-
                   return redirect()->back();
               }
 
+
+
+public function tumtercumanlar(){
+
+
+
+  return view('admin.pages.tumtercumanlar');
+
+}
 
 
 }

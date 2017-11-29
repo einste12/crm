@@ -82,6 +82,7 @@
                         <li><a href="{{ route('tercumanekle') }}">Yeni Tercuman Ekle</a></li>
                         <li><a href="">Tercuman Takip Cetveli</a></li>
                         <li><a href="">LKS ye Eklenenler</a></li>
+                        <li><a href="{{ route('tumtercumanlar') }}">Tüm Tercumanlar</a></li>
 
                     </ul>
                 </div>
