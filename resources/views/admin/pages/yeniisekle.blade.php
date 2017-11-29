@@ -87,7 +87,7 @@
 
                                               <select id="KaynakDil" name="KaynakDil" class="form-control">
                                                     @foreach ($diller as $dillers)
-                                                      <option value="deneme">{{ $dillers->DilAdi  }}</option>
+                                                      <option value="{{ $dillers->DilAdi }}">{{ $dillers->DilAdi  }}</option>
                                                     @endforeach
                                                   </select>
 
@@ -146,7 +146,7 @@
 
                                        <div class="row">
                                              <div class="col-md-6 form-group">
-                                                  <label class=" control-label">Noter Tasdiki </label>
+                                                  <label class=" control-label">Tastik Sekli</label>
                                                    <select id="TastikSekli" name="TastikSekli" class="form-control">
                                                           <option value="1"> Yeminli Tercume</option>
                                                           <option value="2"> Noter Tasdikli Tercume</option>
@@ -176,7 +176,7 @@
                                                   <select id="temsilci" name="TeklifVerenTemsilci" class="form-control">
                                                       @foreach ($temsilci as $temsilcis)
 
-                                                        <option value="{{ $temsilcis->id  }}">{{ $temsilcis->isimSoyisim  }}</option>
+                                                      <option value="{{ $temsilcis->isimSoyisim  }}">{{ $temsilcis->isimSoyisim  }}</option>
 
                                                       @endforeach
 
@@ -235,7 +235,7 @@
                                       <div class="form-group">Toplam Fiyat: </strong><span id="fiyat"></span></div>
                                       <div class="form-group">Fatura: </strong><span id="fatura"></span></div>
                                       <div class="form-group">Kaparo: </strong><span id="kaparo"></span></div>
-                                      <div class="form-group">Noter Tasdiki: </strong><span id="notertasdiki"></span></div>
+                                      <div class="form-group">Noter Tasdiki: </strong><span id="tastiksekli"></span></div>
                                       <div class="form-group">Temsilci: </strong><span id="temsilcionizleme"></span></div>
                                       <div class="form-group">Not: </strong><span id="not"></span></div>
                                       <div class="form-group">Sürekli Müşteri: </strong><span id="sureklimusteri"></span></div>

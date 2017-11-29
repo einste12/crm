@@ -65,9 +65,12 @@ Route::get('/tamamlananyazdir/{id}', 'DashBoardController@tamamlananyazdir')->na
 
 
 Route::get('/yeniisekle', 'DashBoardController@yeniisekle')->name('yeniisekle');
-
-
 Route::post('/isekle', 'DashBoardController@isekle')->name('isekle');
+
+// TERCUMANLAR ROUTE
+Route::get('/tercumanekle', 'DashBoardController@tercumanekle')->name('tercumanekle');
+Route::post('/vttercumanekle', 'DashBoardController@vttercumanekle')->name('vttercumanekle');
+
 
 
 });

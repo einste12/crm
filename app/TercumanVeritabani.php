@@ -6,9 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class TercumanVeritabani extends Model
 {
-  public $timestamp ="false";
+  public $timestamps =false;
 
   protected $table = 'tercumanveritabani';
+
+  protected $fillable = [
+      'isimSoyisim', 'Mail', 'Telefon','temsilciNot','Locasyon','Hesapsahibi','ibanno','BasvuruTarihi',
+  ];
 
 
 public function teklif()

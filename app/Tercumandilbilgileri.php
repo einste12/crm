@@ -6,7 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tercumandilbilgileri extends Model
 {
-  public $timestamp ="false";
+  public $timestamps =false;
+
+
+  protected $fillable = [
+      'TercumanID', 'KaynakDil', 'HedefDil','BirimFiyat','tercume_turu',
+  ];
+
 
   protected $table = 'tercumandilbilgileri';
 }

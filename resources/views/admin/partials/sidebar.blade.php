@@ -56,7 +56,7 @@
             <li>
                 <a data-toggle="collapse" href="#componentsExamples">
                     <i class="pe-7s-plugin"></i>
-                    <p>Components
+                    <p>Teklifler
                        <b class="caret"></b>
                     </p>
                 </a>
@@ -67,6 +67,22 @@
                         <li><a href="{{ route('tamamlanan') }}">Tamamlanan Teklifler</a></li>
                         <li><a href="{{ route('iptalteklif') }}">İptal Edilen Teklifler</a></li>
                         <li><a href="{{ route('logout') }}">Çıkış Yap</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#componentsExamples1">
+                    <i class="pe-7s-plugin"></i>
+                    <p>TERCUMANLAR
+                       <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="componentsExamples1">
+                    <ul class="nav">
+                        <li><a href="{{ route('tercumanekle') }}">Yeni Tercuman Ekle</a></li>
+                        <li><a href="">Tercuman Takip Cetveli</a></li>
+                        <li><a href="">LKS ye Eklenenler</a></li>
+
                     </ul>
                 </div>
             </li>

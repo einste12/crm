@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TercumanIsTakip extends Model
 {
-  public $timestamp ="false";
+  public $timestamp =false;
 
   protected $table = 'tercumantakip';
 }

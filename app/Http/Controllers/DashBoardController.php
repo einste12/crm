@@ -7,6 +7,7 @@ use App\Teklifler;
 use Session;
 use Toastr;
 use DB;
+use Tercumandilbilgileri;
 use App\Temsilciler;
 use App\TercumanVeritabani;
 use Auth;
@@ -377,5 +378,72 @@ class DashBoardController extends Controller
 
 
             }
+
+
+            // TERCUMANLAR FUNCTİON
+
+
+            public function tercumanekle(){
+
+                return view('admin.pages.tercumanekle');
+            }
+
+            public function vttercumanekle(Request $request)
+              {
+
+                $TercumanVeritabani = new TercumanVeritabani;
+                $TercumanVeritabani->isimSoyisim = $request->input('isimSoyisim');
+                $TercumanVeritabani->Telefon = $request->input('Telefon');
+                $TercumanVeritabani->Mail = $request->input('Email');
+                $TercumanVeritabani->Locasyon = $request->input('Lokasyon');
+                $TercumanVeritabani->Hesapsahibi = $request->input('HesapSahibi');
+
+
+
+                $TercumanVeritabani->ibanno = $request->input('ibanno');
+                $TercumanVeritabani->temsilciNot = $request->input('TemsilciNot');
+                $TercumanVeritabani->BasvuruTarihi = date('Y-m-d H:i:s');
+
+                $TercumanVeritabani->save();
+
+                if($TercumanVeritabani->save()){
+
+                $last_id = $TercumanVeritabani->id;
+
+                          $index = 0;
+                          while(true){
+                            if($request->input('TercumeTuru'.$index)){
+
+                              $Tercumandilbilgileri = new Tercumandilbilgileri;
+                              $Tercumandilbilgileri->TercumanID = $last_id;
+                              $Tercumandilbilgileri->tercume_turu = $request->input('TercumeTuru'.$index);
+                              $Tercumandilbilgileri->KaynakDil = $request->input('kaynakdil'.$index);
+                              $Tercumandilbilgileri->HedefDil = $request->input('hedefdil'.$index);
+                              $Tercumandilbilgileri->BirimFiyat = $request->input('karakterFiyati'.$index);
+                              $Tercumandilbilgileri->save();
+
+                          }else{
+                             break;
+                         }
+                         $index +=1;
+
+                          }
+
+
+
+                }else{
+
+                    echo "BİR HATA OLUŞTU";
+
+                }
+
+
+
+
+
+                  return redirect()->back();
+              }
+
+
 
 }
