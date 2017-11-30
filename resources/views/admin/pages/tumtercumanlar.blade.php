@@ -26,16 +26,20 @@
        </tr>
      </thead>
      <tbody>
+
+
+
        @foreach ($tercuman as $tercumans)
+
        <tr>
          <td>{{ $tercumans->id }}</td>
          <td>{{ $tercumans->isimSoyisim }}</td>
          <td>{{ $tercumans->Mail }}</td>
          <td>{{ $tercumans->Telefon}}  </td>
          <td>
-
+            @foreach($tercumans->tercumandilbilgileri as $data) {{ $data->KaynakDil}}>{{$data->HedefDil}}<br> @endforeach
          </td>
-         <td>{{$tercumans->tercumandilbilgileri->tercume_turu}}</td>
+         <td>@foreach($tercumans->tercumandilbilgileri as $data) {{ $data->tercume_turu}}</br>  @endforeach </td>
          <td> {{$tercumans->temsilciNot}} </td>
 
 

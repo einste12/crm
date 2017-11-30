@@ -24,7 +24,7 @@ public function teklif()
 public function tercumandilbilgileri()
 {
 
-  return $this->belongsToMany('App\Tercumandilbilgileri','id','TercumanID');
+  return $this->hasMany('App\Tercumandilbilgileri','TercumanID');
 
 }
 

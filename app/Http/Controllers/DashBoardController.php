@@ -445,11 +445,7 @@ class DashBoardController extends Controller
 
 
 public function tumtercumanlar(){
-
-
-
   return view('admin.pages.tumtercumanlar');
-
 }
 
 

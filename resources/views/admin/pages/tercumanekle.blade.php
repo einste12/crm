@@ -19,7 +19,7 @@
                          <div class="col-md-12 form-group">
                        <label class=" control-label" for="adsoyad">Tercüman Adı Soyadı <span class="red">*</span></label>
                        <div class="">
-                             <input required="true" id="ceptelefon" name="isimSoyisim" type="text" placeholder="Tercüman Adını Giriniz" class="form-control input-md">
+                             <input required="true" id="ceptelefon" name="isimSoyisim" type="text" placeholder="Tercüman Adını Giriniz" class="form-control input-md" required>
                        </div>
                      </div>
 
@@ -29,7 +29,7 @@
                        <div class="col-md-12 form-group">
                        <label class=" control-label" for="email">E-Posta Adresi <span class="red">*</span></label>
                        <div class="">
-                             <input required="true" id="email" name="Email" type="email" placeholder="E-Posta Adresi Giriniz" class="form-control input-md">
+                             <input required="true" id="email" name="Email" type="email" placeholder="E-Posta Adresi Giriniz" class="form-control input-md" required>
                        </div>
                      </div>
                   </div>
@@ -41,7 +41,7 @@
                          <div class="col-md-12 form-group">
                        <label class=" control-label" for="ceptelefon"> Telefon Numarası <span class="red">*</span></label>
                        <div class="">
-                             <input required="true" id="ceptelefon" name="Telefon" type="text" placeholder="Telefon Numarası Giriniz" class="form-control input-md">
+                             <input required="true" id="ceptelefon" name="Telefon" type="text" placeholder="Telefon Numarası Giriniz" class="form-control input-md" required>
                        </div>
                      </div>
                   </div>
@@ -53,7 +53,7 @@
                      <div class="col-md-12 form-group">
                         <label class=" control-label" for="Lokasyon">Lokasyon<span class="red">*</span></label>
                         <div class="">
-                              <input id="Lokasyon" name="Lokasyon" type="text" placeholder="Lokasyon Giriniz" class="form-control input-md">
+                              <input id="Lokasyon" name="Lokasyon" type="text" placeholder="Lokasyon Giriniz" class="form-control input-md" required>
                         </div>
                      </div>
                  </div>
@@ -98,7 +98,7 @@
                   <div class="col-md-12 form-group">
                     <label class=" control-label" for="">Tercüme Türü Seçiniz</label>
                     <div class="">
-                    <select id="TercumeTuru" name="TercumeTuru" class="form-control">
+                    <select id="TercumeTuru" name="TercumeTuru" class="form-control" required>
                                 <option value="0">Yazılı Tercüme</option>
                                 <option value="1">Sözlü Tercüme</option>
                           </select>
@@ -112,7 +112,7 @@
                      <div class="form-group" style="margin:0;">
                          <label class="control-label" for="kaynakdil">Kaynak Dil </label>
 
-                         <select id="kaynakdil" name="kaynakdil" class="form-control">
+                         <select id="kaynakdil" name="kaynakdil" class="form-control" required>
 
                            @foreach($diller as $dillers)
                             <option value="{{ $dillers->DilAdi }}">{{ $dillers->DilAdi }}</option>
@@ -126,7 +126,7 @@
                   <div class="col-md-12 form-group">
 
                       <label class="control-label" for="hedefdil">Hedef Dil </label>
-                  <select id="hedefdil" name="hedefdil" class="form-control">
+                  <select id="hedefdil" name="hedefdil" class="form-control" required>
 
                     @foreach($diller as $dillers)
                      <option value="{{ $dillers->DilAdi }}">{{ $dillers->DilAdi }}</option>
@@ -141,7 +141,7 @@
                       <div class="form-group">
                       <label class="control-label" for="adsoyad"> Birim Fiyat </label>
                       <div class="">
-                            <input required="true" id="KarakterFiyati" name="karakterFiyati" type="number" placeholder="Fiyat" class="sayi form-control input-md">
+                            <input required="true" id="KarakterFiyati" name="birimfiyat" type="number" placeholder="Fiyat" class="sayi form-control input-md" required>
                       </div>
                     </div>
                   </div>
@@ -208,7 +208,7 @@
       $("#dilekle").click(function(){
           var kaynakdil = $("[name='kaynakdil']").val();
           var hedefdil = $("[name='hedefdil']").val();
-          var karakterFiyati = $("[name='karakterFiyati']").val();
+          var karakterFiyati = $("[name='birimfiyat']").val();
           var tercumeTuru = $("[name='TercumeTuru']").val();
 
 
