@@ -37,7 +37,7 @@
          <td>{{ $tercumans->Mail }}</td>
          <td>{{ $tercumans->Telefon}}  </td>
          <td>
-            @foreach($tercumans->tercumandilbilgileri as $data) {{ $data->KaynakDil}}>{{$data->HedefDil}}<br> @endforeach
+            @foreach($tercumans->tercumandilbilgileri as $data) {{ $data->KaynakDil}}>{{$data->HedefDil}}={{ $data->BirimFiyat }}<br> @endforeach
          </td>
          <td>@foreach($tercumans->tercumandilbilgileri as $data) {{ $data->tercume_turu}}</br>  @endforeach </td>
          <td> {{$tercumans->temsilciNot}} </td>

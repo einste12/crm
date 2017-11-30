@@ -397,6 +397,7 @@ class DashBoardController extends Controller
                 $TercumanVeritabani->Mail = $request->input('Email');
                 $TercumanVeritabani->Locasyon = $request->input('Lokasyon');
                 $TercumanVeritabani->Hesapsahibi = $request->input('HesapSahibi');
+                $TercumanVeritabani->onaydurumu = 0;
 
 
 
@@ -448,5 +449,51 @@ public function tumtercumanlar(){
   return view('admin.pages.tumtercumanlar');
 }
 
+
+public function tercumanbasvurulari()
+  {
+
+    return view('admin.pages.tercumanbasvurulari');
+
+  }
+
+
+
+
+  public function tercumanbasvurusil($id)
+  {
+
+    $tercumanveritabani = TercumanVeritabani::findOrFail($id);
+    $tercumanveritabani->silindi = 1;
+    $tercumanveritabani->push(); 
+
+    return redirect()->back()->with('message','Başarıyla Silinmiştir');
+
+  }
+
+
+  public function tercumanbasvuruonayla(Request $request)
+
+    {
+      
+            $id = request()->input('basvuruonay');
+
+            $tercumanveritabani = TercumanVeritabani::find($id); 
+            $tercumanveritabani->onaydurumu=2;
+            $tercumanveritabani->push(); 
+            return redirect()->route('tercumanbasvurulari')->with('message','Başarıyla Onaylandı');
+
+    }
+
+
+
+    public function tercumanmaliyet()
+      {
+
+
+        return view('admin.pages.tercumanmaliyet');
+
+
+      }
 
 }

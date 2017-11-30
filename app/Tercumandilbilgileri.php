@@ -10,9 +10,10 @@ class Tercumandilbilgileri extends Model
 
 
   protected $fillable = [
-      'TercumanID', 'KaynakDil', 'HedefDil','BirimFiyat','tercume_turu',
+      'TercumanID', 'KaynakDil', 'HedefDil','BirimFiyat','tercume_turu','silindi','silindi',
   ];
 
 
   protected $table = 'tercumandilbilgileri';
+  
 }

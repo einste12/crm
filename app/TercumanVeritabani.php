@@ -11,7 +11,7 @@ class TercumanVeritabani extends Model
   protected $table = 'tercumanveritabani';
 
   protected $fillable = [
-      'isimSoyisim', 'Mail', 'Telefon','temsilciNot','Locasyon','Hesapsahibi','ibanno','BasvuruTarihi',
+      'id','isimSoyisim', 'Mail', 'Telefon','temsilciNot','Locasyon','Hesapsahibi','ibanno','BasvuruTarihi','onaydurumu',
   ];
 
 
