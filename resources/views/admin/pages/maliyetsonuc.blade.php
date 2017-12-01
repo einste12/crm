@@ -10,12 +10,16 @@
           </div>
         </div>
   @endif
-  
+
+
+
+
   <form action="{{ route('maliyetara')  }}" method="POST">
     {{ csrf_field() }}
 
+    <input type="text" name="ara" class="form-control">
     
-  
+
    <div class="form-group">
     <label for="exampleFormControlSelect1">Diller</label>
     <select class="form-control" id="exampleFormControlSelect1" name="dil">
@@ -52,29 +56,29 @@
      <tbody>
 
 
-
-       @foreach ($tercumanmali as $tercumans)
+  @if(count($result))
+       @foreach ($result as $results)
 
 	       	<tr>
 		         
-		         <td>{{ mb_strtoupper($tercumans->isimSoyisim) }}</td>
+		         <td>{{ mb_strtoupper($results->isimSoyisim) }}</td>
 		         <td>
-		            @foreach($tercumans->tercumandilbilgileri as $data)
-                 {{ $data->KaynakDil}}>{{$data->HedefDil}}
-                @endforeach
+		          {{$results->KaynakDil}}>{{$results->HedefDil}}</br>
 	 	         </td>
               <td>
                 
-              {{ $data->BirimFiyat }}TL
+              {{ $results->BirimFiyat }}
 
               </td>
        		</tr>
      @endforeach
+      @else
+     <tr>
+        <td colspan="5" style="text-align: center;">Aradığınız Sonuç Bulunamadı!</td>
+      </tr>
+      @endif
      </tbody>
    </table>
-
-{{ $tercuman->links() }}
-
 
 
 @endsection

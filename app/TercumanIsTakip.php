@@ -6,7 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class TercumanIsTakip extends Model
 {
-  public $timestamp =false;
+  public $timestamps =false;
 
-  protected $table = 'tercumantakip';
+  protected $table = 'tercumanistakip';
+
+
+    protected $fillable = [
+        'Tarih', 'TercumanAdi', 'ProjeAdi','KaynakDil','HedefDil','Karakter','BirimFiyat','Temsilci','GonderenYer','TercumanTakipNot','OnayDurumu','Silindi',
+  ];
+
+
+
 }

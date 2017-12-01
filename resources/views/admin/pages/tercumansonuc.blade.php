@@ -2,7 +2,8 @@
 
 @section('content')
 
-  @if(Session::has('message'))
+
+@if(Session::has('message'))
         <div class="row">
           <div class="col-md-12">
            <div class="alert alert-success text-center"> {{ Session::get('message') }}</div>
@@ -12,11 +13,13 @@
 
 
 
+
   <form action="{{ route('tercumanara')  }}" method="POST">
     {{ csrf_field() }}
 
+    <input type="text" name="ara" class="form-control">
     
-  
+
    <div class="form-group">
     <label for="exampleFormControlSelect1">Diller</label>
     <select class="form-control" id="exampleFormControlSelect1" name="dil2">
@@ -41,58 +44,51 @@
 
 
 
-
   <table class="table table-striped">
      <thead>
        <tr>
-         <th>İD</th>
-         <th>ADI VE SOYADI</th>
-         <th>EPOSTA</th>
+         <th>İSİM SOYİSİM</th>
+         <th>E-MAİL</th>
          <th>TELEFON</th>
-         <th>ÇEVİRİ YAPTIĞI DİLLER</th>
-         <th>TERCÜME TÜRÜ</th>
-         <th>TEMSİLCİ NOT</th>
-
-
-
+         <th>ÇEVİRİ YAPTIĞI DİL</th>
+         <th>FİYAT</th>
+         
        </tr>
      </thead>
      <tbody>
 
 
+@if(count($result))
+       @foreach ($result as $results)
 
-       @foreach ($tercuman as $tercumans)
+	       	<tr>
+		         
+		         <td>{{ mb_strtoupper($results->isimSoyisim) }}</td>
+             <td>{{ mb_strtoupper($results->Mail) }}</td>
+             <td>{{ $results->Telefon }}</td>
+		         <td>
+		          {{$results->KaynakDil}}>{{$results->HedefDil}}</br>
+	 	         </td>
+               <td>
+                
+              {{ $results->tercume_turu }}
 
-       <tr>
-         <td>{{ $tercumans->id }}</td>
-         <td>{{ $tercumans->isimSoyisim }}</td>
-         <td>{{ $tercumans->Mail }}</td>
-         <td>{{ $tercumans->Telefon}}  </td>
-         <td>
-            @foreach($tercumans->tercumandilbilgileri as $data) {{ $data->KaynakDil}}>{{$data->HedefDil}}={{ $data->BirimFiyat }}<br> @endforeach
-         </td>
-         <td>@foreach($tercumans->tercumandilbilgileri as $data) {{ $data->tercume_turu}}</br>  @endforeach </td>
-         <td> {{$tercumans->temsilciNot}} </td>
+              </td>
+              <td>
+                
+              {{ $results->temsilciNot}}
 
-
-
-
-
-       </tr>
+              </td>
+       		</tr>
      @endforeach
+
+     @else
+     <tr>
+        <td colspan="5" style="text-align: center;">Aradığınız Sonuç Bulunamadı!</td>
+      </tr>
+      @endif
      </tbody>
    </table>
-
-{{ $tercuman->links() }}
-
-
-
-
-
-
-
-
-
 
 
 

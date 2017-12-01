@@ -76,6 +76,13 @@ Route::get('tercumanbasvurusil/{id}', 'DashBoardController@tercumanbasvurusil')-
 Route::post('tercumanbasvuruonayla', 'DashBoardController@tercumanbasvuruonayla')->name('tercumanbasvuruonayla');
 Route::get('/tercumanmaliyet', 'DashBoardController@tercumanmaliyet')->name('tercumanmaliyet');
 
+Route::post('maliyetara', 'DashBoardController@maliyetara')->name('maliyetara');
+Route::post('tercumanara', 'DashBoardController@tercumanara')->name('tercumanara');
+
+//TERCUMANLAR İŞ TAKİP ROUTE
+
+Route::get('/tercumanistakipekle', 'DashBoardController@tercumanistakipekle')->name('tercumanistakipekle');
+Route::post('/tercumanformistakipekle', 'DashBoardController@tercumanformistakipekle')->name('tercumanformistakipekle');
 
 
 

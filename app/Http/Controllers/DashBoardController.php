@@ -7,6 +7,7 @@ use App\Teklifler;
 use Session;
 use Toastr;
 use DB;
+use App\TercumanIsTakip;
 use App\Tercumandilbilgileri;
 use App\Temsilciler;
 use App\TercumanVeritabani;
@@ -495,5 +496,103 @@ public function tercumanbasvurulari()
 
 
       }
+
+
+
+    public function maliyetara(Request $request){
+
+        $ara = $request->input('ara');
+        $dil = $request->input('dil');
+        $calisilan = $request->input('calisilan');
+
+
+         $results = DB::select(DB::raw("SELECT TercumanVeritabani.isimSoyisim, Tercumandilbilgileri.KaynakDil, Tercumandilbilgileri.HedefDil,Tercumandilbilgileri.BirimFiyat
+                               FROM TercumanVeritabani
+                               INNER JOIN Tercumandilbilgileri ON TercumanVeritabani.id=Tercumandilbilgileri.TercumanID WHERE TercumanVeritabani.onaydurumu=$calisilan AND Tercumandilbilgileri.HedefDil='$dil' OR Tercumandilbilgileri.KaynakDil='$dil'"));
+
+         
+         return view('admin.pages.maliyetsonuc',['result'=>$results]);
+
+    }  
+
+
+
+
+       public function tercumanara(Request $request){
+
+        $ara = $request->input('ara');
+        $dil = $request->input('dil2');
+        $calisilan = $request->input('calisilan2');
+
+
+         $results = DB::select(DB::raw("SELECT TercumanVeritabani.isimSoyisim,TercumanVeritabani.Mail,TercumanVeritabani.Telefon, Tercumandilbilgileri.KaynakDil, Tercumandilbilgileri.HedefDil,Tercumandilbilgileri.tercume_turu,TercumanVeritabani.temsilciNot
+                               FROM TercumanVeritabani
+                               INNER JOIN Tercumandilbilgileri ON 
+                               TercumanVeritabani.id=Tercumandilbilgileri.TercumanID 
+                               WHERE TercumanVeritabani.onaydurumu=$calisilan 
+                               AND Tercumandilbilgileri.HedefDil='$dil' 
+                               OR Tercumandilbilgileri.KaynakDil='$dil'"));
+
+         
+         return view('admin.pages.tercumansonuc',['result'=>$results]);
+
+    }  
+
+
+
+
+    //TERCUMAN TAKİP 
+
+public function tercumanistakipekle()
+
+{
+
+  $tercumanlist = TercumanVeritabani::where('silindi', 0)
+                ->where(function($q) {
+          $q->where('onaydurumu', 2)
+            ->orWhere('onaydurumu', 3);
+      })
+      ->get();
+
+
+
+return view('admin.pages.tercumanistakipekle',['tercumanlist'=>$tercumanlist]);
+
+
+}
+
+
+public function tercumanformistakipekle(Request $request)
+
+{
+
+                              $TercumanIsTakip = new TercumanIsTakip;
+                              $TercumanIsTakip->Tarih = date('Y-m-d H:i:s');
+                              $TercumanIsTakip->TercumanAdi = $request->input('tercumanismi');
+                              $TercumanIsTakip->ProjeAdi = $request->input('ProjeAdi');
+                              $TercumanIsTakip->KaynakDil = $request->input('KaynakDil');
+                              $TercumanIsTakip->HedefDil = $request->input('HedefDil');
+                              $TercumanIsTakip->Karakter = $request->input('Karakter');
+                              $TercumanIsTakip->BirimFiyat = $request->input('BirimFiyat');
+                              $TercumanIsTakip->Temsilci = $request->input('Temsilci');
+                              $TercumanIsTakip->GonderenYer = $request->input('GonderenYer');
+                              $TercumanIsTakip->TercumanTakipNot = $request->input('TercumanTakipNot');
+                              $TercumanIsTakip->OnayDurumu = 1;
+                              $TercumanIsTakip->Silindi = 0;
+                              $TercumanIsTakip->save();
+
+
+
+
+
+
+return redirect()->back()->with('message','Başarıyla İş Takibi Eklenmiştir');
+}
+
+
+
+
+
+
 
 }

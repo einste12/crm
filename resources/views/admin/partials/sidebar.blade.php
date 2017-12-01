@@ -87,6 +87,20 @@
                     </ul>
                 </div>
             </li>
+            <li>
+                <a data-toggle="collapse" href="#componentsExamples2">
+                    <i class="pe-7s-plugin"></i>
+                    <p>TERCUMAN TAKİP
+                       <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="componentsExamples2">
+                    <ul class="nav">
+                        <li><a href="{{ route('tercumanistakipekle') }}">YENİ EKLE</a></li>
+                       
+                    </ul>
+                </div>
+            </li>
 
         </ul>
   </div>
