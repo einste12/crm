@@ -83,7 +83,17 @@ Route::post('tercumanara', 'DashBoardController@tercumanara')->name('tercumanara
 
 Route::get('/tercumanistakipekle', 'DashBoardController@tercumanistakipekle')->name('tercumanistakipekle');
 Route::post('/tercumanformistakipekle', 'DashBoardController@tercumanformistakipekle')->name('tercumanformistakipekle');
+Route::get('/tercumanistakipcetveli', 'DashBoardController@tercumanistakipcetveli')->name('tercumanistakipcetveli');
+Route::get('/tercumanistakipcetvelisil/{id}', 'DashBoardController@tercumanistakipcetvelisil')->name('tercumanistakipcetvelisil');
+Route::post('lksekle', 'DashBoardController@lksekle')->name('lksekle');
 
+Route::get('/tercumantakipduzenle/{id}', 'DashBoardController@tercumantakipduzenle')->name('tercumantakipduzenle');
+
+Route::post('istakipupdate/{id}', 'DashBoardController@istakipupdate')->name('istakipupdate');
+
+Route::get('/lksyeeklenenler', 'DashBoardController@lksyeeklenenler')->name('lksyeeklenenler');
+
+Route::post('lksara', 'DashBoardController@lksara')->name('lksara');
 
 
 });

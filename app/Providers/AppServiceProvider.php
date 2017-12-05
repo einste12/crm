@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 use App\Temsilciler;
 use App\Subeler;
 use App\Diller;
+use App\TercumanIsTakip;
 use App\TercumanVeritabani;
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +35,10 @@ class AppServiceProvider extends ServiceProvider
         ->paginate(10);
         view()->share('tercumanmali',$tercumanmali);
 
+
+        $tercumantakipcetveli = TercumanIsTakip::where(['silindi'=>0,'onaydurumu'=>0])
+        ->paginate(10);
+        view()->share('tercumantakipcetveli',$tercumantakipcetveli); 
 
 
  

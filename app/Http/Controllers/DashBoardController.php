@@ -7,6 +7,7 @@ use App\Teklifler;
 use Session;
 use Toastr;
 use DB;
+use Carbon\Carbon;
 use App\TercumanIsTakip;
 use App\Tercumandilbilgileri;
 use App\Temsilciler;
@@ -58,31 +59,17 @@ class DashBoardController extends Controller
 
           $query->where([
              'silindi'     =>0,
-             'onaydurumu' =>1,
+             'OnayDurumu' =>1,
           ]);
 
       })
-      ->select(['id','GelenTeklifTarihi','TeklifVerilenTarih','isimSoyisim','Fiyat','TeklifVerenTemsilci','Email','Telefon','KaynakDil','HedefDil','TastikSekli','MusteriTalebi','TemsilciGelenTeklifNot','TercumanID','Kapora'])
-      ->orderBy('teklifverilentarih','DESC')
+         ->select(['id','GelenTeklifTarihi','TeklifVerilenTarih','isimSoyisim','Fiyat','TeklifVerenTemsilci','Email','Telefon','KaynakDil','HedefDil','TastikSekli','MusteriTalebi','TemsilciGelenTeklifNot','Kapora'])
+      ->orderBy('TeklifVerilenTarih','DESC')
       ->paginate(100);
 
-
-
-
+      
         return view('admin.pages.onaybekleyen',['onaybekleyen'=>$onaybekleyen]);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -96,12 +83,12 @@ class DashBoardController extends Controller
 
           $query->where([
              'silindi'     =>0,
-             'onaydurumu' =>2,
+             'OnayDurumu' =>2,
           ]);
 
       })
       ->select(['id','TercumanID','TeklifVerilenTarih','HedefDil','KaynakDil','GelenTeklifTarihi','isimSoyisim','Kapora','Fiyat','TeklifVerenTemsilci','Email','Telefon','KaynakDil','HedefDil','TastikSekli','MusteriTalebi','TemsilciGelenTeklifNot'])
-      ->orderBy('teklifverilentarih','DESC')
+      ->orderBy('TeklifVerilenTarih','DESC')
       ->paginate(100);
 
 
@@ -121,7 +108,7 @@ class DashBoardController extends Controller
 
           $query->where([
              'silindi'     =>0,
-             'onaydurumu' =>3,
+             'OnayDurumu' =>3,
           ]);
 
       })
@@ -145,14 +132,13 @@ class DashBoardController extends Controller
 
           $query->where([
              'silindi'     =>0,
-             'onaydurumu' =>4,
+             'OnayDurumu' =>4,
           ]);
 
       })
       ->select(['id','GelenTeklifTarihi','TeklifVerilenTarih','iptalEtmeTarihi','isimSoyisim','Fiyat','Email','Telefon','KaynakDil','HedefDil','TastikSekli','iptalEdenTemsilciID','iptalNedeni','Kapora'])
       ->orderBy('GelenTeklifTarihi','DESC')
       ->paginate(100);
-
 
 
         $temsilci =Temsilciler::all();
@@ -367,9 +353,10 @@ class DashBoardController extends Controller
                 $Teklifler->TercumanID = $request->input('TercumanID');
                 $Teklifler->TastikSekli = $request->input('TastikSekli');
                 $Teklifler->OnayDurumu = $request->input('OnayDurumu');
+                $Teklifler->SubeID = $request->input('SubeID');
                 $Teklifler->TeklifVerenTemsilci = $request->input('TeklifVerenTemsilci');
                 $Teklifler->TemsilciGelenTeklifNot = $request->input('TemsilciGelenTeklifNot');
-                $Teklifler->SurekliMusteri = $request->input('SurekliMusteri');
+                
 
                 $Teklifler->save();
 
@@ -520,7 +507,6 @@ public function tercumanbasvurulari()
 
        public function tercumanara(Request $request){
 
-        $ara = $request->input('ara');
         $dil = $request->input('dil2');
         $calisilan = $request->input('calisilan2');
 
@@ -556,6 +542,8 @@ public function tercumanistakipekle()
 
 
 
+
+
 return view('admin.pages.tercumanistakipekle',['tercumanlist'=>$tercumanlist]);
 
 
@@ -567,17 +555,17 @@ public function tercumanformistakipekle(Request $request)
 {
 
                               $TercumanIsTakip = new TercumanIsTakip;
-                              $TercumanIsTakip->Tarih = date('Y-m-d H:i:s');
+                              $TercumanIsTakip->EklenmeTarih = date('Y-m-d H:i:s');
                               $TercumanIsTakip->TercumanAdi = $request->input('tercumanismi');
                               $TercumanIsTakip->ProjeAdi = $request->input('ProjeAdi');
                               $TercumanIsTakip->KaynakDil = $request->input('KaynakDil');
                               $TercumanIsTakip->HedefDil = $request->input('HedefDil');
                               $TercumanIsTakip->Karakter = $request->input('Karakter');
                               $TercumanIsTakip->BirimFiyat = $request->input('BirimFiyat');
-                              $TercumanIsTakip->Temsilci = $request->input('Temsilci');
-                              $TercumanIsTakip->GonderenYer = $request->input('GonderenYer');
+                              $TercumanIsTakip->TemsilciID = $request->input('Temsilci');
+                              $TercumanIsTakip->SubeID = $request->input('GonderenYer');
                               $TercumanIsTakip->TercumanTakipNot = $request->input('TercumanTakipNot');
-                              $TercumanIsTakip->OnayDurumu = 1;
+                              $TercumanIsTakip->OnayDurumu = 0;
                               $TercumanIsTakip->Silindi = 0;
                               $TercumanIsTakip->save();
 
@@ -592,7 +580,112 @@ return redirect()->back()->with('message','Başarıyla İş Takibi Eklenmiştir'
 
 
 
+public function tercumanistakipcetveli()
+{
 
+   return  view('admin.pages.tercumantakipcetveli');
+
+}
+
+
+
+public function tercumanistakipcetvelisil($id)
+{
+
+  TercumanIsTakip::find($id)->update(['Silindi' => 1]);
+
+  return redirect()->back()->with('message','Başarıyla Silinmiştir');
+
+}
+
+
+
+public function lksekle(Request $request)
+{
+
+
+  $id = request()->input('lksonay');
+  $onaytarihi = date('Y-m-d H:i:s');
+
+
+  TercumanIsTakip::find($id)->update(['OnayDurumu' => 1,'OnayTarihi'=>$onaytarihi]);
+
+   return redirect()->route('tercumanistakipcetveli')->with('message','LKS  ye Başarıyla Eklendi');
+
+
+}
+
+
+public function tercumantakipduzenle($id)
+
+{
+
+
+  $teklif = TercumanIsTakip::find($id);
+  return view('admin.pages.istakipedit',['istakip'=>$teklif]);
+
+}
+
+public function istakipupdate(Request $request,$id)
+
+{
+
+
+          $teklif = TercumanIsTakip::find($id);
+          $input = $request->all();
+          $teklif->update($input);
+          return redirect()->route('tercumanistakipcetveli', [$id]);
+
+}
+
+
+
+public function lksyeeklenenler()
+{
+
+
+  $lksyeeklenenler = TercumanIsTakip::paginate(10);  
+
+  return view('admin.pages.lksyeeklenenler',['lksekle'=>$lksyeeklenenler]);
+}
+
+
+
+
+public function lksara(Request $request)
+{
+
+  $dil2=$request->input('dil3');
+  $temsilci2=$request->input('temsilci3');
+
+
+      $results=DB::select(DB::raw("SELECT
+       tercumanistakip.id,
+       tercumanistakip.TercumanAdi,
+       tercumanistakip.EklenmeTarih,
+       tercumanistakip.ProjeAdi, 
+       tercumanistakip.Karakter, 
+       tercumanistakip.BirimFiyat, 
+       tercumanistakip.KaynakDil,
+       tercumanistakip.HedefDil, 
+       tercumanistakip.TercumanTakipNot, 
+       temsilciler.isimSoyisim 
+   
+                               FROM tercumanistakip
+                               INNER JOIN temsilciler ON 
+                               tercumanistakip.TemsilciID=temsilciler.id 
+                               WHERE tercumanistakip.OnayDurumu=1 
+                               AND   tercumanistakip.TemsilciID=$temsilci2
+                               AND tercumanistakip.HedefDil='$dil2'
+                               OR tercumanistakip.KaynakDil='$dil2'"));
+
+         
+         return view('admin.pages.lkssonuc',['result'=>$results]);
+
+
+
+
+}
 
 
 }

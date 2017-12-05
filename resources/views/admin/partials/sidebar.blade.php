@@ -97,6 +97,8 @@
                 <div class="collapse" id="componentsExamples2">
                     <ul class="nav">
                         <li><a href="{{ route('tercumanistakipekle') }}">YENİ EKLE</a></li>
+                        <li><a href="{{ route('tercumanistakipcetveli') }}">TERCUMAN TAKİP CETVELİ</a></li>
+                        <li><a href="{{ route('lksyeeklenenler') }}">LKS YE EKLENENLER</a></li>
                        
                     </ul>
                 </div>

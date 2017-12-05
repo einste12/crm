@@ -16,9 +16,9 @@
          <th>İD</th>
 
          <th>EVRAK TESLİM TARİHİ</th>
-         <th>DİLLER</th>
-         <th>Tasdik Şekli</th>
          <th>Müşteri Bilgileri</th>
+         <th>DİLLER</th>
+         <th>Tasdik Şekli</th> 
          <th>Fiyat Ve Kapora</th>
         <th>DOSYA</th>
          <th>MÜŞTERİ TALEBİ</th>
@@ -35,16 +35,17 @@
          <td>
            {{ $teklifler->EvrakTeslimTarihi }}
          </td>
+          <td>
+             {{ $teklifler->isimSoyisim }}
+             {{ $teklifler->Telefon }}
+             {{ $teklifler->Email }}
+         </td>
          <td>
            {{ $teklifler->KaynakDil }} > </br>
            {{ $teklifler->HedefDil }}
        </td>
          <td>@if($teklifler->TastikSekli==1) Yeminli Tercume  @elseif ($teklifler->TastikSekli==2) Noter Tasdikli Tercume @else($teklifler->TastikSekli==3) Apostil Tercume @endif</td>
-         <td>
-             {{ $teklifler->isimSoyisim }}
-             {{ $teklifler->Telefon }}
-             {{ $teklifler->Email }}
-         </td>
+        
           <td>
             {{ $teklifler->Kapora }}
             {{ $teklifler->Fiyat }}

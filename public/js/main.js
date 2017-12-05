@@ -32,6 +32,18 @@ $('#edit-modal4').on('show.bs.modal', function(e) {
 });
 
 
+$('#edit-modal5').on('show.bs.modal', function(e) {
+
+    var $modal = $(this),
+        esseyId = e.relatedTarget.id;
+
+         $(".modal-body #lksonay").val( esseyId );
+
+
+});
+
+
+
 
 
     $(document).ready(function(){

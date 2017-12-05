@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subeler extends Model
 {
-    public $timestamp ="false";
+    public $timestamps ="false";
 
     protected $table = 'subeler';
 

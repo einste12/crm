@@ -9,11 +9,11 @@
        <tr>
          <th>İD</th>
          <th>İPTAL EDİLEN TARİH</th>
+         <th>İPTAL EDEN TEMSİLCİ</td>
          <th>DİLLER</th>
          <th>TASDİK ŞEKLİ</th>
          <th>MÜŞTERİ BİLGİLERİ</th>
          <th>FİYAT VE KAPORA</th>
-         <th>İPTAL EDEN TEMSİLCİ</td>
          <th>İPTAL NEDENİ</td>
        </tr>
      </thead>
@@ -22,6 +22,7 @@
        <tr>
          <td>{{ $teklifler->id }}</td>
          <td>{{ $teklifler->iptalEtmeTarihi }}</td>
+         <td>{{  $temsilcissss[$teklifler->iptalEdenTemsilciID-1]->isimSoyisim }}  </td>
          <td>
            {{ $teklifler->KaynakDil }} > </br>
            {{ $teklifler->HedefDil }}
@@ -36,7 +37,7 @@
           {{ $teklifler->Kapora }}</br>
           {{ $teklifler->Fiyat }}
          </td>
-         <td>{{  $temsilcissss[$teklifler->iptalEdenTemsilciID-1]->isimSoyisim }}  </td>
+         
          <td>{{ $teklifler->iptalNedeni  }}  </td>
        </tr>
        @endforeach

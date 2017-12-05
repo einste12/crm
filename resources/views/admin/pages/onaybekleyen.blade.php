@@ -23,15 +23,13 @@
          <th>DOSYA</th>
          <th>FİYAT VE KAPORA</th>
          <th>MÜŞTERİ TALEBİ</th>
-
          <th>TEMSİLCİ GELEN NOT</th>
-         <th>TERCUMAN</th>
          <th>İŞLEMLER</th>
 
        </tr>
      </thead>
      <tbody>
-       @forelse ($onaybekleyen as $teklifler)
+       @foreach ($onaybekleyen as $teklifler)
        <tr>
          <td>{{ $teklifler->id }}</td>
          <td>{{ $teklifler->GelenTeklifTarihi }}</td>
@@ -58,7 +56,6 @@
 
 
          <td>{{ $teklifler->TemsilciGelenTeklifNot }}</td>
-         <td>{{ $teklifler->TercumanID }}</td>
          <td>
            <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal">ONAYLA</a>
            <a href="{{ route('onaybekleyensil',['id'=>$teklifler->id]) }}" class="btn btn-danger">SİL</a>
@@ -66,9 +63,7 @@
            <a href="{{ route('onaybekleyenyazdir',['id'=>$teklifler->id]) }}" class="btn btn-danger">YAZDIR</a>
          </td>
        </tr>
-     @empty
-       <H3 style="text-align:center; color:red;">ŞUANDA ONAY BEKLEYEN TEKLİF BULUNMAMAKTADIR!</H3>
-     @endforelse
+    @endforeach
      </tbody>
    </table>
 

@@ -12,8 +12,20 @@ class TercumanIsTakip extends Model
 
 
     protected $fillable = [
-        'Tarih', 'TercumanAdi', 'ProjeAdi','KaynakDil','HedefDil','Karakter','BirimFiyat','Temsilci','GonderenYer','TercumanTakipNot','OnayDurumu','Silindi',
+        'EklenmeTarih', 'TercumanAdi', 'ProjeAdi','KaynakDil','HedefDil','Karakter','BirimFiyat','TemsilciID','SubeID','TercumanTakipNot','OnayDurumu','silindi','OnayTarihi',
   ];
+
+
+
+
+
+public function temsilci()
+{
+
+  return $this->hasOne('App\Temsilciler','id','TemsilciID');
+
+}
+
 
 
 

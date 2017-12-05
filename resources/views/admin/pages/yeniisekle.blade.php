@@ -41,10 +41,9 @@
                                                       <label class=" control-label">Müşteri Nereden Geldi? </label>
                                                       <div class="">
                                                               <select id="musterituru" name="NeredenGeldi" class="form-control">
-                                                                      <option value="5">Perakende</option>
                                                                       <option value="1">İnternet</option>
                                                                       <option value="2"> Eski Müşteri</option>
-                                                                      <option value="3"> Referans ile</option>
+                                                                      <option value="3"> Referans-Tavsiye</option>
                                                                       <option value="4"> Noter Yönlendirmesi</option>
                                                               </select>
                                                       </div>
@@ -54,29 +53,29 @@
 
                                        <div class="row">
 
-                                           <div class="col-md-4 form-group">
+                                           <div class="col-md-12 form-group">
                                             <label class=" control-label" for="AdSoyad">Müşteri Adı </label>
                                             <div class="">
                                                   <input  required="true"  id="AdSoyad" name="isimSoyisim" type="text" placeholder="Müşteri  Adını Giriniz" class="form-control input-md">
                                             </div>
                                           </div>
-
-
-                                          <div class="col-md-4 form-group">
+                                        </div>
+                                          <div class="row">
+                                          <div class="col-md-12 form-group">
                                             <label class=" control-label" for="Telefon">Telefon  </label>
                                             <div class="">
                                                   <input  type="text"  maxlength="25" name="Telefon" id="Telefon" class="form-control input-md" placeholder="Telefon Giriniz " >
                                             </div>
                                           </div>
-
-
-                                         <div class="col-md-4 form-group">
+                                          </div>
+                                          <div class="row">
+                                         <div class="col-md-12 form-group">
                                             <label class=" control-label" for="Eposta">Email  </label>
                                             <div class="">
                                              <input type="email" name="Email" id="Eposta" class="form-control input-md" placeholder="Email Giriniz">
                                             </div>
                                           </div>
-                                       </div>
+                                        </div>
 
 
 
@@ -165,7 +164,21 @@
                                                   </select>
                                           </div>
                                        </div>
+                                          <div class="col-md-12 form-group">
+                                                  <label class=" control-label">Şubeler</label>
 
+                                                  <select id="temsilci" name="SubeID" class="form-control">
+                                                      @foreach ($subeler as $subelers)
+
+                                                      <option value="{{ $subelers->id  }}">{{ $subelers->name  }}</option>
+
+                                                      @endforeach
+
+
+
+                                                  </select>
+
+                                          </div>
 
 
 
@@ -196,17 +209,7 @@
                                             </div>
                                           </div>
                                        </div>
-                                       <div class="col-md-12 form-group">
-                                                <label class=" control-label">Sürekli Müşteri Olarak İşaretle</label>
-                                                <div class="">
-                                                        <select id="musterituru" name="SurekliMusteri" class="form-control">
-                                                                <option value="0">Hayır</option>
-                                                                <option value="1">Evet</option>
-                                                        </select>
-                                                </div>
-                                        </div>
-
-
+                                 
 
                                   <div class="footer">
                                       <button type="submit" class="btn btn-success btn-fill pull-right">Kaydet</button>
@@ -238,7 +241,7 @@
                                       <div class="form-group">Noter Tasdiki: </strong><span id="tastiksekli"></span></div>
                                       <div class="form-group">Temsilci: </strong><span id="temsilcionizleme"></span></div>
                                       <div class="form-group">Not: </strong><span id="not"></span></div>
-                                      <div class="form-group">Sürekli Müşteri: </strong><span id="sureklimusteri"></span></div>
+                                      
                                   </div>
 
 
