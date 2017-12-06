@@ -42,7 +42,7 @@
                                                       <div class="">
                                                               <select id="musterituru" name="NeredenGeldi" class="form-control">
                                                                       <option value="1">İnternet</option>
-                                                                      <option value="2"> Eski Müşteri</option>
+                                                                      <option value="2">Sürekli Olan</option>
                                                                       <option value="3"> Referans-Tavsiye</option>
                                                                       <option value="4"> Noter Yönlendirmesi</option>
                                                               </select>
@@ -167,7 +167,7 @@
                                           <div class="col-md-12 form-group">
                                                   <label class=" control-label">Şubeler</label>
 
-                                                  <select id="temsilci" name="SubeID" class="form-control">
+                                                  <select id="SubeID" name="SubeID" class="form-control">
                                                       @foreach ($subeler as $subelers)
 
                                                       <option value="{{ $subelers->id  }}">{{ $subelers->name  }}</option>
@@ -203,7 +203,7 @@
 
                                        <div class="row">
                                           <div class="col-md-12 form-group">
-                                            <label class=" control-label" for="temsilcinot">Not ekle  </label>
+                                            <label class=" control-label" for="temsilcinot">BU MÜŞTERİ İÇİN NOT GİRMEK İSTER MİSİNİZ?</label>
                                             <div class="">
                                              <textarea type="text" name="TemsilciGelenTeklifNot" id="temsilcinot" class="form-control input-md" placeholder=""></textarea>
                                             </div>
@@ -239,6 +239,7 @@
                                       <div class="form-group">Fatura: </strong><span id="fatura"></span></div>
                                       <div class="form-group">Kaparo: </strong><span id="kaparo"></span></div>
                                       <div class="form-group">Noter Tasdiki: </strong><span id="tastiksekli"></span></div>
+                                      <div class="form-group">Sube ID: </strong><span id="subeid"></span></div>
                                       <div class="form-group">Temsilci: </strong><span id="temsilcionizleme"></span></div>
                                       <div class="form-group">Not: </strong><span id="not"></span></div>
                                       

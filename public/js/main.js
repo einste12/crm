@@ -43,6 +43,18 @@ $('#edit-modal5').on('show.bs.modal', function(e) {
 });
 
 
+$('#edit-modal6').on('show.bs.modal', function(e) {
+
+    var $modal = $(this),
+        esseyId = e.relatedTarget.id;
+
+         $(".modal-body #teliffiyat").val( esseyId );
+
+
+});
+
+
+
 
 
 
@@ -92,6 +104,10 @@ $('#edit-modal5').on('show.bs.modal', function(e) {
            $("#not").html($(this).val());
         });
 
+        $("[name='SubeID'").focusout(function(){
+           $("#subeid").html($(this).val());
+        });
+
         $("[name='GelenTeklifTarihi']").focusout(function(){
             $("#evrakalmatarihi").html($(this).val());
         });
@@ -101,4 +117,73 @@ $('#edit-modal5').on('show.bs.modal', function(e) {
 
 
 
+  // TEKLİFE FİYAT VERME KODLARI
+$(document).ready(function(){
+
+    $("#evraktipi").change(function(){
+
+        var secilen = $(this).val();
+
+        if(secilen==2)
+        {
+
+             $("#not1").removeClass("hidden");
+              $("#tastiksekli").addClass("hidden");
+             $("#teslimzamani").addClass("hidden");
+             $("#fiyat").addClass("hidden");
+
+        }
+
+
+          if(secilen==1)
+        {
+
+             $("#not1").removeClass("hidden");
+             $("#tastiksekli").removeClass("hidden");
+             $("#teslimzamani").removeClass("hidden");
+             $("#fiyat").removeClass("hidden");
+
+
+        }
+
+
+              if(secilen=="")
+        {
+
+             $("#not1").addClass("hidden");
+             $("#tastiksekli").addClass("hidden");
+             $("#teslimzamani").addClass("hidden");
+             $("#fiyat").addClass("hidden");
+             $("#sube").addClass("hidden");
+
+        }
   
+
+
+
+
+});
+
+
+
+$("select#teslimzamani").change(function(){
+
+    var teslimzamani = $(this).val();
+  
+    $("#isgunu").removeClass("hidden");
+    if (teslimzamani=='') {
+        $("#isgunu").addClass("hidden");
+    
+
+    } else {
+
+    $("#isgunu").removeClass("hidden");
+
+}
+
+});
+
+
+
+
+});

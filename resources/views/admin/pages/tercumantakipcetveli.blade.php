@@ -16,7 +16,7 @@
        <tr>
          <th>ID</th>
          <th>EKLENME TARİHİ</th>
-         <th>İSİM SOYİSİM</th>
+         <th>TERCUMAN İSİM SOYİSİM</th>
          <th>PROJE ADI</th>
          <th>DİL</th>
          <th>KARAKTER</th>
@@ -49,7 +49,7 @@
 		         <td>{{ $tercumantakipcetvelis->BirimFiyat }}</td>
 		            
 		        
-		         <td>{{ $tercumantakipcetvelis->TemsilciID }} </td>
+		         <td>{{ $tercumantakipcetvelis->temsilci['isimSoyisim'] }}</br>{{ $tercumantakipcetvelis->SubeID }} </td>
 		         <td>{{ $tercumantakipcetvelis->TercumanTakipNot}}  </td>
 		         <td>
 		         	<a href="{{ route('tercumanistakipcetvelisil',['id'=>$tercumantakipcetvelis->id]) }}" class="btn btn-danger">SİL</a>

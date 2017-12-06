@@ -174,7 +174,8 @@ class DashBoardController extends Controller
       public function gelenteklifsil($id){
 
         $teklifsil = Teklifler::find($id);
-        $teklifsil->delete();
+        $teklifsil->silindi=1;
+        $teklifsil->push();
 
           return redirect()->route('dashboard')->with('message','Kaydınız Başarıyla Silindi.');
 
@@ -288,8 +289,9 @@ class DashBoardController extends Controller
 
     public function tamamlanansil($id){
 
-      $teklifsil = Teklifler::find($id);
-      $teklifsil->delete();
+      $teklifsil=Teklifler::find($id);
+      $teklifsil->silindi=1;
+      $teklifsil->push();
 
         return redirect()->route('tamamlanan')->with('message','Kaydınız Başarıyla Silindi.');
 

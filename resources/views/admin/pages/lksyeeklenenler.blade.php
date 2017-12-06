@@ -49,7 +49,7 @@
          <th>DİL</th>
          <th>KARAKTER</th>
          <th>BİRİM FİYAT</th>
-         <th>TEMSİLCİ</th>
+         <th>TEMSİLCİ VE ŞUBEID</th>
          <th>PROJE NOT</th>
 
 
@@ -75,7 +75,7 @@
 		         <td>{{ $lksekles->BirimFiyat }}</td>
 		            
 		      
-		         <td>{{ $lksekles->temsilci['isimSoyisim'] }} </td>
+		         <td>{{ $lksekles->temsilci['isimSoyisim'] }}</br>{{ $lksekles->SubeID }} </td>
 		         <td>{{ $lksekles->TercumanTakipNot}}  </td>
 
 	
