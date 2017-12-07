@@ -18,6 +18,7 @@
     <link href="{{ asset('css/demo.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+
 </head>
 <body>
 
@@ -57,7 +58,6 @@
         }, 700)
     });
 </script>
-
 
 </body>
 </html>

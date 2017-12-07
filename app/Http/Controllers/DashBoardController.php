@@ -14,6 +14,7 @@ use App\Temsilciler;
 use App\TercumanVeritabani;
 use Auth;
 use App\Subeler;
+use App\User; 
 
 class DashBoardController extends Controller
 {
@@ -78,23 +79,18 @@ class DashBoardController extends Controller
 
     public function devameden()
     {
-      $devamteklif = DB::table('teklifler')
-      ->where(function ($query) {
+     
 
+      $devamteklif = Teklifler::where(function ($query) {
           $query->where([
              'silindi'     =>0,
              'OnayDurumu' =>2,
           ]);
-
-      })
-      ->select(['id','TercumanID','TeklifVerilenTarih','HedefDil','KaynakDil','GelenTeklifTarihi','isimSoyisim','Kapora','Fiyat','TeklifVerenTemsilci','Email','Telefon','KaynakDil','HedefDil','TastikSekli','MusteriTalebi','TemsilciGelenTeklifNot'])
-      ->orderBy('TeklifVerilenTarih','DESC')
-      ->paginate(100);
+      })->with('tercuman')->orderBy('TeklifVerilenTarih','DESC')->paginate(100);
 
 
-      $tercuman = TercumanVeritabani::all();
 
-        return view('admin.pages.devamedenteklif',['devamteklif'=>$devamteklif,'tercumansss'=>$tercuman]);
+        return view('admin.pages.devamedenteklif',['devamteklif'=>$devamteklif]);
     }
 
 
@@ -684,6 +680,106 @@ public function lksara(Request $request)
          
          return view('admin.pages.lkssonuc',['result'=>$results]);
 
+
+
+
+}
+
+
+
+public function idgonder(Request $request)
+{
+
+  
+  $id= $request->id;
+  $data = Teklifler::find($id);
+
+
+
+  $html = ' Sayın <div id="madi">'.$data->isimSoyisim.'</div><br />
+<span id="tasdikHtml">Göndermiş olduğunuz belgenin yeminli tercüme ücreti​ <span id="fiyat1">XXX</span> TL + %18 KDV’ dir.</span>
+Ödemenin yapılması halinde belge/belgelerinizin tercümesi <span id="sure">XX</span><span id="suretur"> iş günü/saat </span>içerisinde teslim edilecektir.  
+
+Değerlendirmenize sunar, <br />
+İyi çalışmalar dileriz.
+
+<span id="temsilci-adi">'.Auth::user()->name.'</span> / Proje Koordinatörü<br /><br />
+<b>Temsilci Gsm:</b> <span id="temsilci-telefon"> </span>
+<b>Çağrı Merkezi:</b>  444 82 86
+www.portakaltercume.com.tr
+
+FİRMAMIZIN TÜM ÖDEME KANALLARI AŞAĞIDA Kİ GİBİDİR. 
+
+1- EFT YA DA HAVALE
+HESAP ADI: PORTAKAL TERCÜME VE MEDYA A.Ş. KUVEYTTÜRK KATILIM BANKASI
+IBAN NO: TR170020500009380768500001 
+
+HESAP ADI: PORTAKAL TERCÜME VE MEDYA A.Ş. ZİRAAT BANKASI
+IBAN NO: TR860001000485758944095001 
+
+2- İNTERNET SİTEMİZ ÜZERİNDEN VISA-MASTERCARD YA DA AMERICAN EXPRESS KREDİ KARTLARIYLA ÖDEME YAPABİLİRSİNİZ. https://www.portakaltercume.com/online-odeme/ 
+
+3- MAİL ORDER SİSTEMİ İLE ÖDEME YAPABİLİRSİNİZ.(FİRMAMIZDAN FORMU TALEP EDİNİZ)
+</div>
+                                            
+                            
+<div class="hidden" id="evraksiznot"><p>Sayın <span class="madi"></span><br />
+Çevirisini yaptırmak istediğiniz dosyalarınızı bize maille gönderebilirseniz inceleyip size fiyat ve süre hakkında bilgi verebiliriz. 
+
+​1- ​Hızlı teklif almak için <a href="https://www.portakaltercume.com/fiyat-teklifi-al/?ref=crm">https://www.portakaltercume.com/fiyat-teklifi-al/</a> adresinden belgelerinizi bize gönderebilirsiniz.
+
+​2- Evraklarınızı ​<b> <span id="temsilci-telefon"></span></b> nolu telefona WhatsApp programı üzerinden belgenizin resmini çekerek gönderebilirsiniz​.
+
+3- ​<a href="mailto:info@portakaltercume.com.tr">info@portakaltercume.com.tr</a> adresine mail atabilirsiniz.
+
+Değerlendirmenize sunar, <br />
+İyi çalışmalar dileriz.
+
+<span id="temsilci-adi"></span> / Proje Koordinatörü<br /><br />
+<b>Temsilci Gsm:</b> <span id="temsilci-telefon"></span>
+<b>Çağrı Merkezi:</b>  444 82 86
+www.portakaltercume.com.tr
+</div>';
+
+  return response()->json( ['html' => $html]);
+}
+
+
+public function gelentekliffiyatver(Request $request)
+
+{
+
+
+            $id=request()->input('tekliffiyat');
+
+            $teklif = Teklifler::find($id);
+
+            $teklif->GonderilenMailEvrakTuru=request()->input('evraktipi');
+            $teklif->TeklifVerenTemsilci =Auth::user()->id;
+            $teklif->SubeID = Auth::user()->sonsube->id;
+            $teklif->TastikSekli=request()->input('tastiksekli');
+            $teklif->GonderilenGun=request()->input('isgunu');
+            $teklif->GonderilenGun=request()->input('issaati');
+            $teklif->Fiyat=request()->input('fiyat');
+            $teklif->TemsilciGelenTeklifNot=request()->input('temsilcinot');
+            $teklif->OnayDurumu=1;
+
+            $teklif->update();
+            return redirect()->route('devameden');
+
+
+
+
+}
+
+
+
+
+public function test()
+{  
+ 
+  $teklifler = Teklifler::with('tercuman')->get();
+  return $teklifler;
 
 
 

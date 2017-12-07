@@ -51,7 +51,7 @@
               {{$teklifler->Kapora}}
           </td>
          <td>{{ $teklifler->TemsilciGelenTeklifNot }}</td>
-         <td>{{ $tercumansss[$teklifler->TercumanID-1]->isimSoyisim }}</td>
+         <td>{{ $teklifler->tercuman->isimSoyisim }}</td>
          <td>
            <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal2">ONAYLA</a>
            <a href="{{ route('devamedensil',['id'=>$teklifler->id]) }}" class="btn btn-danger">SİL</a>

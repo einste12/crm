@@ -29,6 +29,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function sonsube(){
+        return $this->hasOne('App\Subeler','id','Yer'); // başta her zaman oldugun sayfanın gelir USER 
+    }
 
     public function subeler(){
 

@@ -23,7 +23,7 @@ protected $fillable = [
 
 public function tercuman()
 {
-  return $this->hasMany('App\TercumanVeritabani','TercumanID','id');
+  return $this->hasOne('App\TercumanVeritabani','id','TercumanID');
 }
 
 

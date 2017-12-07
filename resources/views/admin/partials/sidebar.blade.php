@@ -28,7 +28,7 @@
 
                 </a>
                   <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                    {{ $genel_subeler[Auth::user()->Yer-1]->name }}
+                    {{ Auth::user()->subeler->last()->name }}
 
                   </a>
 

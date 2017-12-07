@@ -49,9 +49,7 @@ class AppServiceProvider extends ServiceProvider
         $subeler =Subeler::all();
         view()->share('subeler',$subeler);
 
-        $genel_subeler = [];
-        $genel_subeler =Subeler::all();
-        view()->share('genel_subeler',$subeler);
+   
 
 
 

@@ -39,19 +39,30 @@ $('#edit-modal5').on('show.bs.modal', function(e) {
 
          $(".modal-body #lksonay").val( esseyId );
 
-
 });
-
 
 $('#edit-modal6').on('show.bs.modal', function(e) {
 
     var $modal = $(this),
-        esseyId = e.relatedTarget.id;
+        data = e.relatedTarget.id;
 
-         $(".modal-body #teliffiyat").val( esseyId );
+        $(".modal-body #tekliffiyat1").val( data );
+
+
+         $.ajax({
+            url: 'idgonder/'+data,
+            type: 'GET',
+            dataType: "json",
+            success:function(data) {
+                console.log("Html:", data.html);
+                 $("#htmlTextArea").text(data.html);
+            }
+        });
+
 
 
 });
+
 
 
 
@@ -171,13 +182,21 @@ $("select#teslimzamani").change(function(){
     var teslimzamani = $(this).val();
   
     $("#isgunu").removeClass("hidden");
-    if (teslimzamani=='') {
+
+    if (teslimzamani==''){
         $("#isgunu").addClass("hidden");
+        $("#issaati").addClass("hidden");
     
 
-    } else {
+    }else if(teslimzamani==1){
 
     $("#isgunu").removeClass("hidden");
+    $("#issaati").addClass("hidden");
+
+}else{
+
+    $("#issaati").removeClass("hidden");
+    $("#isgunu").addClass("hidden");
 
 }
 

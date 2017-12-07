@@ -41,6 +41,8 @@ Route::get('/iptalteklif', 'DashBoardController@iptalteklif')->name('iptalteklif
 
 Route::post('/gelenteklifonayla', 'DashBoardController@gelenteklifonayla')->name('gelenteklifonayla');
 
+Route::post('/gelentekliffiyatver', 'DashBoardController@gelentekliffiyatver')->name('gelentekliffiyatver');
+
 Route::get('/onaybekleyensil/{id}', 'DashBoardController@onaybekleyensil')->name('onaybekleyensil');
 Route::get('/gelenteklifsil/{id}', 'DashBoardController@gelenteklifsil')->name('gelenteklifsil');
 
@@ -94,6 +96,16 @@ Route::post('istakipupdate/{id}', 'DashBoardController@istakipupdate')->name('is
 Route::get('/lksyeeklenenler', 'DashBoardController@lksyeeklenenler')->name('lksyeeklenenler');
 
 Route::post('lksara', 'DashBoardController@lksara')->name('lksara');
+
+
+Route::get('idgonder/{id}', 'DashBoardController@idgonder')->name('idgonder');
+
+
+
+
+
+Route::get('test', 'DashBoardController@test')->name('test');
+
 
 
 });
