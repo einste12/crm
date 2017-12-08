@@ -18,6 +18,8 @@
     <link href="{{ asset('css/demo.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
 
 </head>
 <body>
@@ -44,7 +46,9 @@
     <script src="{{ asset('js/bootstrap-table.js') }}"></script>
     <script src="{{ asset('js/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('js/light-bootstrap-dashboard.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"
+    <script src="{{ asset('js/main.js') }}"></script>
+
+
 
 
 

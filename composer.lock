@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8e0ce26cddc6b399c68cc49955aaecd2",
+    "content-hash": "4dd4b39cd4c7ad57d72b3c732733bb6e",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1156,6 +1156,59 @@
                 "uuid"
             ],
             "time": "2017-09-22T20:46:04+00:00"
+        },
+        {
+            "name": "realrashid/sweet-alert",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/realrashid/sweet-alert.git",
+                "reference": "d3bf5f0fae67c5b3ae2dd09025620ae8751fedee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/realrashid/sweet-alert/zipball/d3bf5f0fae67c5b3ae2dd09025620ae8751fedee",
+                "reference": "d3bf5f0fae67c5b3ae2dd09025620ae8751fedee",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.4",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "RealRashid\\SweetAlert\\SweetAlertServiceProvider"
+                    ],
+                    "aliases": {
+                        "Alert": "RealRashid\\SweetAlert\\Facades\\Alert::class"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "RealRashid\\SweetAlert\\": "src/"
+                },
+                "files": [
+                    "src/RealRashid/SweetAlert/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rashid Ali",
+                    "email": "realrashid05@gmail.com"
+                }
+            ],
+            "description": "SweetAlert2 for Laravel 5.x by Rashid Ali",
+            "time": "2017-11-26T19:16:27+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

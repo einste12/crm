@@ -10,7 +10,8 @@
         "brian2694/laravel-toastr": "^5.5",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "nesbot/carbon": "^1.22"
+        "nesbot/carbon": "^1.22",
+        "realrashid/sweet-alert": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

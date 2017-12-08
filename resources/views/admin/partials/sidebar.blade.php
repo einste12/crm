@@ -37,6 +37,7 @@
                         <li><a href="#">My Profile</a></li>
                         <li><a href="#">Edit Profile</a></li>
                         <li><a href="#">Settings</a></li>
+                        <li><a href="{{ route('logout') }}">Çıkış Yap</a></li>
                     </ul>
                 </div>
             </div>
@@ -66,7 +67,7 @@
                         <li><a href="{{ route('devameden') }}">Devam Eden Teklifler</a></li>
                         <li><a href="{{ route('tamamlanan') }}">Tamamlanan Teklifler</a></li>
                         <li><a href="{{ route('iptalteklif') }}">İptal Edilen Teklifler</a></li>
-                        <li><a href="{{ route('logout') }}">Çıkış Yap</a></li>
+                        
                     </ul>
                 </div>
             </li>

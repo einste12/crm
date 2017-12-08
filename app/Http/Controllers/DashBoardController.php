@@ -15,6 +15,7 @@ use App\TercumanVeritabani;
 use Auth;
 use App\Subeler;
 use App\User; 
+use Alert;
 
 class DashBoardController extends Controller
 {
@@ -31,21 +32,16 @@ class DashBoardController extends Controller
 
     public function index()
     {
-      $gelenteklif = DB::table('teklifler')
-      ->where(function ($query) {
 
+
+
+      $gelenteklif = Teklifler::where(function ($query) {
           $query->where([
              'silindi'     =>0,
-             'onaydurumu' =>0,
-          ]);
+             'OnayDurumu' =>0,
+          ])->whereYear('TeklifVerilenTarih','>','2017-12-31');
 
-      })
-      ->select(['id','GelenTeklifTarihi','isimSoyisim','Email','Telefon','KaynakDil','HedefDil','TastikSekli','MusteriTalebi'])
-      ->orderBy('teklifverilentarih','DESC')
-      ->paginate(100);
-
-
-
+      })->orderBy('TeklifVerilenTarih','DESC')->paginate(100);
 
         return view('dashboard',['teklif'=>$gelenteklif]);
     }
@@ -55,20 +51,16 @@ class DashBoardController extends Controller
 
     public function onaybekleyen()
     {
-      $onaybekleyen = DB::table('teklifler')
-      ->where(function ($query) {
+      $onaybekleyen =Teklifler::where(function ($query) {
 
           $query->where([
              'silindi'     =>0,
              'OnayDurumu' =>1,
-          ]);
+          ])->whereYear('TeklifVerilenTarih','>','2017-12-31');
 
-      })
-         ->select(['id','GelenTeklifTarihi','TeklifVerilenTarih','isimSoyisim','Fiyat','TeklifVerenTemsilci','Email','Telefon','KaynakDil','HedefDil','TastikSekli','MusteriTalebi','TemsilciGelenTeklifNot','Kapora'])
-      ->orderBy('TeklifVerilenTarih','DESC')
-      ->paginate(100);
+      })->orderBy('TeklifVerilenTarih','DESC')->paginate(100);
+       
 
-      
         return view('admin.pages.onaybekleyen',['onaybekleyen'=>$onaybekleyen]);
     }
 
@@ -85,7 +77,7 @@ class DashBoardController extends Controller
           $query->where([
              'silindi'     =>0,
              'OnayDurumu' =>2,
-          ]);
+          ])->whereYear('TeklifVerilenTarih','>','2017-12-31');
       })->with('tercuman')->orderBy('TeklifVerilenTarih','DESC')->paginate(100);
 
 
@@ -105,7 +97,7 @@ class DashBoardController extends Controller
           $query->where([
              'silindi'     =>0,
              'OnayDurumu' =>3,
-          ]);
+          ])->whereYear('OnayVerilenTarih','>','2017-12-31');
 
       })
       ->select(['id','GelenTeklifTarihi','isimSoyisim','Fiyat','TeklifVerenTemsilci','Email','Telefon','KaynakDil','HedefDil','TastikSekli','MusteriTalebi','OnaylayanTemsilciID','TemsilciGelenTeklifNot','Kapora','EvrakTeslimTarihi'])
@@ -131,7 +123,7 @@ class DashBoardController extends Controller
              'OnayDurumu' =>4,
           ]);
 
-      })
+      })->whereYear('GelenTeklifTarihi','>','2017-12-31')
       ->select(['id','GelenTeklifTarihi','TeklifVerilenTarih','iptalEtmeTarihi','isimSoyisim','Fiyat','Email','Telefon','KaynakDil','HedefDil','TastikSekli','iptalEdenTemsilciID','iptalNedeni','Kapora'])
       ->orderBy('GelenTeklifTarihi','DESC')
       ->paginate(100);
@@ -173,7 +165,9 @@ class DashBoardController extends Controller
         $teklifsil->silindi=1;
         $teklifsil->push();
 
-          return redirect()->route('dashboard')->with('message','Kaydınız Başarıyla Silindi.');
+
+          alert()->flash('Başarıyla Silindi', 'error');
+          return redirect()->route('dashboard');
 
         }
 
