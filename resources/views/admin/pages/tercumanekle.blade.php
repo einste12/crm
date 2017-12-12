@@ -41,7 +41,7 @@
                          <div class="col-md-12 form-group">
                        <label class=" control-label" for="ceptelefon"> Telefon Numarası <span class="red">*</span></label>
                        <div class="">
-                             <input required="true" id="ceptelefon" name="Telefon" type="text" placeholder="Telefon Numarası Giriniz" class="form-control input-md" required>
+                             <input required="true" id="ceptelefon" name="Telefon" type="number" placeholder="Telefon Numarası Giriniz" class="form-control input-md" required>
                        </div>
                      </div>
                   </div>

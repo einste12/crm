@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Temsilciler extends Model
 {
 
-    public $timestamp = false;
+    public $timestamps = false;
 
     protected $table = 'temsilciler';
 

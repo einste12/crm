@@ -2,14 +2,15 @@
 
 @section('content')
 
-
-    @if(Session::has('message'))
-          <div class="row">
-            <div class="col-md-12">
-             <div class="alert alert-success text-center"> {{ Session::get('message') }}</div>
-            </div>
-          </div>
-    @endif
+@if (alert()->ready())
+    <script>
+        swal({
+          title: "{!! alert()->message() !!}",
+          text: "{!! alert()->option('text') !!}",
+          type: "{!! alert()->type() !!}"
+        });
+    </script>
+@endif
 
 
    <div class="content">
@@ -97,7 +98,7 @@
                                             <div class="">
 
 
-                                    <select id="temsilci" name="HedefDil" class="form-control">
+                                    <select id="temsilci" name="HedefDil[]" class="form-control selectpicker" multiple>
                                           @foreach ($diller as $dillers)
                                             <option value="{{ $dillers->DilAdi }}">{{ $dillers->DilAdi  }}</option>
                                                 @endforeach
@@ -135,8 +136,11 @@
                                        <div class="row">
                                              <div class="col-md-12 form-group">
                                             <label class=" control-label" for="Tercuman">Tercuman </label>
-                                            <div class="">
-                                             <input type="text" name="TercumanID" id="Tercuman" class="form-control input-md" placeholder="">
+                                                <select name="TercumanID" class="form-control">
+                                                  @foreach($tercumanlar as $tercumanlars)
+                                                    <option value="{{ $tercumanlars->id  }}">{{ $tercumanlars->isimSoyisim }}</option>}
+                                                  @endforeach  
+                                                </select>
                                             </div>
                                           </div>
                                        </div>
@@ -189,7 +193,7 @@
                                                   <select id="temsilci" name="TeklifVerenTemsilci" class="form-control">
                                                       @foreach ($temsilci as $temsilcis)
 
-                                                      <option value="{{ $temsilcis->isimSoyisim  }}">{{ $temsilcis->isimSoyisim  }}</option>
+                                                      <option value="{{ $temsilcis->id  }}">{{ $temsilcis->isimSoyisim  }}</option>
 
                                                       @endforeach
 

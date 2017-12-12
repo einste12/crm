@@ -2,18 +2,6 @@
 
 @section('content')
 
-@if (alert()->ready())
-    <script>
-          swal({
-          title: "{!! alert()->message() !!}",
-          text: "{!! alert()->option('text') !!}",
-          type: "{!! alert()->type() !!}"
-        });
-    </script>
-@endif
-
-
-
 
   <table class="table table-striped">
      <thead>
@@ -41,11 +29,11 @@
           {{ $teklifler->KaynakDil }} > </br>
           {{ $teklifler->HedefDil }}
        </td>
-         <td>{{ $teklifler->TastikSekli }}</td>
+         <td>@if($teklifler->TastikSekli==1) Yeminli Tercume  @elseif ($teklifler->TastikSekli==2) Noter Tasdikli Tercume @else($teklifler->TastikSekli==3) Apostil Tercume @endif</td>
          <td>DENEME DOSYA ALANI</td>
          <td>{{ $teklifler->MusteriTalebi }}</td>
          <td>
-           <a href="{{ route('gelenteklifsil',['id'=>$teklifler->id]) }}" class="btn btn-danger">SİL</a>
+           <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal7" class="send-id btn btn-danger">SİL</a>
            <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal6" class="send-id">Fiyat Ver</a>
 
          </td>
@@ -149,13 +137,16 @@
 
               <div class="hidden form-group" id="not1">
                 <label>Müşteriye Gidicek Mail</label>
-               <textarea class="form-control" id="htmlTextArea" rows="10" readonly>
-                    
 
-             
-
-
-               </textarea>
+                <!-- Textarea Alanım -->
+                <!-- Textarea Alanım -->
+                <!-- Textarea Alanım -->
+                <!-- Textarea Alanım -->
+               <textarea name="icerik" class="form-control" id="htmlTextArea" rows="10" readonly></textarea>
+                <!-- Textarea Bitiş -->
+                <!-- Textarea Bitiş -->
+                <!-- Textarea Bitiş -->
+                <!-- Textarea Bitiş -->
               </div> 
 
 
@@ -173,6 +164,50 @@
        </div>
 </div>
 
+
+{{-- SiLME MODALI --}}
+
+<div id="edit-modal7" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                   <h4 class="modal-title" id="myModalLabel">Gelen Teklifi İptal Et</h4>
+               </div>
+<form action="{{ route('gelenteklifsil') }}" method="POST"/>
+{{ csrf_field() }}
+               <div class="form-group">
+                 <label for="sel1">İptal Eden  Temsilciyi Seçiniz:</label>
+                 <select class="form-control" name="İptalEdenTemsilci">
+                  @foreach($temsilci as $temsilcis)
+                   <option value="{{ $temsilcis->id }}">{{ $temsilcis->isimSoyisim }}</option>
+                 @endforeach
+                 </select>
+               </div>
+               <div class="form-group">
+                 <label for="sel1">İptal Sebepleri:</label>
+                 <select class="form-control" name="iptalnedeni">
+                  @foreach($iptalnedeni as $iptalnedenis)
+                   <option value="{{ $iptalnedenis->id }}">{{ $iptalnedenis->IptalSebebi }}</option>
+                 @endforeach
+                 </select>
+               </div> 
+            
+
+
+               <div class="modal-body edit-content">
+                    <input type="hidden" name="teklifsil" id="gelenteklifsil1" value=""/>
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-danger" data-dismiss="modal">İptal</button>
+                   <button type="submit" class="btn btn-success">İptal Et</button>
+               </div>
+
+</form>
+
+           </div>
+       </div>
+</div>
 
 
 

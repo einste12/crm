@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 use App\Temsilciler;
 use App\Subeler;
 use App\Diller;
+use App\IptalNedenleri;
 use App\TercumanIsTakip;
 use App\TercumanVeritabani;
 class AppServiceProvider extends ServiceProvider
@@ -23,7 +24,8 @@ class AppServiceProvider extends ServiceProvider
         $temsilci = Temsilciler::orderBy('id', 'ASC')->get();
         view()->share('temsilci',$temsilci);
 
-        
+        $iptalsebepleri =IptalNedenleri::all();
+        view()->share('iptalnedeni',$iptalsebepleri);
 
 
         $tercuman = TercumanVeritabani::where(['silindi'=>0,'onaydurumu'=>0])

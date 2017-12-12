@@ -16,6 +16,7 @@ use Auth;
 use App\Subeler;
 use App\User; 
 use Alert;
+use Mail;
 
 class DashBoardController extends Controller
 {
@@ -49,6 +50,7 @@ class DashBoardController extends Controller
 
 
 
+
     public function onaybekleyen()
     {
       $onaybekleyen =Teklifler::where(function ($query) {
@@ -59,9 +61,25 @@ class DashBoardController extends Controller
           ])->whereYear('TeklifVerilenTarih','>','2017-12-31');
 
       })->orderBy('TeklifVerilenTarih','DESC')->paginate(100);
-       
-
+        
+      
         return view('admin.pages.onaybekleyen',['onaybekleyen'=>$onaybekleyen]);
+    }
+
+
+
+
+
+
+
+
+
+
+    public function onaygidenmail($id){
+      
+      $mail=Teklifler::find($id);
+      return view('admin.pages.onaygidenmail',['maildetay'=>$mail]);
+
     }
 
 
@@ -91,8 +109,7 @@ class DashBoardController extends Controller
 
     public function tamamlanan()
     {
-      $devamteklif = DB::table('teklifler')
-      ->where(function ($query) {
+      $devamteklif = Teklifler::where(function ($query) {
 
           $query->where([
              'silindi'     =>0,
@@ -115,22 +132,20 @@ class DashBoardController extends Controller
 
     public function iptalteklif()
     {
-      $iptalteklif = DB::table('teklifler')
-      ->where(function ($query) {
+
+
+      $iptalteklif = Teklifler::where(function ($query) {
 
           $query->where([
-             'silindi'     =>0,
-             'OnayDurumu' =>4,
+             'silindi'=>1,
           ]);
 
-      })->whereYear('GelenTeklifTarihi','>','2017-12-31')
-      ->select(['id','GelenTeklifTarihi','TeklifVerilenTarih','iptalEtmeTarihi','isimSoyisim','Fiyat','Email','Telefon','KaynakDil','HedefDil','TastikSekli','iptalEdenTemsilciID','iptalNedeni','Kapora'])
+      })->whereYear('iptalEtmeTarihi','>','2017-12-31')
       ->orderBy('GelenTeklifTarihi','DESC')
       ->paginate(100);
 
 
-        $temsilci =Temsilciler::all();
-        return view('admin.pages.iptalteklif',['iptalteklif'=>$iptalteklif,'temsilcissss'=>$temsilci]);
+        return view('admin.pages.iptalteklif',['iptalteklif'=>$iptalteklif]);
     }
 
 
@@ -149,27 +164,44 @@ class DashBoardController extends Controller
 
     }
 
-  public function onaybekleyensil($id){
-
-    $teklifsil = Teklifler::find($id);
-    $teklifsil->delete();
-
-      return redirect()->route('onaybekleyen')->with('message','Kaydınız Başarıyla Silindi.');
-
-    }
 
 
-      public function gelenteklifsil($id){
+    public function gelenteklifsil(Request $request){
+
+
+        $id=$request->input('teklifsil');
 
         $teklifsil = Teklifler::find($id);
         $teklifsil->silindi=1;
+        $teklifsil->iptalEdenTemsilciID=request()->input('İptalEdenTemsilci');
+        $teklifsil->iptalEtmeTarihi=date('Y-m-d H:i:s');
+        $teklifsil->iptalNedeni=request()->input('iptalnedeni');
         $teklifsil->push();
 
-
-          alert()->flash('Başarıyla Silindi', 'error');
-          return redirect()->route('dashboard');
+        alert()->flash('Başarıyla Silindi', 'success');
+        return redirect()->route('dashboard');
 
         }
+
+
+
+
+
+
+  public function onaysil(Request $request){
+
+    $id = $request->input('onaybekleyensil');
+    $onaysil = Teklifler::find($id);
+    $onaysil->iptalEdenTemsilciID=$request->input('OnayİptalEdenTemsilci');
+    $onaysil->iptalNedeni=$request->input('Onayiptalnedeni');
+    $onaysil->silindi=1;
+    $onaysil->update();
+
+      alert()->flash('Başarıyla Silindi', 'success');
+      return redirect()->route('onaybekleyen');
+
+    }
+
 
 
 
@@ -192,7 +224,8 @@ class DashBoardController extends Controller
         $input = $request->all();
         $update->update($input);
 
-        return redirect()->back()->with('message','Başarıyla Güncellenmiştir.');
+         alert()->flash('Başarıyla Güncellenmiştir', 'success');
+        return redirect()->back();
 
       }
 
@@ -227,17 +260,25 @@ class DashBoardController extends Controller
             $teklif->OnaylayanTemsilciID=$temsilci;
             $teklif->OnayDurumu =3;
             $teklif->update();
-            return redirect()->route('tamamlanan')->with('message','Devam Eden Teklifiniz Tamamlanan Tekliflere Alınmıştır.');
+            alert()->flash('Başarıyla Güncellenmiştir', 'success');
+            return redirect()->route('tamamlanan');
 
 
     }
 
-    public function devamedensil($id){
+    public function devamsil(Request $request){
 
-      $teklifsil = Teklifler::find($id);
-      $teklifsil->delete();
 
-        return redirect()->route('devameden')->with('message','Kaydınız Başarıyla Silindi.');
+      $id = $request->input('devamedensil');
+      $devamsil = Teklifler::find($id);
+      $devamsil->iptalEdenTemsilciID=$request->input('DevamİptalEdenTemsilci');
+      $devamsil->iptalNedeni=$request->input('Devamiptalnedeni');
+      $devamsil->silindi=1;
+      $devamsil->update();
+
+
+        alert()->flash('Başarıyla Silindi', 'success');
+        return redirect()->route('devameden');
 
       }
 
@@ -262,7 +303,8 @@ class DashBoardController extends Controller
           $update = Teklifler::find($id);
           $input = $request->all();
           $update->update($input);
-          return redirect()->route('devameden')->with('message','Başarıyla Güncellenmiştir.');
+          alert()->flash('Başarıyla Güncellenmiştir', 'success');
+          return redirect()->route('devameden');
         }
 
 
@@ -275,19 +317,17 @@ class DashBoardController extends Controller
 
         }
 
+    public function devamgidenmail($id){
+      
+      $devammail=Teklifler::find($id);
+      return view('admin.pages.devamgidenmail',['maildetay'=>$devammail]);
+
+    }
+
+
+
+
 //TAMAMLANAN BÖLÜMÜ
-
-    public function tamamlanansil($id){
-
-      $teklifsil=Teklifler::find($id);
-      $teklifsil->silindi=1;
-      $teklifsil->push();
-
-        return redirect()->route('tamamlanan')->with('message','Kaydınız Başarıyla Silindi.');
-
-      }
-
-
 
       public function tamamlananedit($id)
 
@@ -308,7 +348,8 @@ class DashBoardController extends Controller
           $update = Teklifler::find($id);
           $input = $request->all();
           $update->update($input);
-          return redirect()->route('tamamlanan')->with('message','Başarıyla Güncellenmiştir.');
+          alert()->flash('Başarıyla Güncellenmiştir', 'success');
+          return redirect()->route('tamamlanan');
         }
 
 
@@ -323,9 +364,15 @@ class DashBoardController extends Controller
 
 
         public function yeniisekle()
-
           {
-            return view('admin.pages.yeniisekle');
+
+            $tercumanlar = TercumanVeritabani::where(function ($query) {
+            $query->where('onaydurumu',2)
+            ->orWhere('onaydurumu',3);
+          })->get();
+              
+            
+            return view('admin.pages.yeniisekle',['tercumanlar'=>$tercumanlar]);
           }
 
 
@@ -339,7 +386,9 @@ class DashBoardController extends Controller
                 $Teklifler->Telefon = $request->input('Telefon');
                 $Teklifler->Email = $request->input('Email');
                 $Teklifler->KaynakDil = $request->input('KaynakDil');
-                $Teklifler->HedefDil = $request->input('HedefDil');
+
+                $Teklifler->HedefDil = implode(",",$request->input('HedefDil'));
+
                 $Teklifler->Fiyat = $request->input('Fiyat');
                 $Teklifler->Kapora = $request->input('Kapora');
                 $Teklifler->TercumanID = $request->input('TercumanID');
@@ -352,12 +401,23 @@ class DashBoardController extends Controller
 
                 $Teklifler->save();
 
-                return redirect()->back()->with('message','Başarıyla Kayıt Yapılmıştır');
+                alert()->flash('Başarıyla Kayıt Edilmiştir', 'success');
+                return redirect()->back();
 
 
 
 
             }
+
+
+
+
+      public function tamamgidenmail($id){
+      
+         $tamammail=Teklifler::find($id);
+         return view('admin.pages.tamamgidenmail',['tamammaildetay'=>$tamammail]);
+
+       }
 
 
             // TERCUMANLAR FUNCTİON
@@ -447,7 +507,8 @@ public function tercumanbasvurulari()
     $tercumanveritabani->silindi = 1;
     $tercumanveritabani->push(); 
 
-    return redirect()->back()->with('message','Başarıyla Silinmiştir');
+    alert()->flash('Başarıyla Güncellenmiştir', 'success');
+    return redirect()->back();
 
   }
 
@@ -461,7 +522,8 @@ public function tercumanbasvurulari()
             $tercumanveritabani = TercumanVeritabani::find($id); 
             $tercumanveritabani->onaydurumu=2;
             $tercumanveritabani->push(); 
-            return redirect()->route('tercumanbasvurulari')->with('message','Başarıyla Onaylandı');
+            alert()->flash('Başarıyla Güncellenmiştir', 'success');
+            return redirect()->route('tercumanbasvurulari');
 
     }
 
@@ -565,8 +627,8 @@ public function tercumanformistakipekle(Request $request)
 
 
 
-
-return redirect()->back()->with('message','Başarıyla İş Takibi Eklenmiştir');
+ alert()->flash('Başarıyla Kayıt Edilmiştir', 'success');                             
+return redirect()->back();
 }
 
 
@@ -586,7 +648,8 @@ public function tercumanistakipcetvelisil($id)
 
   TercumanIsTakip::find($id)->update(['Silindi' => 1]);
 
-  return redirect()->back()->with('message','Başarıyla Silinmiştir');
+  alert()->flash('Başarıyla Silindi', 'success');
+  return redirect()->back();
 
 }
 
@@ -602,7 +665,8 @@ public function lksekle(Request $request)
 
   TercumanIsTakip::find($id)->update(['OnayDurumu' => 1,'OnayTarihi'=>$onaytarihi]);
 
-   return redirect()->route('tercumanistakipcetveli')->with('message','LKS  ye Başarıyla Eklendi');
+    alert()->flash('LKS ye Başarıyla Eklendi', 'success'); 
+   return redirect()->route('tercumanistakipcetveli');
 
 
 }
@@ -686,20 +750,20 @@ public function idgonder(Request $request)
 
   
   $id= $request->id;
-  $data = Teklifler::find($id);
+  $user = Teklifler::find($id);
 
 
 
-  $html = ' Sayın <div id="madi">'.$data->isimSoyisim.'</div><br />
-<span id="tasdikHtml">Göndermiş olduğunuz belgenin yeminli tercüme ücreti​ <span id="fiyat1">XXX</span> TL + %18 KDV’ dir.</span>
-Ödemenin yapılması halinde belge/belgelerinizin tercümesi <span id="sure">XX</span><span id="suretur"> iş günü/saat </span>içerisinde teslim edilecektir.  
+  $html = ' Sayın '.$user->isimSoyisim.'
+Göndermiş olduğunuz belgenin yeminli tercüme ücreti​  XXX TL + %18 KDV’ dir.
+Ödemenin yapılması halinde belge/belgelerinizin tercümesi  iş günü/saat içerisinde teslim edilecektir.  
 
-Değerlendirmenize sunar, <br />
+Değerlendirmenize sunar, 
 İyi çalışmalar dileriz.
 
-<span id="temsilci-adi">'.Auth::user()->name.'</span> / Proje Koordinatörü<br /><br />
-<b>Temsilci Gsm:</b> <span id="temsilci-telefon"> </span>
-<b>Çağrı Merkezi:</b>  444 82 86
+'.Auth::user()->name.'/ Proje Koordinatörü
+Temsilci Gsm: '.Auth::user()->number.'
+Çağrı Merkezi:  444 82 86
 www.portakaltercume.com.tr
 
 FİRMAMIZIN TÜM ÖDEME KANALLARI AŞAĞIDA Kİ GİBİDİR. 
@@ -714,39 +778,54 @@ IBAN NO: TR860001000485758944095001
 2- İNTERNET SİTEMİZ ÜZERİNDEN VISA-MASTERCARD YA DA AMERICAN EXPRESS KREDİ KARTLARIYLA ÖDEME YAPABİLİRSİNİZ. https://www.portakaltercume.com/online-odeme/ 
 
 3- MAİL ORDER SİSTEMİ İLE ÖDEME YAPABİLİRSİNİZ.(FİRMAMIZDAN FORMU TALEP EDİNİZ)
-</div>
+
                                             
-                            
-<div class="hidden" id="evraksiznot"><p>Sayın <span class="madi"></span><br />
 Çevirisini yaptırmak istediğiniz dosyalarınızı bize maille gönderebilirseniz inceleyip size fiyat ve süre hakkında bilgi verebiliriz. 
 
-​1- ​Hızlı teklif almak için <a href="https://www.portakaltercume.com/fiyat-teklifi-al/?ref=crm">https://www.portakaltercume.com/fiyat-teklifi-al/</a> adresinden belgelerinizi bize gönderebilirsiniz.
+​1- ​Hızlı teklif almak için https://www.portakaltercume.com/fiyat-teklifi-al/?ref=crm">https://www.portakaltercume.com/fiyat-teklifi-al adresinden belgelerinizi bize gönderebilirsiniz.
 
-​2- Evraklarınızı ​<b> <span id="temsilci-telefon"></span></b> nolu telefona WhatsApp programı üzerinden belgenizin resmini çekerek gönderebilirsiniz​.
+​2- Evraklarınızı '.Auth::user()->number.' ​ nolu telefona WhatsApp programı üzerinden belgenizin resmini çekerek gönderebilirsiniz​.
 
-3- ​<a href="mailto:info@portakaltercume.com.tr">info@portakaltercume.com.tr</a> adresine mail atabilirsiniz.
+3- ​mailto:info@portakaltercume.com.tr">info@portakaltercume.com.tr adresine mail atabilirsiniz.
 
-Değerlendirmenize sunar, <br />
+Değerlendirmenize sunar, 
 İyi çalışmalar dileriz.
 
-<span id="temsilci-adi"></span> / Proje Koordinatörü<br /><br />
-<b>Temsilci Gsm:</b> <span id="temsilci-telefon"></span>
+ '.Auth::user()->name.'/ Proje Koordinatörü
+Temsilci Gsm: '.Auth::user()->number.'
 <b>Çağrı Merkezi:</b>  444 82 86
-www.portakaltercume.com.tr
-</div>';
+www.portakaltercume.com.tr';
 
+  
+ 
+  
   return response()->json( ['html' => $html]);
+
+
+
+
 }
 
+ 
 
 public function gelentekliffiyatver(Request $request)
-
 {
-
-
             $id=request()->input('tekliffiyat');
+            $yazi=$request->icerik;
+
+
 
             $teklif = Teklifler::find($id);
+
+            Mail::raw($yazi, function($message) use($teklif)
+              {
+                $message->from('info@portakalmedya.com', 'Portakal Tercume Mesajı');
+
+                $message->to($teklif->Email)->cc('Portakal Tercume Mesajı');
+              });
+
+
+            
 
             $teklif->GonderilenMailEvrakTuru=request()->input('evraktipi');
             $teklif->TeklifVerenTemsilci =Auth::user()->id;
@@ -759,6 +838,8 @@ public function gelentekliffiyatver(Request $request)
             $teklif->OnayDurumu=1;
 
             $teklif->update();
+
+            alert()->flash('Başarıyla Güncellenmiş Ve E-Posta Atılmıştır', 'success');  
             return redirect()->route('devameden');
 
 

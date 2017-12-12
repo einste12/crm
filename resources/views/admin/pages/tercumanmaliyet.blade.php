@@ -3,13 +3,15 @@
 @section('content')
 
 
-@if(Session::has('message'))
-        <div class="row">
-          <div class="col-md-12">
-           <div class="alert alert-success text-center"> {{ Session::get('message') }}</div>
-          </div>
-        </div>
-  @endif
+@if (alert()->ready())
+    <script>
+        swal({
+          title: "{!! alert()->message() !!}",
+          text: "{!! alert()->option('text') !!}",
+          type: "{!! alert()->type() !!}"
+        });
+    </script>
+@endif
   
   <form action="{{ route('maliyetara')  }}" method="POST">
     {{ csrf_field() }}

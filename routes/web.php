@@ -40,29 +40,32 @@ Route::get('/tamamlanan', 'DashBoardController@tamamlanan')->name('tamamlanan');
 Route::get('/iptalteklif', 'DashBoardController@iptalteklif')->name('iptalteklif');
 
 Route::post('/gelenteklifonayla', 'DashBoardController@gelenteklifonayla')->name('gelenteklifonayla');
-
+Route::post('/gelenteklifsil', 'DashBoardController@gelenteklifsil')->name('gelenteklifsil');
 Route::post('/gelentekliffiyatver', 'DashBoardController@gelentekliffiyatver')->name('gelentekliffiyatver');
 
-Route::get('/onaybekleyensil/{id}', 'DashBoardController@onaybekleyensil')->name('onaybekleyensil');
-Route::get('/gelenteklifsil/{id}', 'DashBoardController@gelenteklifsil')->name('gelenteklifsil');
+
+
+Route::post('onaysil', 'DashBoardController@onaysil')->name('onaysil');
 
 Route::get('/onaybekleyenedit/{id}', 'DashBoardController@onaybekleyenedit')->name('onaybekleyenedit');
 Route::get('/onaybekleyenyazdir/{id}', 'DashBoardController@onaybekleyenyazdir')->name('onaybekleyenyazdir');
 Route::post('/onaybekleyenupdate/{id}', 'DashBoardController@onaybekleyenupdate')->name('onaybekleyenupdate');
+Route::get('/onaygidenmail/{id}', 'DashBoardController@onaygidenmail')->name('onaygidenmail');
 
 //DEVAM EDEN ROUTE BAŞLANGIÇ
 Route::post('/tekliftamamla', 'DashBoardController@tekliftamamla')->name('tekliftamamla');
-Route::get('/devamedensil/{id}', 'DashBoardController@devamedensil')->name('devamedensil');
+Route::post('/devamsil', 'DashBoardController@devamsil')->name('devamsil');
 Route::get('/devamedenedit/{id}', 'DashBoardController@devamedenedit')->name('devamedenedit');
 Route::post('/devamedenupdate/{id}', 'DashBoardController@devamedenupdate')->name('devamedenupdate');
 Route::get('/devamedenyazdir/{id}', 'DashBoardController@devamedenyazdir')->name('devamedenyazdir');
+Route::get('/devamgidenmail/{id}', 'DashBoardController@devamgidenmail')->name('devamgidenmail');
 
 
 //TAMAMLANAN ROUTE BAŞLANGIÇ
-Route::get('/tamamlanansil/{id}', 'DashBoardController@tamamlanansil')->name('tamamlanansil');
 Route::get('/tamamlananedit/{id}', 'DashBoardController@tamamlananedit')->name('tamamlananedit');
 Route::post('/tamamlananupdate/{id}', 'DashBoardController@tamamlananupdate')->name('tamamlananupdate');
 Route::get('/tamamlananyazdir/{id}', 'DashBoardController@tamamlananyazdir')->name('tamamlananyazdir');
+Route::get('/tamamgidenmail/{id}', 'DashBoardController@tamamgidenmail')->name('tamamgidenmail');
 
 
 
@@ -105,6 +108,7 @@ Route::get('idgonder/{id}', 'DashBoardController@idgonder')->name('idgonder');
 
 
 Route::get('test', 'DashBoardController@test')->name('test');
+Route::get('mailgonder', 'DashBoardController@mail')->name('mail');
 
 
 

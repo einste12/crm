@@ -21,6 +21,10 @@ $('#edit-modal2').on('show.bs.modal', function(e) {
 
 
 
+
+
+
+
 $('#edit-modal4').on('show.bs.modal', function(e) {
 
     var $modal = $(this),
@@ -40,6 +44,19 @@ $('#edit-modal5').on('show.bs.modal', function(e) {
          $(".modal-body #lksonay").val( esseyId );
 
 });
+
+
+$('#edit-modal7').on('show.bs.modal', function(e) {
+
+    var $modal = $(this),
+        Id = e.relatedTarget.id;
+
+
+
+         $(".modal-body #gelenteklifsil1").val( Id );
+
+});
+
 
 $('#edit-modal6').on('show.bs.modal', function(e) {
 
@@ -62,6 +79,29 @@ $('#edit-modal6').on('show.bs.modal', function(e) {
 
 
 });
+
+
+
+//Onay bekleyen sil id yollama
+$('#edit-modal8').on('show.bs.modal', function(e) {
+
+    var $modal = $(this),
+        Id2 = e.relatedTarget.id;
+
+         $(".modal-body #onaybekleyensil").val( Id2 );
+
+});
+
+//Devam Sil
+$('#edit-modal9').on('show.bs.modal', function(e) {
+
+    var $modal = $(this),
+        Id3 = e.relatedTarget.id;
+
+         $(".modal-body #devamedensil").val( Id3 );
+
+});
+
 
 
 
@@ -206,3 +246,12 @@ $("select#teslimzamani").change(function(){
 
 
 });
+
+
+$(document).ready(function(){
+
+    $('.selectpicker').selectpicker();
+
+
+
+    });

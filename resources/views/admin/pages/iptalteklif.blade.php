@@ -22,7 +22,7 @@
        <tr>
          <td>{{ $teklifler->id }}</td>
          <td>{{ $teklifler->iptalEtmeTarihi }}</td>
-         <td>{{  $temsilcissss[$teklifler->iptalEdenTemsilciID-1]->isimSoyisim }}  </td>
+         <td> {{$teklifler->temsilci_iptal['isimSoyisim']  }}</td>
          <td>
            {{ $teklifler->KaynakDil }} > </br>
            {{ $teklifler->HedefDil }}

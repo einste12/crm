@@ -3,13 +3,16 @@
 @section('content')
 
 
-  @if(Session::has('message'))
-        <div class="row">
-          <div class="col-md-12">
-           <div class="alert alert-success text-center"> {{ Session::get('message') }}</div>
-          </div>
-        </div>
-  @endif
+  @if (alert()->ready())
+    <script>
+        swal({
+          title: "{!! alert()->message() !!}",
+          text: "{!! alert()->option('text') !!}",
+          type: "{!! alert()->type() !!}"
+        });
+    </script>
+@endif
+
 
   <table class="table table-striped">
      <thead>
@@ -33,7 +36,7 @@
          <td>{{ $teklifler->GelenTeklifTarihi }}</td>
          <td>
           {{ $teklifler->TeklifVerilenTarih}}</br>
-          {{ $teklifler->TeklifVerenTemsilci}}
+          {{ $teklifler->temsilci['isimSoyisim']}}
          </td>
          <td>
           {{ $teklifler->isimSoyisim }}</br>
@@ -54,9 +57,10 @@
          <td>{{ $teklifler->tercuman->isimSoyisim }}</td>
          <td>
            <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal2">ONAYLA</a>
-           <a href="{{ route('devamedensil',['id'=>$teklifler->id]) }}" class="btn btn-danger">SİL</a>
+           <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal9">SİL</a>
            <a href="{{ route('devamedenedit',['id'=>$teklifler->id]) }}" class="btn btn-danger">DÜZENLE</a>
            <a href="{{ route('devamedenyazdir',['id'=>$teklifler->id]) }}" class="btn btn-success">YAZDIR</a>
+           <a href="{{ route('devamgidenmail',['id'=>$teklifler->id]) }}" class="btn btn-danger">GİDEN MAİL</a>
 
          </td>
 
@@ -110,6 +114,57 @@
            </div>
        </div>
 </div>
+
+
+{{-- DEVAM EDEN SİL  --}}
+<div id="edit-modal9" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                   <h4 class="modal-title" id="myModalLabel">Devam Eden Teklifi İptaL Et</h4>
+               </div>
+<form action="{{ route('devamsil') }}" method="POST"/>
+{{ csrf_field() }}
+               <div class="form-group">
+                 <label for="sel1">İptal Eden  Temsilciyi Seçiniz:</label>
+                 <select class="form-control" name="DevamİptalEdenTemsilci">
+                  @foreach($temsilci as $temsilcis)
+                   <option value="{{ $temsilcis->id }}">{{ $temsilcis->isimSoyisim }}</option>
+                 @endforeach
+                 </select>
+               </div>
+               <div class="form-group">
+                 <label for="sel1">İptal Sebepleri:</label>
+                 <select class="form-control" name="Devamiptalnedeni">
+                  @foreach($iptalnedeni as $iptalnedenis)
+                   <option value="{{ $iptalnedenis->id }}">{{ $iptalnedenis->IptalSebebi }}</option>
+                 @endforeach
+                 </select>
+               </div> 
+            
+
+
+               <div class="modal-body edit-content">
+                    <input type="hidden" name="devamedensil" id="devamedensil" value=""/>
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-danger" data-dismiss="modal">İptal</button>
+                   <button type="submit" class="btn btn-success">İptal Et</button>
+               </div>
+
+</form>
+
+           </div>
+       </div>
+</div>
+
+
+
+
+
+
+
 
 
 

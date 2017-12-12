@@ -2,13 +2,18 @@
 
 @section('content')
 
-  @if(Session::has('message'))
-        <div class="row">
-          <div class="col-md-12">
-           <div class="alert alert-success text-center"> {{ Session::get('message') }}</div>
-          </div>
-        </div>
-  @endif
+
+
+@if (alert()->ready())
+    <script>
+        swal({
+          title: "{!! alert()->message() !!}",
+          text: "{!! alert()->option('text') !!}",
+          type: "{!! alert()->type() !!}"
+        });
+    </script>
+@endif
+
 
   <table class="table table-striped">
      <thead>
@@ -34,7 +39,7 @@
          <td>{{ $teklifler->id }}</td>
          <td>{{ $teklifler->GelenTeklifTarihi }}</td>
          <td>{{ $teklifler->TeklifVerilenTarih }}</td>
-         <td>{{ $teklifler->TeklifVerenTemsilci}}  </td>
+         <td>{{ $teklifler->temsilci['isimSoyisim']}}  </td>
 
          <td>
          {{ $teklifler->isimSoyisim }}</br>
@@ -58,9 +63,11 @@
          <td>{{ $teklifler->TemsilciGelenTeklifNot }}</td>
          <td>
            <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal">ONAYLA</a>
-           <a href="{{ route('onaybekleyensil',['id'=>$teklifler->id]) }}" class="btn btn-danger">SİL</a>
+           <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal8">SİL</a>
            <a href="{{ route('onaybekleyenedit',['id'=>$teklifler->id]) }}" class="btn btn-danger">DÜZENLE</a>
            <a href="{{ route('onaybekleyenyazdir',['id'=>$teklifler->id]) }}" class="btn btn-danger">YAZDIR</a>
+           <a href="{{ route('onaygidenmail',['id'=>$teklifler->id]) }}" class="btn btn-danger">GİDEN MAİL</a>
+
          </td>
        </tr>
     @endforeach
@@ -101,7 +108,49 @@
        </div>
 </div>
 
+{{-- Silme Modalı --}}
 
+<div id="edit-modal8" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                   <h4 class="modal-title" id="myModalLabel">Onay Bekleyen Teklifi İptaL Et</h4>
+               </div>
+<form action="{{ route('onaysil') }}" method="POST"/>
+{{ csrf_field() }}
+               <div class="form-group">
+                 <label for="sel1">İptal Eden  Temsilciyi Seçiniz:</label>
+                 <select class="form-control" name="OnayİptalEdenTemsilci">
+                  @foreach($temsilci as $temsilcis)
+                   <option value="{{ $temsilcis->id }}">{{ $temsilcis->isimSoyisim }}</option>
+                 @endforeach
+                 </select>
+               </div>
+               <div class="form-group">
+                 <label for="sel1">İptal Sebepleri:</label>
+                 <select class="form-control" name="Onayiptalnedeni">
+                  @foreach($iptalnedeni as $iptalnedenis)
+                   <option value="{{ $iptalnedenis->id }}">{{ $iptalnedenis->IptalSebebi }}</option>
+                 @endforeach
+                 </select>
+               </div> 
+            
+
+
+               <div class="modal-body edit-content">
+                    <input type="hidden" name="onaybekleyensil" id="onaybekleyensil" value=""/>
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-danger" data-dismiss="modal">İptal</button>
+                   <button type="submit" class="btn btn-success">İptal Et</button>
+               </div>
+
+</form>
+
+           </div>
+       </div>
+</div>
 
 
 

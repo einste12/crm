@@ -2,13 +2,15 @@
 
 @section('content')
 
-  @if(Session::has('message'))
-        <div class="row">
-          <div class="col-md-12">
-           <div class="alert alert-success text-center"> {{ Session::get('message') }}</div>
-          </div>
-        </div>
-  @endif
+@if (alert()->ready())
+    <script>
+        swal({
+          title: "{!! alert()->message() !!}",
+          text: "{!! alert()->option('text') !!}",
+          type: "{!! alert()->type() !!}"
+        });
+    </script>
+@endif
 
 
   <form action="{{route('onaybekleyenupdate',$teklif->id)}}" method="POST">
@@ -27,39 +29,48 @@
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Kaynak Dil</label>
-      <input type="text" class="form-control"  value="{{ $teklif->KaynakDil }}" name="KaynakDil">
+        <select  name="KaynakDil" class="form-control">
+            @foreach($diller as $dillers)
+              <option  @if($teklif->HedefDil ==$dillers->DilAdi ) selected @endif value="{{ $dillers->id }}">{{ $dillers->DilAdi }}</option>
+            @endforeach  
+     </select>
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Hedef Dil</label>
-      <input type="text" class="form-control"  value="{{ $teklif->HedefDil }}"  name="HedefDil">
+        <select  name="HedefDil" class="form-control">
+            @foreach($diller as $dillers)
+              <option @if($teklif->HedefDil ==$dillers->DilAdi ) selected @endif value="{{ $dillers->id }}">{{ $dillers->DilAdi }}</option>
+            @endforeach  
+        </select>
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Kapora</label>
       <input type="text" class="form-control"  value="{{ $teklif->Kapora }}"  name="Kapora">
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail1">Tastik Şekli</label>
-      <input type="text" class="form-control"  value="{{ $teklif->TastikSekli }}" name="TastikSekli">
-    </div>
+     <label class=" control-label">Tastik Şekli </label>
+      <select  name="TastikSekli" class="form-control">
+       <option @if($teklif->TastikSekli == 1) selected @endif  value="1"> Yeminli Tercüme</option>
+       <option @if($teklif->TastikSekli == 2) selected @endif  value="2"> Noter Yeminli Tercüme</option>
+       <option @if($teklif->TastikSekli == 3) selected @endif  value="3"> Apostil Tasdikli Tercüme</option>
+     </select>
+   </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Müşteri Talebi</label>
-      <input type="text" class="form-control"  value="{{ $teklif->MusteriTalebi }}" name="MusteriTalebi">
+      <textarea  class="form-control"    name="MusteriTalebi">{{ $teklif->MusteriTalebi }}</textarea>
     </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Teklif Veren Temsilci</label>
-      <input type="text" class="form-control"  value="{{ $teklif->TeklifVerenTemsilci }}" name="TeklifVerenTemsilci">
-    </div>
+  
     <div class="form-group">
       <label for="exampleInputEmail1">Fiyat</label>
       <input type="text" class="form-control"  value="{{ $teklif->Fiyat }}" name="Fiyat">
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Temsilci Gelen Not</label>
-      <input type="text" class="form-control"  value="{{ $teklif->TemsilciGelenTeklifNot }}"  name="TemsilciGelenTeklifNot">
+      <textarea  class="form-control"    name="TemsilciGelenTeklifNot">{{ $teklif->TemsilciGelenTeklifNot }}</textarea>
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Tercuman ID</label>
-      <input type="text" class="form-control"  value="{{ $teklif->TercumanID }}"  name="TercumanID">
+      <input type="text" class="form-control"  value="{{ $teklif->tercuman['isimSoyisim'] }}"  name="TercumanID">
     </div>
 
     <button type="submit" class="btn btn-success">GÜNCELLE</button>

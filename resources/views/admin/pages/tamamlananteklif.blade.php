@@ -2,13 +2,15 @@
 
 @section('content')
 
-  @if(Session::has('message'))
-        <div class="row">
-          <div class="col-md-12">
-           <div class="alert alert-success text-center"> {{ Session::get('message') }}</div>
-          </div>
-        </div>
-  @endif
+@if (alert()->ready())
+    <script>
+        swal({
+          title: "{!! alert()->message() !!}",
+          text: "{!! alert()->option('text') !!}",
+          type: "{!! alert()->type() !!}"
+        });
+    </script>
+@endif
 
   <table class="table table-striped">
      <thead>
@@ -53,13 +55,14 @@
 
           <td>DENEME DOSYA</td>
          <td>{{ $teklifler->MusteriTalebi }}</td>
-         <td>{{ $temsilcisss[$teklifler->OnaylayanTemsilciID-1]->isimSoyisim }}  </td>
+         <td>{{ $teklifler->temsilci2['isimSoyisim']  }}  </td>
 
          <td>{{ $teklifler->TemsilciGelenTeklifNot }}</td>
          <td>
-           <a href="{{ route('tamamlanansil',['id'=>$teklifler->id]) }}" class="btn btn-danger">SİL</a>
            <a href="{{ route('tamamlananedit',['id'=>$teklifler->id]) }}" class="btn btn-danger">DÜZENLE</a>
            <a href="{{ route('tamamlananyazdir',['id'=>$teklifler->id]) }}" class="btn btn-success">YAZDIR</a>
+           <a href="{{ route('tamamgidenmail',['id'=>$teklifler->id]) }}" class="btn btn-danger">GİDEN MAİL</a>
+           
 
          </td>
        </tr>

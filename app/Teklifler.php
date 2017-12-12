@@ -29,18 +29,20 @@ public function tercuman()
 
 public function temsilci()
 {
-  return $this->hasMany('App\Temsilciler','TeklifVerenTemsilci','id');
+  return $this->hasOne('App\Temsilciler','id','TeklifVerenTemsilci');
 }
 
 
 public function temsilci2()
 {
-  return $this->hasMany('App\Temsilciler','OnaylayanTemsilciID','id');
+  return $this->hasOne('App\Temsilciler','id','OnaylayanTemsilciID');
 }
 
-public function temsilci3()
+
+
+public function temsilci_iptal()
 {
-  return $this->hasMany('App\Temsilciler','iptalEdenTemsilciID','id');
+  return $this->hasOne('App\Temsilciler','id','iptalEdenTemsilciID');
 }
 
 }
