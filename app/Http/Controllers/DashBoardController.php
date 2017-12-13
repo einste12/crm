@@ -452,8 +452,6 @@ class DashBoardController extends Controller
                 $last_id = $TercumanVeritabani->id;
 
 
-
-
                           $index = 0;
                           while(true){
                             if($request->input('kaynakdil'.$index)){
@@ -479,15 +477,96 @@ class DashBoardController extends Controller
 
                 }
 
-
+                   alert()->flash('Başarıyla Kayıt Edilmiştir', 'success');
                   return redirect()->back();
               }
+
+
+
+
+public function tercumanguncelle(Request $request,$id)
+{
+
+
+                
+
+                $TercumanVeritabani =TercumanVeritabani::find($id);
+                $TercumanVeritabani->isimSoyisim = $request->input('isimSoyisim');
+                $TercumanVeritabani->Telefon = $request->input('Telefon');
+                $TercumanVeritabani->Mail = $request->input('Email');
+                $TercumanVeritabani->Locasyon = $request->input('Lokasyon');
+                $TercumanVeritabani->Hesapsahibi = $request->input('HesapSahibi');
+                $TercumanVeritabani->ibanno = $request->input('ibanno');
+                $TercumanVeritabani->temsilciNot = $request->input('TemsilciNot');
+
+                
+
+                $TercumanVeritabani->update();
+
+                if($TercumanVeritabani->update()){
+
+
+
+                          $count=Tercumandilbilgileri::where('TercumanID',$id)->count();
+                          $index = $count;
+                          while(true){
+                            if($request->input('kaynakdil'.$index)){
+
+                                
+
+                              $Tercumandilbilgileri =new Tercumandilbilgileri;
+                              $tercumandilbilgileri->TercumanID=$id;
+                              $Tercumandilbilgileri->tercume_turu=$request->input('tercumeturu'.$index);
+                              $Tercumandilbilgileri->KaynakDil=$request->input('kaynakdil'.$index);
+                              $Tercumandilbilgileri->HedefDil=$request->input('hedefdil'.$index);
+                              $Tercumandilbilgileri->BirimFiyat=$request->input('birimfiyat'.$index);
+                              $Tercumandilbilgileri->save();
+
+                          }else{
+                             break;
+                         }
+                         $index +=1;
+
+                          }
+
+
+                }else{
+
+                    echo "BİR HATA OLUŞTU";
+
+                }
+
+                  alert()->flash('Başarıyla Güncellenmiştir', 'success');
+                  return redirect()->back();
+
+
+
+
+
+}
+
 
 
 
 public function tumtercumanlar(){
   return view('admin.pages.tumtercumanlar');
 }
+
+
+
+public function tercumanduzenle($id)
+{
+
+     $tercumanduzenle = TercumanVeritabani::find($id);
+     return view('admin.pages.tercumanduzenle',['tercumand'=>$tercumanduzenle]);
+
+
+
+}
+
+
+
+
 
 
 public function tercumanbasvurulari()
@@ -565,7 +644,7 @@ public function tercumanbasvurulari()
         $calisilan = $request->input('calisilan2');
 
 
-         $results = DB::select(DB::raw("SELECT TercumanVeritabani.isimSoyisim,TercumanVeritabani.Mail,TercumanVeritabani.Telefon, Tercumandilbilgileri.KaynakDil, Tercumandilbilgileri.HedefDil,Tercumandilbilgileri.tercume_turu,TercumanVeritabani.temsilciNot
+         $results = DB::select(DB::raw("SELECT TercumanVeritabani.isimSoyisim,TercumanVeritabani.id,TercumanVeritabani.Mail,TercumanVeritabani.Telefon, Tercumandilbilgileri.KaynakDil, Tercumandilbilgileri.HedefDil,Tercumandilbilgileri.tercume_turu,TercumanVeritabani.temsilciNot
                                FROM TercumanVeritabani
                                INNER JOIN Tercumandilbilgileri ON 
                                TercumanVeritabani.id=Tercumandilbilgileri.TercumanID 
@@ -653,6 +732,22 @@ public function tercumanistakipcetvelisil($id)
 
 }
 
+public function tercumansil(Request $request)
+
+{
+
+
+  $id=$request->input('tercumansil');
+ 
+   $tercumansil = TercumanVeritabani::find($id);
+   $tercumansil->silindi=1;
+   $tercumansil->update();  
+
+   alert()->flash('Başarıyla Silindi', 'success');
+   return redirect()->back();
+
+}
+
 
 
 public function lksekle(Request $request)
@@ -705,7 +800,19 @@ public function lksyeeklenenler()
   return view('admin.pages.lksyeeklenenler',['lksekle'=>$lksyeeklenenler]);
 }
 
+public function dilsil($id)
+{
 
+
+
+
+  $dilbilgisisil=Tercumandilbilgileri::find($id);
+  $dilbilgisisil->delete();
+
+  return redirect()->back();
+
+
+}
 
 
 public function lksara(Request $request)
@@ -779,15 +886,7 @@ IBAN NO: TR860001000485758944095001
 
 3- MAİL ORDER SİSTEMİ İLE ÖDEME YAPABİLİRSİNİZ.(FİRMAMIZDAN FORMU TALEP EDİNİZ)
 
-                                            
-Çevirisini yaptırmak istediğiniz dosyalarınızı bize maille gönderebilirseniz inceleyip size fiyat ve süre hakkında bilgi verebiliriz. 
-
-​1- ​Hızlı teklif almak için https://www.portakaltercume.com/fiyat-teklifi-al/?ref=crm">https://www.portakaltercume.com/fiyat-teklifi-al adresinden belgelerinizi bize gönderebilirsiniz.
-
-​2- Evraklarınızı '.Auth::user()->number.' ​ nolu telefona WhatsApp programı üzerinden belgenizin resmini çekerek gönderebilirsiniz​.
-
-3- ​mailto:info@portakaltercume.com.tr">info@portakaltercume.com.tr adresine mail atabilirsiniz.
-
+                                
 Değerlendirmenize sunar, 
 İyi çalışmalar dileriz.
 
@@ -853,7 +952,7 @@ public function gelentekliffiyatver(Request $request)
 public function test()
 {  
  
-  $teklifler = Teklifler::with('tercuman')->get();
+  $teklifler = TercumanVeritabani::with('tercumandilbilgileri')->get();
   return $teklifler;
 
 

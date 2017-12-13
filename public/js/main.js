@@ -103,8 +103,15 @@ $('#edit-modal9').on('show.bs.modal', function(e) {
 });
 
 
+//TERCUMAN SİLME MODALI
+$('#edit-modal10').on('show.bs.modal', function(e) {
 
+    var $modal = $(this),
+        Id4 = e.relatedTarget.id;
 
+         $(".modal-body #tercumansil").val( Id4 );
+
+});
 
 
 

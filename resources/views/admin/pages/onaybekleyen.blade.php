@@ -142,8 +142,8 @@
                     <input type="hidden" name="onaybekleyensil" id="onaybekleyensil" value=""/>
                </div>
                <div class="modal-footer">
-                   <button type="button" class="btn btn-danger" data-dismiss="modal">İptal</button>
-                   <button type="submit" class="btn btn-success">İptal Et</button>
+                   <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                   <button type="submit" class="btn btn-success">SİL</button>
                </div>
 
 </form>

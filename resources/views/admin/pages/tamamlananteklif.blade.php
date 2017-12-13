@@ -63,7 +63,6 @@
            <a href="{{ route('tamamlananyazdir',['id'=>$teklifler->id]) }}" class="btn btn-success">YAZDIR</a>
            <a href="{{ route('tamamgidenmail',['id'=>$teklifler->id]) }}" class="btn btn-danger">GİDEN MAİL</a>
            
-
          </td>
        </tr>
        @endforeach

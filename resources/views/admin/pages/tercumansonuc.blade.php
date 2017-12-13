@@ -53,6 +53,7 @@
          <th>TELEFON</th>
          <th>ÇEVİRİ YAPTIĞI DİL</th>
          <th>FİYAT</th>
+         <th>İŞLEMLER</th>
          
        </tr>
      </thead>
@@ -80,6 +81,7 @@
               {{ $results->temsilciNot}}
 
               </td>
+              <td><a href="#myModal" data-toggle="modal" id="{{ $results->id }}" data-target="#edit-modal10">SİL</a></td>
        		</tr>
      @endforeach
 
@@ -90,6 +92,41 @@
       @endif
      </tbody>
    </table>
+
+
+
+
+
+<div id="edit-modal10" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                   <h4 class="modal-title" id="myModalLabel">Tercuman Sil</h4>
+               </div>
+<form action="{{ route('tercumansil') }}" method="POST"/>
+{{ csrf_field() }}
+           
+            <h3>Seçilen Tercumanı Silmek İstiyor Musunuz ?</h3>
+
+               <div class="modal-body edit-content">
+                    <input type="hidden" name="tercumansil" id="tercumansil" value=""/>
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-danger" data-dismiss="modal">İptal</button>
+                   <button type="submit" class="btn btn-success">Tercumanı Sil</button>
+               </div>
+
+</form>
+
+           </div>
+       </div>
+</div>
+
+
+
+
+
 
 
 
