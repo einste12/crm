@@ -29,8 +29,8 @@
   <textarea class="form-control" rows="5" id="comment" readonly="">
       @if($maildetay->GonderilenMailEvrakTuru==1)
 Sayın {{ $maildetay->isimSoyisim }}, 
-  Göndermiş olduğunuz belge/belgelerin tercüme+noter tasdik ücreti 50 TL + %18 KDV'dir.Apostil hizmeti fiyata dahil değildir. 
-Ödemenin yapılması halinde belge/belgelerinizin tercümesi 1 iş günü içerisinde teslim edilecektir.  
+  Göndermiş olduğunuz belge/belgelerin tercüme+noter tasdik ücreti {{ $maildetay->Fiyat }} + %18 KDV'dir.Apostil hizmeti fiyata dahil değildir. 
+Ödemenin yapılması halinde belge/belgelerinizin tercümesi {{ $maildetay->GonderilenGun }} iş günü içerisinde teslim edilecektir.  
 
 Değerlendirmenize sunar, 
 İyi çalışmalar dileriz.

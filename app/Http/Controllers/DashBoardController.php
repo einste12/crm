@@ -209,8 +209,18 @@ class DashBoardController extends Controller
 
     {
 
+        $tercumanli = TercumanVeritabani::where('silindi', 0)
+                ->where(function($q) {
+          $q->where('onaydurumu', 2)
+            ->orWhere('onaydurumu', 3);
+      })
+      ->get();
+
+
+
+
       $teklif = Teklifler::find($id);
-      return view('admin.pages.onaybekleyenedit',['teklif'=>$teklif]);
+      return view('admin.pages.onaybekleyenedit',['teklif'=>$teklif,'tercumanli'=>$tercumanli]);
 
 
 
@@ -506,29 +516,20 @@ public function tercumanguncelle(Request $request,$id)
                 if($TercumanVeritabani->update()){
 
 
-
-                          $count=Tercumandilbilgileri::where('TercumanID',$id)->count();
-                          $index = $count;
-                          while(true){
-                            if($request->input('kaynakdil'.$index)){
-
-                                
-
+                         
+                            foreach ($_POST['kaynakdil'] AS $key => $val) {
+                              
                               $Tercumandilbilgileri =new Tercumandilbilgileri;
-                              $tercumandilbilgileri->TercumanID=$id;
-                              $Tercumandilbilgileri->tercume_turu=$request->input('tercumeturu'.$index);
-                              $Tercumandilbilgileri->KaynakDil=$request->input('kaynakdil'.$index);
-                              $Tercumandilbilgileri->HedefDil=$request->input('hedefdil'.$index);
-                              $Tercumandilbilgileri->BirimFiyat=$request->input('birimfiyat'.$index);
+                              $Tercumandilbilgileri->TercumanID=$id;
+                              $Tercumandilbilgileri->tercume_turu=$_POST['tercumeturu'][$key];
+                              $Tercumandilbilgileri->KaynakDil=$_POST['kaynakdil'][$key];
+                              $Tercumandilbilgileri->HedefDil=$_POST['hedefdil'][$key];
+                              $Tercumandilbilgileri->BirimFiyat=$_POST['birimfiyat'][$key];
                               $Tercumandilbilgileri->save();
 
-                          }else{
-                             break;
-                         }
-                         $index +=1;
-
                           }
-
+                            
+                        
 
                 }else{
 
@@ -860,45 +861,12 @@ public function idgonder(Request $request)
   $user = Teklifler::find($id);
 
 
-
-  $html = ' Sayın '.$user->isimSoyisim.'
-Göndermiş olduğunuz belgenin yeminli tercüme ücreti​  XXX TL + %18 KDV’ dir.
-Ödemenin yapılması halinde belge/belgelerinizin tercümesi  iş günü/saat içerisinde teslim edilecektir.  
-
-Değerlendirmenize sunar, 
-İyi çalışmalar dileriz.
-
-'.Auth::user()->name.'/ Proje Koordinatörü
-Temsilci Gsm: '.Auth::user()->number.'
-Çağrı Merkezi:  444 82 86
-www.portakaltercume.com.tr
-
-FİRMAMIZIN TÜM ÖDEME KANALLARI AŞAĞIDA Kİ GİBİDİR. 
-
-1- EFT YA DA HAVALE
-HESAP ADI: PORTAKAL TERCÜME VE MEDYA A.Ş. KUVEYTTÜRK KATILIM BANKASI
-IBAN NO: TR170020500009380768500001 
-
-HESAP ADI: PORTAKAL TERCÜME VE MEDYA A.Ş. ZİRAAT BANKASI
-IBAN NO: TR860001000485758944095001 
-
-2- İNTERNET SİTEMİZ ÜZERİNDEN VISA-MASTERCARD YA DA AMERICAN EXPRESS KREDİ KARTLARIYLA ÖDEME YAPABİLİRSİNİZ. https://www.portakaltercume.com/online-odeme/ 
-
-3- MAİL ORDER SİSTEMİ İLE ÖDEME YAPABİLİRSİNİZ.(FİRMAMIZDAN FORMU TALEP EDİNİZ)
-
-                                
-Değerlendirmenize sunar, 
-İyi çalışmalar dileriz.
-
- '.Auth::user()->name.'/ Proje Koordinatörü
-Temsilci Gsm: '.Auth::user()->number.'
-<b>Çağrı Merkezi:</b>  444 82 86
-www.portakaltercume.com.tr';
-
   
- 
-  
-  return response()->json( ['html' => $html]);
+
+
+
+
+  return response()->json( ['user'=>$user]);
 
 
 
@@ -952,7 +920,7 @@ public function gelentekliffiyatver(Request $request)
 public function test()
 {  
  
-  $teklifler = TercumanVeritabani::with('tercumandilbilgileri')->get();
+  $teklifler =Teklifler::with('tercumanveritabani')->get();
   return $teklifler;
 
 

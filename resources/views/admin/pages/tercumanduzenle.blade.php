@@ -226,17 +226,20 @@
 
 
           if(kaynakdil == "" || hedefdil == "") return;
-
-          var appendText = '<tr data-new="true"><td><input type="hidden" id="kaynakdil" name="kaynakdil1" value="'+kaynakdil+'">'+kaynakdil+'</td><td><input type="hidden" id="hedefdil" name="hedefdil1" value="'+hedefdil+'">'+hedefdil+'</td><td><input type="hidden" id="birimfiyat" name="birimfiyat1" value="'+karakterFiyati+'">'+karakterFiyati+' TL</td><td><input type="hidden" id="tercumeturu" name="tercumeturu1" value="'+tercumeTuru+'">'+$("[name='TercumeTuru'] option:selected").text()+'</td><td class="td-actions text-left"><a id="dilsil" rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action view" data-original-title="Sil">SİL<i class="fa fa-remove"></i></a></td></tr>';
+var appendText = '<tr><td><input type="hidden" id="kaynakdil" name="kaynakdil[]" value="'+kaynakdil+'">'+kaynakdil+'</td><td>'+
+'<input type="hidden" id="hedefdil" name="hedefdil[]" value="'+hedefdil+'">'+hedefdil+'</td><td>'+
+'<input type="hidden" id="birimfiyat" name="birimfiyat[]" value="'+karakterFiyati+'">'+karakterFiyati+' TL</td><td>'+
+'<input type="hidden" id="tercumeturu" name="tercumeturu[]" value="'+tercumeTuru+'">'+$("[name='TercumeTuru'] option:selected").text()+
+'</td><td class="td-actions text-left"><a id="dilsil" rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action view" data-original-title="Sil">SİL<i class="fa fa-remove"></i></a></td></tr>';
           $("#diltablosu tbody").append(appendText);
-
-          tabloDuzenle();
+  
+          //tabloDuzenle();
       });
 
       $(document).ready(function(){
           $(document).on("click","#diltablosu tbody #dilsil",function(){
               $(this).parent().parent().remove();
-              tabloDuzenle();
+              //tabloDuzenle();
           });
       });
 

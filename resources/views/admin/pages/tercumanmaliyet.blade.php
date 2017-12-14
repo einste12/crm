@@ -62,12 +62,14 @@
 		         <td>{{ mb_strtoupper($tercumans->isimSoyisim) }}</td>
 		         <td>
 		            @foreach($tercumans->tercumandilbilgileri as $data)
-                 {{ $data->KaynakDil}}>{{$data->HedefDil}}
+                 {{ $data->KaynakDil}}>{{$data->HedefDil}}</br>
                 @endforeach
 	 	         </td>
               <td>
-                
-              {{ $data->BirimFiyat }}TL
+                @foreach($tercumans->tercumandilbilgileri as $data)
+                 {{ $data->BirimFiyat}} TL</br>
+                @endforeach 
+             
 
               </td>
        		</tr>

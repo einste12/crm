@@ -112,13 +112,17 @@
             <div class="hidden form-group" id="isgunu">
                <label>Kaç İş Günü İçinde Verilecek?</label>
    
-                  <input type="text" name="isgunu" class="form-control">            
+                  <input type="text" id="gun" name="isgunu" class="form-control">            
     
               </div>
+
+
+            <div class='printchatbox' id='printchatbox'></div>
+
               <div class="hidden form-group" id="issaati">
                <label>Kaç Saat İçinde Verilecek?</label>
    
-                  <input type="text" name="issaati" class="form-control">            
+                  <input type="text" id="saat" name="issaati" class="form-control">            
     
               </div>
 
@@ -133,20 +137,54 @@
           
 
 
-
+                
+                <div id="htmlTextArea" class="benim">
+                  
+                </div>
 
               <div class="hidden form-group" id="not1">
                 <label>Müşteriye Gidicek Mail</label>
 
-                <!-- Textarea Alanım -->
-                <!-- Textarea Alanım -->
-                <!-- Textarea Alanım -->
-                <!-- Textarea Alanım -->
-               <textarea name="icerik" class="form-control" id="htmlTextArea" rows="10" readonly></textarea>
-                <!-- Textarea Bitiş -->
-                <!-- Textarea Bitiş -->
-                <!-- Textarea Bitiş -->
-                <!-- Textarea Bitiş -->
+          
+                 <textarea name="icerik" class="form-control"  rows="10" readonly>
+                  Sayın  {{ $user->['isimSoyisim'] }}
+                      Göndermiş olduğunuz belgenin yeminli tercüme ücreti​ TL + %18 KDV’ dir.
+                Ödemenin yapılması halinde belge/belgelerinizin tercümesi  <div id="spandeneme"></div> iş günü/saat içerisinde teslim edilecektir.  
+
+                Değerlendirmenize sunar, 
+                İyi çalışmalar dileriz.
+
+                {{Auth::user()->name}} Proje Koordinatörü
+                Temsilci Gsm: {{Auth::user()->number}}
+                Çağrı Merkezi:  444 82 86
+                www.portakaltercume.com.tr
+
+                FİRMAMIZIN TÜM ÖDEME KANALLARI AŞAĞIDA Kİ GİBİDİR. 
+
+                1- EFT YA DA HAVALE
+                HESAP ADI: PORTAKAL TERCÜME VE MEDYA A.Ş. KUVEYTTÜRK KATILIM BANKASI
+                IBAN NO: TR170020500009380768500001 
+
+                HESAP ADI: PORTAKAL TERCÜME VE MEDYA A.Ş. ZİRAAT BANKASI
+                IBAN NO: TR860001000485758944095001 
+
+                2- İNTERNET SİTEMİZ ÜZERİNDEN VISA-MASTERCARD YA DA AMERICAN EXPRESS KREDİ KARTLARIYLA ÖDEME YAPABİLİRSİNİZ. https://www.portakaltercume.com/online-odeme/ 
+
+                3- MAİL ORDER SİSTEMİ İLE ÖDEME YAPABİLİRSİNİZ.(FİRMAMIZDAN FORMU TALEP EDİNİZ)
+
+                                                
+                Değerlendirmenize sunar, 
+                İyi çalışmalar dileriz.
+
+                 {{Auth::user()->name}} Proje Koordinatörü
+                Temsilci Gsm:{{Auth::user()->number}}
+                Çağrı Merkezi:  444 82 86
+                www.portakaltercume.com.tr
+                      </textarea>
+            
+
+
+
               </div> 
 
 
@@ -194,10 +232,6 @@
                </div> 
             
 
-
-               <div class="modal-body edit-content">
-                    <input type="hidden" name="teklifsil" id="gelenteklifsil1" value=""/>
-               </div>
                <div class="modal-footer">
                    <button type="button" class="btn btn-danger" data-dismiss="modal">İptal</button>
                    <button type="submit" class="btn btn-success">İptal Et</button>

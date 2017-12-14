@@ -63,20 +63,17 @@ $('#edit-modal6').on('show.bs.modal', function(e) {
     var $modal = $(this),
         data = e.relatedTarget.id;
 
-        $(".modal-body #tekliffiyat1").val( data );
-
-
          $.ajax({
             url: 'idgonder/'+data,
             type: 'GET',
             dataType: "json",
             success:function(data) {
-                console.log("Html:", data.html);
-                 $("#htmlTextArea").text(data.html);
+               
+               $("#spandeneme").text(data.user.Email);
+               $("#spandeneme").text(data.user.isimSoyisim);
+                /* $("#htmlTextArea").text(data.html);*/
             }
         });
-
-
 
 });
 
@@ -237,8 +234,13 @@ $("select#teslimzamani").change(function(){
 
     }else if(teslimzamani==1){
 
+
     $("#isgunu").removeClass("hidden");
     $("#issaati").addClass("hidden");
+    
+    
+
+
 
 }else{
 
@@ -262,3 +264,21 @@ $(document).ready(function(){
 
 
     });
+
+
+
+
+//TEXTBOX İÇERİĞİNİ ALMAK 
+$(document).ready(function(){
+
+
+var inputBox = document.getElementById('gun');
+
+inputBox.onkeyup = function(){
+    var test = document.getElementById('printchatbox').innerHTML = inputBox.value;
+
+}
+
+
+
+});

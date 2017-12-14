@@ -31,7 +31,7 @@
       <label for="exampleInputEmail1">Kaynak Dil</label>
         <select  name="KaynakDil" class="form-control">
             @foreach($diller as $dillers)
-              <option  @if($teklif->HedefDil ==$dillers->DilAdi ) selected @endif value="{{ $dillers->id }}">{{ $dillers->DilAdi }}</option>
+              <option  @if($teklif->HedefDil ==$dillers->DilAdi ) selected @endif value="{{ $dillers->DilAdi }}">{{ $dillers->DilAdi }}</option>
             @endforeach  
      </select>
     </div>
@@ -39,7 +39,7 @@
       <label for="exampleInputEmail1">Hedef Dil</label>
         <select  name="HedefDil" class="form-control">
             @foreach($diller as $dillers)
-              <option @if($teklif->HedefDil ==$dillers->DilAdi ) selected @endif value="{{ $dillers->id }}">{{ $dillers->DilAdi }}</option>
+              <option @if($teklif->HedefDil ==$dillers->DilAdi ) selected @endif value="{{ $dillers->DilAdi }}">{{ $dillers->DilAdi }}</option>
             @endforeach  
         </select>
     </div>
@@ -55,6 +55,18 @@
        <option @if($teklif->TastikSekli == 3) selected @endif  value="3"> Apostil Tasdikli Tercüme</option>
      </select>
    </div>
+   <div class="form-group">
+      <label for="exampleInputEmail1">Tercuman Seçiniz</label>
+            <select  name="TercumanID" class="form-control">
+            @foreach($tercumanli as $tercumanlis)
+              <option @if($tercumanlis->id==$teklif->tercuman['id'] ) selected @endif value="{{ $tercumanlis->id }}">{{ $tercumanlis->isimSoyisim }}</option>
+            @endforeach  
+        </select>
+    </div>
+
+
+
+
     <div class="form-group">
       <label for="exampleInputEmail1">Müşteri Talebi</label>
       <textarea  class="form-control"    name="MusteriTalebi">{{ $teklif->MusteriTalebi }}</textarea>
@@ -69,8 +81,12 @@
       <textarea  class="form-control"    name="TemsilciGelenTeklifNot">{{ $teklif->TemsilciGelenTeklifNot }}</textarea>
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail1">Tercuman ID</label>
-      <input type="text" class="form-control"  value="{{ $teklif->tercuman['isimSoyisim'] }}"  name="TercumanID">
+      <label for="exampleInputEmail1">Teklif Veren Temsilci</label>
+            <select  name="TeklifVerenTemsilci" class="form-control">
+            @foreach($temsilci as $temsilcis)
+              <option @if($temsilcis->id==$teklif->temsilci['id'] ) selected @endif value="{{ $temsilcis->id }}">{{ $temsilcis->isimSoyisim }}</option>
+            @endforeach  
+        </select>
     </div>
 
     <button type="submit" class="btn btn-success">GÜNCELLE</button>

@@ -60,7 +60,10 @@
          <td>{{ $teklifler->MusteriTalebi }}</td>
 
 
-         <td>{{ $teklifler->TemsilciGelenTeklifNot }}</td>
+         <td>
+          {{ $teklifler->TemsilciGelenTeklifNot }}</br>
+          {{ $teklifler->tercuman['isimSoyisim']}} 
+        </td>
          <td>
            <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal">ONAYLA</a>
            <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal8">SİL</a>
