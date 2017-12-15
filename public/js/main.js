@@ -48,16 +48,15 @@ $('#edit-modal5').on('show.bs.modal', function(e) {
 
 $('#edit-modal7').on('show.bs.modal', function(e) {
 
-    var $modal = $(this),
-        Id = e.relatedTarget.id;
+    var $modal=$(this),
+        Id5=e.relatedTarget.id;
 
 
-
-         $(".modal-body #gelenteklifsil1").val( Id );
+         $(".modal-body #gelenteklifsil1").val( Id5 );
 
 });
 
-
+//FİYAT TEKLİFİ VER MODALA ID YOLLAMA
 $('#edit-modal6').on('show.bs.modal', function(e) {
 
     var $modal = $(this),
@@ -69,9 +68,10 @@ $('#edit-modal6').on('show.bs.modal', function(e) {
             dataType: "json",
             success:function(data) {
                
-               $("#spandeneme").text(data.user.Email);
-               $("#spandeneme").text(data.user.isimSoyisim);
-                /* $("#htmlTextArea").text(data.html);*/
+               
+               $("#isimSoyisim").text(data.user.isimSoyisim);
+               $("#isimSoyisim1").text(data.user.isimSoyisim);
+               
             }
         });
 
@@ -112,6 +112,7 @@ $('#edit-modal10').on('show.bs.modal', function(e) {
 
 
 
+    // İŞ EKLERKEN YANA YAZDIRMA KODU
 
     $(document).ready(function(){
         $("[name='isimSoyisim']").focusout(function(){
@@ -134,9 +135,7 @@ $('#edit-modal10').on('show.bs.modal', function(e) {
             $("#hedefdil").html($(this).val());
         });
 
-        $("[name='TeklifVerenTemsilci']").focusout(function(){
-            $("#temsilcionizleme").html($(this).val());
-        });
+
 
         $("[name='TastikSekli']").focusout(function(){
             $("#tastiksekli").html($(this).val());
@@ -182,9 +181,10 @@ $(document).ready(function(){
         if(secilen==2)
         {
 
-             $("#not1").removeClass("hidden");
-              $("#tastiksekli").addClass("hidden");
-             $("#teslimzamani").addClass("hidden");
+             $("#evraksiz").removeClass("hidden");
+             $("#evrakli").addClass("hidden");
+             $("#tastiksekli").addClass("hidden");
+             $("#teslimzamani1").addClass("hidden");
              $("#fiyat").addClass("hidden");
 
         }
@@ -193,9 +193,10 @@ $(document).ready(function(){
           if(secilen==1)
         {
 
-             $("#not1").removeClass("hidden");
+             $("#evrakli").removeClass("hidden");
+             $("#evraksiz").addClass("hidden");
              $("#tastiksekli").removeClass("hidden");
-             $("#teslimzamani").removeClass("hidden");
+             $("#teslimzamani1").removeClass("hidden");
              $("#fiyat").removeClass("hidden");
 
 
@@ -205,9 +206,10 @@ $(document).ready(function(){
               if(secilen=="")
         {
 
-             $("#not1").addClass("hidden");
+             $("#evraksiz").addClass("hidden");
+             $("#evrakli").addClass("hidden");
              $("#tastiksekli").addClass("hidden");
-             $("#teslimzamani").addClass("hidden");
+             $("#teslimzamani1").addClass("hidden");
              $("#fiyat").addClass("hidden");
              $("#sube").addClass("hidden");
 
@@ -219,7 +221,7 @@ $(document).ready(function(){
 
 });
 
-
+//FİYAT TEFLİFİ VER TESLİM ZAMANINI GÖSTERME GİZLEME
 
 $("select#teslimzamani").change(function(){
 
@@ -268,17 +270,90 @@ $(document).ready(function(){
 
 
 
-//TEXTBOX İÇERİĞİNİ ALMAK 
+// FİYAT TEKLİFİ VER TEXTBOX İÇERİĞİNİ ALMAK 
+// EVRAKLI  DOSYA ALMAK
 $(document).ready(function(){
 
 
 var inputBox = document.getElementById('gun');
 
 inputBox.onkeyup = function(){
-    var test = document.getElementById('printchatbox').innerHTML = inputBox.value;
+    var test = document.getElementById('isgosterme').innerHTML = inputBox.value;
+
+}
+
+});
+
+
+
+$(document).ready(function(){
+
+var inputBox= document.getElementById('saat');
+
+
+inputBox.onkeyup = function(){
+    var test = document.getElementById('saatgosterme').innerHTML = inputBox.value;
 
 }
 
 
+});
+
+
+//EVRAKSIZ DOSYA ALMAK
+
+$(document).ready(function(){
+
+
+var inputBox = document.getElementById('gun');
+
+inputBox.onkeyup = function(){
+    var test = document.getElementById('isgosterme1').innerHTML = inputBox.value;
+
+}
 
 });
+
+
+
+$(document).ready(function(){
+
+var inputBox= document.getElementById('saat');
+
+
+inputBox.onkeyup = function(){
+    var test = document.getElementById('saatgosterme1').innerHTML = inputBox.value;
+
+}
+
+
+});
+
+
+$(document).ready(function(){
+
+var inputBox= document.getElementById('evrakfiyati');
+
+
+inputBox.onkeyup = function(){
+    var test = document.getElementById('evraklifiyat').innerHTML = inputBox.value;
+
+}
+
+
+});
+
+
+
+$(document).ready(function(){
+
+var inputBox= document.getElementById('evraksiz').innerHTML;
+
+
+
+
+
+console.log(inputBox);
+
+}
+);

@@ -62,12 +62,12 @@
 
          <td>
           {{ $teklifler->TemsilciGelenTeklifNot }}</br>
-          {{ $teklifler->tercuman['isimSoyisim']}} 
+          Tercüman:{{ $teklifler->tercuman['isimSoyisim']}} 
         </td>
          <td>
-           <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal">ONAYLA</a>
-           <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal8">SİL</a>
-           <a href="{{ route('onaybekleyenedit',['id'=>$teklifler->id]) }}" class="btn btn-danger">DÜZENLE</a>
+           <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal" class="btn btn-danger">ONAYLA</a>
+           <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal8" class="btn btn-danger">SİL</a>
+           <a href="{{ route('onaybekleyenedit',['id'=>$teklifler->id]) }}" class="btn btn-danger">GÜNCELLE</a>
            <a href="{{ route('onaybekleyenyazdir',['id'=>$teklifler->id]) }}" class="btn btn-danger">YAZDIR</a>
            <a href="{{ route('onaygidenmail',['id'=>$teklifler->id]) }}" class="btn btn-danger">GİDEN MAİL</a>
 
@@ -84,12 +84,12 @@
            <div class="modal-content">
                <div class="modal-header">
                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                   <h4 class="modal-title" id="myModalLabel">Devam Eden Tekliflere Ekle</h4>
+                   <h4 class="modal-title" id="myModalLabel">Bu Projeyi Devam Edenlere Taşı</h4>
                </div>
 <form action="{{ route('gelenteklifonayla') }}" method="POST"/>
 {{ csrf_field() }}
                <div class="form-group">
-                 <label for="sel1">Onaylayan Temsilciyi Seçiniz:</label>
+                 <label for="sel1">Bu İşi Onaylamak İstiyor Musunuz?</label>
                  <select class="form-control" name="onaylayantemsilci">
                   @foreach($temsilci as $temsilcis)
                    <option value="{{ $temsilcis->id }}">{{ $temsilcis->isimSoyisim }}</option>

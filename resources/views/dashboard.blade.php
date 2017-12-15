@@ -3,6 +3,18 @@
 @section('content')
 
 
+  @if (alert()->ready())
+    <script>
+        swal({
+          title: "{!! alert()->message() !!}",
+          text: "{!! alert()->option('text') !!}",
+          type: "{!! alert()->type() !!}"
+        });
+    </script>
+@endif
+
+
+
   <table class="table table-striped">
      <thead>
        <tr>
@@ -21,9 +33,10 @@
        <tr>
          <td>{{ $teklifler->id }}</td>
          <td>{{ $teklifler->GelenTeklifTarihi }}</td>
-         <td>{{ $teklifler->isimSoyisim }}</br>
-             {{ $teklifler->Email }}</br>
-             {{ $teklifler->Telefon }}
+         <td>
+          {{ $teklifler->isimSoyisim }}</br>
+          {{ $teklifler->Email }}</br>
+          {{ $teklifler->Telefon }}
        </td>
          <td>
           {{ $teklifler->KaynakDil }} > </br>
@@ -97,7 +110,7 @@
 
               </div>
 
-              <div class="hidden form-group" id="teslimzamani">
+              <div class="hidden form-group" id="teslimzamani1">
                 <label>Teslimat Zamanı</label>
                 <select name="teslimzamani" id="teslimzamani" class="form-control">
                     <option value="" selected="">Seçiniz</option>
@@ -131,61 +144,72 @@
               <div class="hidden form-group" id="fiyat">
                <label>Fiyat</label>
    
-                  <input type="text" name="fiyat" class="form-control">            
+                  <input type="text" id="evrakfiyati" name="fiyat" class="form-control">            
     
               </div>
           
 
-
-                
-                <div id="htmlTextArea" class="benim">
-                  
-                </div>
-
-              <div class="hidden form-group" id="not1">
+              <div class="hidden form-group" id="evraksiz">
                 <label>Müşteriye Gidicek Mail</label>
+    
+                    EVRAKSIZ DOKUMAN
 
+    
+      
+                 Sayın <span id="isimSoyisim1"></span>, 
+                      Çevirisini yaptırmak istediğiniz dosyalarınızı bize maille gönderebilirseniz inceleyip size fiyat ve süre hakkında bilgi verebiliriz. 
+
+​                       1- ​Hızlı teklif almak için https://www.portakaltercume.com/fiyat-teklifi-al/ adresinden belgelerinizi bize gönderebilirsiniz.
+
+​                       2- Evraklarınızı ​ +90 543 953 21 75 nolu telefona WhatsApp programı üzerinden belgenizin resmini çekerek gönderebilirsiniz​.
+
+                        3- ​info@portakaltercume.com.tr adresine mail atabilirsiniz.
+
+                        Değerlendirmenize sunar, 
+                        İyi çalışmalar dileriz.
+
+                        {{Auth::user()->name}} / Proje Koordinatörü
+                        Temsilci Gsm:  {{Auth::user()->number}}
+                        Çağrı Merkezi:  444 82 86
+                        www.portakaltercume.com.tr
+                      
           
-                 <textarea name="icerik" class="form-control"  rows="10" readonly>
-                  Sayın  {{ $user->['isimSoyisim'] }}
-                      Göndermiş olduğunuz belgenin yeminli tercüme ücreti​ TL + %18 KDV’ dir.
-                Ödemenin yapılması halinde belge/belgelerinizin tercümesi  <div id="spandeneme"></div> iş günü/saat içerisinde teslim edilecektir.  
-
-                Değerlendirmenize sunar, 
-                İyi çalışmalar dileriz.
-
-                {{Auth::user()->name}} Proje Koordinatörü
-                Temsilci Gsm: {{Auth::user()->number}}
-                Çağrı Merkezi:  444 82 86
-                www.portakaltercume.com.tr
-
-                FİRMAMIZIN TÜM ÖDEME KANALLARI AŞAĞIDA Kİ GİBİDİR. 
-
-                1- EFT YA DA HAVALE
-                HESAP ADI: PORTAKAL TERCÜME VE MEDYA A.Ş. KUVEYTTÜRK KATILIM BANKASI
-                IBAN NO: TR170020500009380768500001 
-
-                HESAP ADI: PORTAKAL TERCÜME VE MEDYA A.Ş. ZİRAAT BANKASI
-                IBAN NO: TR860001000485758944095001 
-
-                2- İNTERNET SİTEMİZ ÜZERİNDEN VISA-MASTERCARD YA DA AMERICAN EXPRESS KREDİ KARTLARIYLA ÖDEME YAPABİLİRSİNİZ. https://www.portakaltercume.com/online-odeme/ 
-
-                3- MAİL ORDER SİSTEMİ İLE ÖDEME YAPABİLİRSİNİZ.(FİRMAMIZDAN FORMU TALEP EDİNİZ)
-
-                                                
-                Değerlendirmenize sunar, 
-                İyi çalışmalar dileriz.
-
-                 {{Auth::user()->name}} Proje Koordinatörü
-                Temsilci Gsm:{{Auth::user()->number}}
-                Çağrı Merkezi:  444 82 86
-                www.portakaltercume.com.tr
-                      </textarea>
-            
-
-
 
               </div> 
+
+        
+                <div class="hidden form-group" id="evrakli">
+                <label>Müşteriye Gidicek Mail</label>
+
+                  Sayın <span id="isimSoyisim"></span>, 
+                      Göndermiş olduğunuz belgenin yeminli tercüme ücreti​ <div class="evraklifiyat"></div> TL + %18 KDV’ dir.
+                        Ödemenin yapılması halinde belge/belgelerinizin tercümesi <div id="isgosterme"></div> iş günü/<div id="saatgosterme"></div> saat içerisinde teslim edilecektir.  
+
+                        Değerlendirmenize sunar, 
+                        İyi çalışmalar dileriz.
+
+                        {{Auth::user()->name}} / Proje Koordinatörü
+                        Temsilci Gsm: {{Auth::user()->number}}
+                        Çağrı Merkezi:  444 82 86
+                        www.portakaltercume.com.tr
+
+                        FİRMAMIZIN TÜM ÖDEME KANALLARI AŞAĞIDA Kİ GİBİDİR. 
+
+                        1- EFT YA DA HAVALE
+                        HESAP ADI: PORTAKAL TERCÜME VE MEDYA A.Ş. KUVEYTTÜRK KATILIM BANKASI
+                        IBAN NO: TR170020500009380768500001 
+
+                        HESAP ADI: PORTAKAL TERCÜME VE MEDYA A.Ş. ZİRAAT BANKASI
+                        IBAN NO: TR860001000485758944095001 
+
+                        2- İNTERNET SİTEMİZ ÜZERİNDEN VISA-MASTERCARD YA DA AMERICAN EXPRESS KREDİ KARTLARIYLA ÖDEME YAPABİLİRSİNİZ. https://www.portakaltercume.com/online-odeme/ 
+
+                        3- MAİL ORDER SİSTEMİ İLE ÖDEME YAPABİLİRSİNİZ.(FİRMAMIZDAN FORMU TALEP EDİNİZ)
+              
+                      
+              </div> 
+
+
 
 
                <div class="modal-body edit-content">
@@ -215,15 +239,7 @@
 <form action="{{ route('gelenteklifsil') }}" method="POST"/>
 {{ csrf_field() }}
                <div class="form-group">
-                 <label for="sel1">İptal Eden  Temsilciyi Seçiniz:</label>
-                 <select class="form-control" name="İptalEdenTemsilci">
-                  @foreach($temsilci as $temsilcis)
-                   <option value="{{ $temsilcis->id }}">{{ $temsilcis->isimSoyisim }}</option>
-                 @endforeach
-                 </select>
-               </div>
-               <div class="form-group">
-                 <label for="sel1">İptal Sebepleri:</label>
+                 <label for="sel1">İptal Sebepleri</label>
                  <select class="form-control" name="iptalnedeni">
                   @foreach($iptalnedeni as $iptalnedenis)
                    <option value="{{ $iptalnedenis->id }}">{{ $iptalnedenis->IptalSebebi }}</option>
@@ -231,10 +247,13 @@
                  </select>
                </div> 
             
+                <div class="modal-body edit-content">
+                    <input type="hidden" name="teklifsil" id="gelenteklifsil1" value=""/>
+               </div>
 
                <div class="modal-footer">
-                   <button type="button" class="btn btn-danger" data-dismiss="modal">İptal</button>
-                   <button type="submit" class="btn btn-success">İptal Et</button>
+                   <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+                   <button type="submit" class="btn btn-success">Onayla</button>
                </div>
 
 </form>

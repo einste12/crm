@@ -224,7 +224,7 @@
                               </form>
                           </div>
                       </div>
-                  </div>
+                
                    <div class="col-md-6">
                           <div class="card">
                               <form id="loginFormValidation" action="" method="" novalidate="">
@@ -240,11 +240,11 @@
                                       <div class="form-group">Hedef Diller: </strong><span id="hedefdil"></span></div>
 
                                       <div class="form-group">Toplam Fiyat: </strong><span id="fiyat"></span></div>
-                                      <div class="form-group">Fatura: </strong><span id="fatura"></span></div>
+                                      
                                       <div class="form-group">Kaparo: </strong><span id="kaparo"></span></div>
                                       <div class="form-group">Noter Tasdiki: </strong><span id="tastiksekli"></span></div>
                                       <div class="form-group">Sube ID: </strong><span id="subeid"></span></div>
-                                      <div class="form-group">Temsilci: </strong><span id="temsilcionizleme"></span></div>
+                                      <div class="form-group">Temsilci: </strong><span id="temsilcionizleme">{{ Auth::user()->name }}</span></div>
                                       <div class="form-group">Not: </strong><span id="not"></span></div>
                                       
                                   </div>

@@ -170,10 +170,9 @@ class DashBoardController extends Controller
 
 
         $id=$request->input('teklifsil');
-
         $teklifsil = Teklifler::find($id);
         $teklifsil->silindi=1;
-        $teklifsil->iptalEdenTemsilciID=request()->input('İptalEdenTemsilci');
+        $teklifsil->iptalEdenTemsilciID=Auth::user()->id;
         $teklifsil->iptalEtmeTarihi=date('Y-m-d H:i:s');
         $teklifsil->iptalNedeni=request()->input('iptalnedeni');
         $teklifsil->push();
@@ -879,6 +878,9 @@ public function gelentekliffiyatver(Request $request)
 {
             $id=request()->input('tekliffiyat');
             $yazi=$request->icerik;
+
+            dd($yazi);
+            die();
 
 
 

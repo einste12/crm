@@ -44,10 +44,6 @@
         </select>
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail1">Kapora</label>
-      <input type="text" class="form-control"  value="{{ $teklif->Kapora }}"  name="Kapora">
-    </div>
-    <div class="form-group">
      <label class=" control-label">Tastik Şekli </label>
       <select  name="TastikSekli" class="form-control">
        <option @if($teklif->TastikSekli == 1) selected @endif  value="1"> Yeminli Tercüme</option>
@@ -55,6 +51,14 @@
        <option @if($teklif->TastikSekli == 3) selected @endif  value="3"> Apostil Tasdikli Tercüme</option>
      </select>
    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Kapora</label>
+      <input type="text" class="form-control"  value="{{ $teklif->Kapora }}"  name="Kapora">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Fiyat</label>
+      <input type="text" class="form-control"  value="{{ $teklif->Fiyat }}" name="Fiyat">
+    </div>
    <div class="form-group">
       <label for="exampleInputEmail1">Tercuman Seçiniz</label>
             <select  name="TercumanID" class="form-control">
@@ -68,19 +72,16 @@
 
 
     <div class="form-group">
-      <label for="exampleInputEmail1">Müşteri Talebi</label>
-      <textarea  class="form-control"    name="MusteriTalebi">{{ $teklif->MusteriTalebi }}</textarea>
+      <label for="exampleInputEmail1">Müşterinin Talebi</label>
+      <textarea  class="form-control"    name="MusteriTalebi" readonly="">{{ $teklif->MusteriTalebi }}</textarea>
     </div>
   
+    
     <div class="form-group">
-      <label for="exampleInputEmail1">Fiyat</label>
-      <input type="text" class="form-control"  value="{{ $teklif->Fiyat }}" name="Fiyat">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Temsilci Gelen Not</label>
+      <label for="exampleInputEmail1">Temsilci İçin Not</label>
       <textarea  class="form-control"    name="TemsilciGelenTeklifNot">{{ $teklif->TemsilciGelenTeklifNot }}</textarea>
     </div>
-    <div class="form-group">
+    <div class="form-group hidden">
       <label for="exampleInputEmail1">Teklif Veren Temsilci</label>
             <select  name="TeklifVerenTemsilci" class="form-control">
             @foreach($temsilci as $temsilcis)

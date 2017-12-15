@@ -59,7 +59,7 @@
 
          <td>{{ $teklifler->TemsilciGelenTeklifNot }}</td>
          <td>
-           <a href="{{ route('tamamlananedit',['id'=>$teklifler->id]) }}" class="btn btn-danger">DÜZENLE</a>
+           <a href="{{ route('tamamlananedit',['id'=>$teklifler->id]) }}" class="btn btn-danger hidden">DÜZENLE</a>
            <a href="{{ route('tamamlananyazdir',['id'=>$teklifler->id]) }}" class="btn btn-success">YAZDIR</a>
            <a href="{{ route('tamamgidenmail',['id'=>$teklifler->id]) }}" class="btn btn-danger">GİDEN MAİL</a>
            
