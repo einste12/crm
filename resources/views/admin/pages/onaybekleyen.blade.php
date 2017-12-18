@@ -62,7 +62,7 @@
 
          <td>
           {{ $teklifler->TemsilciGelenTeklifNot }}</br>
-          Tercüman:{{ $teklifler->tercuman['isimSoyisim']}} 
+          Tercüman:{{ (!empty($teklifler->tercuman['isimSoyisim']))? '' : 'BELİRTİLMEDİ'}} 
         </td>
          <td>
            <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal" class="btn btn-danger">ONAYLA</a>
@@ -88,14 +88,14 @@
                </div>
 <form action="{{ route('gelenteklifonayla') }}" method="POST"/>
 {{ csrf_field() }}
-               <div class="form-group">
+       {{--         <div class="form-group">
                  <label for="sel1">Bu İşi Onaylamak İstiyor Musunuz?</label>
                  <select class="form-control" name="onaylayantemsilci">
                   @foreach($temsilci as $temsilcis)
                    <option value="{{ $temsilcis->id }}">{{ $temsilcis->isimSoyisim }}</option>
                  @endforeach
                  </select>
-               </div>
+               </div> --}}
 
                <div class="modal-body edit-content">
                     <input type="hidden" name="bookId" id="bookId" value=""/>

@@ -182,7 +182,7 @@
                 <label>Müşteriye Gidicek Mail</label>
 
                   Sayın <span id="isimSoyisim"></span>, 
-                      Göndermiş olduğunuz belgenin yeminli tercüme ücreti​ <div class="evraklifiyat"></div> TL + %18 KDV’ dir.
+                      Göndermiş olduğunuz belgenin yeminli tercüme ücreti​ <div id="evraklifiyat"></div> TL + %18 KDV’ dir.
                         Ödemenin yapılması halinde belge/belgelerinizin tercümesi <div id="isgosterme"></div> iş günü/<div id="saatgosterme"></div> saat içerisinde teslim edilecektir.  
 
                         Değerlendirmenize sunar, 

@@ -47,7 +47,9 @@
           {{$teklifler->KaynakDil}} > </br>
           {{$teklifler->HedefDil}}
         </td>
-         <td>{{ $teklifler->TastikSekli }}</td>
+         <td>
+           @if($teklifler->TastikSekli==1) Yeminli Tercume  @elseif ($teklifler->TastikSekli==2) Noter Tasdikli Tercume @else($teklifler->TastikSekli==3) Apostil Tercume @endif
+         </td>
 
 
          <td>{{ $teklifler->Fiyat }}</br>

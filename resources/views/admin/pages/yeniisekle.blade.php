@@ -35,23 +35,6 @@
                                        </div>
 
 
-
-                                       <div class="row">
-
-                                             <div class="col-md-12 form-group">
-                                                      <label class=" control-label">Müşteri Nereden Geldi? </label>
-                                                      <div class="">
-                                                              <select id="musterituru" name="NeredenGeldi" class="form-control">
-                                                                      <option value="1">İnternet</option>
-                                                                      <option value="2">Sürekli Olan</option>
-                                                                      <option value="3"> Referans-Tavsiye</option>
-                                                                      <option value="4"> Noter Yönlendirmesi</option>
-                                                              </select>
-                                                      </div>
-                                              </div>
-                                       </div>
-
-
                                        <div class="row">
 
                                            <div class="col-md-12 form-group">
@@ -98,7 +81,7 @@
                                             <div class="">
 
 
-                                    <select id="temsilci" name="HedefDil[]" class="form-control selectpicker" multiple>
+                                    <select id="hedefdil1" name="HedefDil[]" class="form-control selectpicker" multiple onchange="deneme();">
                                           @foreach ($diller as $dillers)
                                             <option value="{{ $dillers->DilAdi }}">{{ $dillers->DilAdi  }}</option>
                                                 @endforeach
@@ -150,10 +133,10 @@
                                        <div class="row">
                                              <div class="col-md-6 form-group">
                                                   <label class=" control-label">Tastik Sekli</label>
-                                                   <select id="TastikSekli" name="TastikSekli" class="form-control">
-                                                          <option value="1"> Yeminli Tercume</option>
-                                                          <option value="2"> Noter Tasdikli Tercume</option>
-                                                          <option value="3"> Apostil Tasdikli Tercume</option>
+                                                   <select id="TastikSekli1" name="TastikSekli" class="form-control">
+                                                          <option value="1">Yeminli Tercume</option>
+                                                          <option value="2">Noter Tasdikli Tercume</option>
+                                                          <option value="3">Apostil Tasdikli Tercume</option>
                                                   </select>
                                           </div>
 
@@ -168,7 +151,21 @@
                                                   </select>
                                           </div>
                                        </div>
-                                          <div class="col-md-12 form-group">
+                                        <div class="row">
+
+                                             <div class="col-md-12 form-group">
+                                                      <label class=" control-label">Müşteri Nereden Geldi? </label>
+                                                      <div class="">
+                                                              <select id="musterituru" name="NeredenGeldi" class="form-control">
+                                                                      <option value="1">İnternet</option>
+                                                                      <option value="2">Sürekli Olan</option>
+                                                                      <option value="3"> Referans-Tavsiye</option>
+                                                                      <option value="4"> Noter Yönlendirmesi</option>
+                                                              </select>
+                                                      </div>
+                                              </div>
+                                       </div>
+                                         {{--  <div class="col-md-12 form-group">
                                                   <label class=" control-label">Şubeler</label>
 
                                                   <select id="SubeID" name="SubeID" class="form-control">
@@ -203,7 +200,7 @@
 
                                           </div>
 
-                                       </div>
+                                       </div> --}}
 
                                        <div class="row">
                                           <div class="col-md-12 form-group">
@@ -243,8 +240,8 @@
                                       
                                       <div class="form-group">Kaparo: </strong><span id="kaparo"></span></div>
                                       <div class="form-group">Noter Tasdiki: </strong><span id="tastiksekli"></span></div>
-                                      <div class="form-group">Sube ID: </strong><span id="subeid"></span></div>
-                                      <div class="form-group">Temsilci: </strong><span id="temsilcionizleme">{{ Auth::user()->name }}</span></div>
+                                      {{-- <div class="form-group">Sube ID: </strong><span id="subeid"></span></div>
+                                      <div class="form-group">Temsilci: </strong><span id="temsilcionizleme">{{ Auth::user()->name }}</span></div> --}}
                                       <div class="form-group">Not: </strong><span id="not"></span></div>
                                       
                                   </div>
@@ -263,7 +260,20 @@
 
 
 
+<script type="text/javascript">
+  
+    function deneme()
 
+      {
+
+            var values = $('#hedefdil1').val(); 
+             $("#hedefdil").html(values+',');
+              
+
+      }
+
+
+</script>
 
 
 

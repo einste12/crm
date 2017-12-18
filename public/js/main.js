@@ -127,18 +127,17 @@ $('#edit-modal10').on('show.bs.modal', function(e) {
             $("#mail").html($(this).val());
         });
 
-        $("[name='KaynakDil']").focusout(function(){
+        $("[name='KaynakDil']").change(function(){
             $("#kaynakdil").html($(this).val());
         });
 
-        $("[name='HedefDil']").focusout(function(){
-            $("#hedefdil").html($(this).val());
-        });
 
 
+        $("[name='TastikSekli']").change(function(){
+            var e = document.getElementById("TastikSekli1");
+            var strUser = e.options[e.selectedIndex].text;
 
-        $("[name='TastikSekli']").focusout(function(){
-            $("#tastiksekli").html($(this).val());
+            $("#tastiksekli").html(strUser);
         });
 
 
@@ -154,7 +153,7 @@ $('#edit-modal10').on('show.bs.modal', function(e) {
 
 
 
-        $("[name='temsilcinot'").focusout(function(){
+        $("[name='TemsilciGelenTeklifNot'").focusout(function(){
            $("#not").html($(this).val());
         });
 
@@ -278,6 +277,7 @@ $(document).ready(function(){
 var inputBox = document.getElementById('gun');
 
 inputBox.onkeyup = function(){
+    
     var test = document.getElementById('isgosterme').innerHTML = inputBox.value;
 
 }
@@ -347,13 +347,16 @@ inputBox.onkeyup = function(){
 
 $(document).ready(function(){
 
-var inputBox= document.getElementById('evraksiz').innerHTML;
+
+var element = document.getElementById('evrakli');
+var text = element.innerText || element.textContent;
+element.innerHTML = text;
 
 
 
 
 
-console.log(inputBox);
+console.log(text);
 
 }
 );

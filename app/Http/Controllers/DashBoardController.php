@@ -152,11 +152,10 @@ class DashBoardController extends Controller
     public function gelenteklifonayla(Request $request){
 
             $id = request()->input('bookId');
-            $temsilci = request()->input('onaylayantemsilci');
-
+            
             $teklif = Teklifler::find($id);
 
-            $teklif->OnaylayanTemsilciID=$temsilci;
+            $teklif->OnaylayanTemsilciID=Auth::user()->id;
             $teklif->OnayDurumu =2;
             $teklif->update();
             return redirect()->route('devameden');
@@ -403,8 +402,8 @@ class DashBoardController extends Controller
                 $Teklifler->TercumanID = $request->input('TercumanID');
                 $Teklifler->TastikSekli = $request->input('TastikSekli');
                 $Teklifler->OnayDurumu = $request->input('OnayDurumu');
-                $Teklifler->SubeID = $request->input('SubeID');
-                $Teklifler->TeklifVerenTemsilci = $request->input('TeklifVerenTemsilci');
+                $Teklifler->SubeID =Auth::user()->Yer;
+                $Teklifler->TeklifVerenTemsilci = Auth::user()->id;
                 $Teklifler->TemsilciGelenTeklifNot = $request->input('TemsilciGelenTeklifNot');
                 
 
@@ -922,8 +921,10 @@ public function gelentekliffiyatver(Request $request)
 public function test()
 {  
  
-  $teklifler =Teklifler::with('tercumanveritabani')->get();
-  return $teklifler;
+  $data=Auth::user()->sonsube->Yer;
+
+  dd($data);
+  
 
 
 
