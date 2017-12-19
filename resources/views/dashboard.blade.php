@@ -148,6 +148,7 @@
     
               </div>
           
+         
 
               <div class="hidden form-group" id="evraksiz">
                 <label>Müşteriye Gidicek Mail</label>
@@ -156,7 +157,7 @@
 
     
       
-                 Sayın <span id="isimSoyisim1"></span>, 
+                 Sayın <span class="ilkisim"></span>, 
                       Çevirisini yaptırmak istediğiniz dosyalarınızı bize maille gönderebilirseniz inceleyip size fiyat ve süre hakkında bilgi verebiliriz. 
 
 ​                       1- ​Hızlı teklif almak için https://www.portakaltercume.com/fiyat-teklifi-al/ adresinden belgelerinizi bize gönderebilirsiniz.

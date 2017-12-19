@@ -68,9 +68,10 @@ $('#edit-modal6').on('show.bs.modal', function(e) {
             dataType: "json",
             success:function(data) {
                
-               
+              
+
                $("#isimSoyisim").text(data.user.isimSoyisim);
-               $("#isimSoyisim1").text(data.user.isimSoyisim);
+              // $(".ilkisim").text(data.user.isimSoyisim);
                
             }
         });
@@ -300,36 +301,6 @@ inputBox.onkeyup = function(){
 });
 
 
-//EVRAKSIZ DOSYA ALMAK
-
-$(document).ready(function(){
-
-
-var inputBox = document.getElementById('gun');
-
-inputBox.onkeyup = function(){
-    var test = document.getElementById('isgosterme1').innerHTML = inputBox.value;
-
-}
-
-});
-
-
-
-$(document).ready(function(){
-
-var inputBox= document.getElementById('saat');
-
-
-inputBox.onkeyup = function(){
-    var test = document.getElementById('saatgosterme1').innerHTML = inputBox.value;
-
-}
-
-
-});
-
-
 $(document).ready(function(){
 
 var inputBox= document.getElementById('evrakfiyati');
@@ -345,10 +316,12 @@ inputBox.onkeyup = function(){
 
 
 
+//gelen yazıyı almak
+
 $(document).ready(function(){
 
 
-var element = document.getElementById('evrakli');
+var element = document.getElementById('evraksiz');
 var text = element.innerText || element.textContent;
 element.innerHTML = text;
 

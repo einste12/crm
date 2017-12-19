@@ -73,7 +73,7 @@
               
        </div>
 
-         
+   {{--       
          <div class="col-md-12 form-group">
             <label class=" control-label" for="GonderenYer">Gönderen Yer </label>
             <select required="true" id="GonderenYer" name="GonderenYer" class="form-control">
@@ -82,10 +82,10 @@
                         @endforeach 
               </select>
             </select>
-        </div>
+        </div> --}}
 
 
-        <div class="col-md-12 form-group">
+    {{--     <div class="col-md-12 form-group">
             <label class=" control-label" for="Temsilci">Temsilci</label>
                <select name="Temsilci" class="form-control">
                 @foreach($temsilci as $temsilcis)
@@ -93,7 +93,7 @@
                  @endforeach 
               </select>
   
-       </div>
+       </div> --}}
 
 
        <div class="col-md-12  form-group">

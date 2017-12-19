@@ -486,7 +486,7 @@ class DashBoardController extends Controller
                 }
 
                    alert()->flash('Başarıyla Kayıt Edilmiştir', 'success');
-                  return redirect()->back();
+                  return redirect()->route('tercumanbasvurulari');
               }
 
 
@@ -694,8 +694,8 @@ public function tercumanformistakipekle(Request $request)
                               $TercumanIsTakip->HedefDil = $request->input('HedefDil');
                               $TercumanIsTakip->Karakter = $request->input('Karakter');
                               $TercumanIsTakip->BirimFiyat = $request->input('BirimFiyat');
-                              $TercumanIsTakip->TemsilciID = $request->input('Temsilci');
-                              $TercumanIsTakip->SubeID = $request->input('GonderenYer');
+                              $TercumanIsTakip->TemsilciID = Auth::user()->id;
+                              $TercumanIsTakip->SubeID =Auth::user()->subeler->last()->name;
                               $TercumanIsTakip->TercumanTakipNot = $request->input('TercumanTakipNot');
                               $TercumanIsTakip->OnayDurumu = 0;
                               $TercumanIsTakip->Silindi = 0;
@@ -893,8 +893,6 @@ public function gelentekliffiyatver(Request $request)
               });
 
 
-            
-
             $teklif->GonderilenMailEvrakTuru=request()->input('evraktipi');
             $teklif->TeklifVerenTemsilci =Auth::user()->id;
             $teklif->SubeID = Auth::user()->sonsube->id;
@@ -911,8 +909,6 @@ public function gelentekliffiyatver(Request $request)
             return redirect()->route('devameden');
 
 
-
-
 }
 
 
@@ -921,9 +917,9 @@ public function gelentekliffiyatver(Request $request)
 public function test()
 {  
  
-  $data=Auth::user()->sonsube->Yer;
+$data =Auth::user()->subeler->last()->name;
 
-  dd($data);
+dd($data);
   
 
 

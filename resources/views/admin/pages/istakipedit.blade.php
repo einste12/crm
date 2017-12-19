@@ -61,7 +61,7 @@
     <label for="exampleInputPassword1">Temsilci</label>
     <select class="form-control" name="TemsilciID">
         @foreach($temsilci as $temsilcis)
-          <option value="{{ $temsilcis->isimSoyisim }}">{{ $temsilcis->isimSoyisim }}</option>
+          <option value="{{ $temsilcis->id }}">{{ $temsilcis->isimSoyisim }}</option>
         @endforeach
      </select>
     </div>
