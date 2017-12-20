@@ -1,5 +1,5 @@
 
-        $('#edit-modal').on('show.bs.modal', function(e) {
+    $('#edit-modal').on('show.bs.modal', function(e) {
 
             var $modal = $(this),
                 esseyId = e.relatedTarget.id;
@@ -58,7 +58,6 @@ $('#edit-modal7').on('show.bs.modal', function(e) {
 
 //FİYAT TEKLİFİ VER MODALA ID YOLLAMA
 $('#edit-modal6').on('show.bs.modal', function(e) {
-
     var $modal = $(this),
         data = e.relatedTarget.id;
 
@@ -71,10 +70,17 @@ $('#edit-modal6').on('show.bs.modal', function(e) {
               
 
                $("#isimSoyisim").text(data.user.isimSoyisim);
-              // $(".ilkisim").text(data.user.isimSoyisim);
+               $(".ilkisim").text(data.user.isimSoyisim);
+             
                
             }
         });
+
+
+
+
+
+
 
 });
 
@@ -259,49 +265,50 @@ $("select#teslimzamani").change(function(){
 });
 
 
+
+
 $(document).ready(function(){
 
     $('.selectpicker').selectpicker();
-
 
 
     });
 
 
 
-
 // FİYAT TEKLİFİ VER TEXTBOX İÇERİĞİNİ ALMAK 
 // EVRAKLI  DOSYA ALMAK
-$(document).ready(function(){
 
 
-var inputBox = document.getElementById('gun');
 
-inputBox.onkeyup = function(){
+
+var inputBox1=document.getElementById('gun');
+
+inputBox1.onkeyup=function(){
     
-    var test = document.getElementById('isgosterme').innerHTML = inputBox.value;
-
-}
-
-});
-
-
-
-$(document).ready(function(){
-
-var inputBox= document.getElementById('saat');
-
-
-inputBox.onkeyup = function(){
-    var test = document.getElementById('saatgosterme').innerHTML = inputBox.value;
+    var test = document.getElementById('isgosterme').innerHTML = inputBox1.value;
 
 }
 
 
-});
 
 
-$(document).ready(function(){
+
+
+
+var inputBox=document.getElementById('saat');
+
+
+inputBox.onkeyup=function(){
+    var test=document.getElementById('saatgosterme').innerHTML = inputBox.value;
+
+}
+
+
+
+
+
+
 
 var inputBox= document.getElementById('evrakfiyati');
 
@@ -312,24 +319,34 @@ inputBox.onkeyup = function(){
 }
 
 
-});
+
 
 
 
 //gelen yazıyı almak
 
-$(document).ready(function(){
+// $(document).ready(function(){
 
 
-var element = document.getElementById('evraksiz');
-var text = element.innerText || element.textContent;
-element.innerHTML = text;
-
-
+// var element = document.getElementById('evrakli');
+// var text = element.innerText || element.textContent;
+// element.innerHTML = text;
 
 
 
-console.log(text);
+// console.log(text);
 
-}
-);
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+

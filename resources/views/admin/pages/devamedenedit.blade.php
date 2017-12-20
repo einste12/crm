@@ -50,7 +50,7 @@
       <label for="exampleInputEmail1">Müşteri Talebi</label>
       <input type="text" class="form-control"  value="{{ $teklif->MusteriTalebi }}" name="MusteriTalebi">
     </div>
-    <div class="form-group">
+    <div class="form-group hidden">
       <label for="exampleInputEmail1">Teklif Veren Temsilci</label>
       <input type="text" class="form-control"  value="{{ $teklif->TeklifVerenTemsilci }}" name="TeklifVerenTemsilci">
     </div>
@@ -65,7 +65,7 @@
     <div class="form-group">
         <label for="exampleFormControlSelect1">TERCUMAN SEÇİNİZ</label>
           <select class="form-control" id="exampleFormControlSelect1" name="TercumanID">
-            @foreach($tercuman as $tercumans)
+            @foreach($tercumanmali as $tercumans)
             <option @if($teklif->TercumanID ==$tercumans->id ) selected @endif value="{{ $tercumans->id }}">{{ $tercumans->isimSoyisim }}</option>
            @endforeach
           </select>

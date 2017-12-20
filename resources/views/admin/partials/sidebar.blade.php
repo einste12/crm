@@ -8,7 +8,7 @@
 
     <div class="logo">
         <a href="" class="logo-text">
-            Creative Tim
+           İş Takip Sistemi V4.0
         </a>
     </div>
 <div class="logo logo-mini">
@@ -20,7 +20,7 @@
   <div class="sidebar-wrapper">
         <div class="user">
             <div class="photo">
-                <img src="#" />
+                <img src="{{ asset('img/avatar.jpg')  }}" />
             </div>
             <div class="info">
                 <a data-toggle="collapse" href="#collapseExample" class="collapsed">
@@ -46,18 +46,20 @@
         <ul class="nav">
             <li class="active">
               <a href="{{ route('yeniisekle') }}">
-                  <i class="pe-7s-graph"></i>
-                  <p>YENİ İŞ EKLE</p>
+                  
+                  <i class="fa fa-plus" aria-hidden="true"></i><p>YENİ İŞ EKLE</p>
               </a>
+             </li>
+             <li> 
                 <a href="{{ route('dashboard') }}">
-                    <i class="pe-7s-graph"></i>
-                    <p>GELEN TEKLİFLER</p>
+                    
+                    <i class="fa fa-commenting-o" aria-hidden="true"></i><p>GELEN TEKLİFLER</p>
                 </a>
             </li>
             <li>
                 <a data-toggle="collapse" href="#componentsExamples">
-                    <i class="pe-7s-plugin"></i>
-                    <p>Teklifler
+                    
+                    <i class="fa fa-list-ul" aria-hidden="true"></i><p>Teklifler
                        <b class="caret"></b>
                     </p>
                 </a>
@@ -74,7 +76,7 @@
             <li>
                 <a data-toggle="collapse" href="#componentsExamples1">
                     <i class="pe-7s-plugin"></i>
-                    <p>TERCUMANLAR
+                    <i class="fa fa-user-o" aria-hidden="true"></i><p>TERCUMANLAR
                        <b class="caret"></b>
                     </p>
                 </a>
@@ -91,7 +93,7 @@
             <li>
                 <a data-toggle="collapse" href="#componentsExamples2">
                     <i class="pe-7s-plugin"></i>
-                    <p>TERCUMAN TAKİP
+                    <i class="fa fa-user-circle-o" aria-hidden="true"></i><p>TERCUMAN TAKİP
                        <b class="caret"></b>
                     </p>
                 </a>
@@ -100,6 +102,22 @@
                         <li><a href="{{ route('tercumanistakipekle') }}">YENİ EKLE</a></li>
                         <li><a href="{{ route('tercumanistakipcetveli') }}">TERCUMAN TAKİP CETVELİ</a></li>
                         <li><a href="{{ route('lksyeeklenenler') }}">LKS YE EKLENENLER</a></li>
+                       
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#componentsExamples3">
+                    <i class="pe-7s-plugin"></i>
+                    <i class="fa fa-user-circle-o" aria-hidden="true"></i><p>ADLİYE
+                       <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="componentsExamples3">
+                    <ul class="nav">
+                        <li><a href="{{ url('adliyeisekle') }}">YENİ İŞ EKLE</a></li>
+                        <li><a href="#">DEVAM EDEN İŞLER</a></li>
+                        <li><a href="#">TAMAMLANAN İŞLER</a></li>
                        
                     </ul>
                 </div>

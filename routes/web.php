@@ -119,8 +119,29 @@ Route::get('idgonder/{id}', 'DashBoardController@idgonder')->name('idgonder');
 
 
 
+
+
+//ADLİYE WEB ROUTER
+
+Route::get('adliyeisekle', 'DashBoardController@adliyeisekle')->name('adliyeisekle');
+
+
+
+
+
+
+
+
+
+
+
 Route::get('test', 'DashBoardController@test')->name('test');
 Route::get('mailgonder', 'DashBoardController@mail')->name('mail');
+
+
+
+
+
 
 
 

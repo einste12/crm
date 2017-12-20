@@ -27,12 +27,21 @@
 
                                        <form action="{{ route('isekle') }}" method="POST">
                                          {{ csrf_field() }}
-                                       <div class="row">
-                                           <div class="col-md-12 form-group">
-                                                      <label class=" control-label">Evrak Alma Tarihi </label>
-                                                      <input type="date" name="GelenTeklifTarihi" class="form-control datetimepicker" placeholder="Tarih Seçiniz"/>
+                                   
+                                       <div class="row" >
+                                        <div class="col-md-12">
+                                              <div class="form-group">
+                                              <label class=" control-label" for="tarih">Evrak Alma Tarihi <star>*</star></label>  
+                                              <div class='input-group date'>
+                                                  <input id="tarih" required="true" placeholder="Evrak Tarihi Giriniz" name='GelenTeklifTarihi' type='text' class="datetimepicker form-control" />
+                                                  <label for="tarih" class="input-group-addon">
+                                                      <span class="fa fa-calendar"></span>
+                                                  </label>
                                               </div>
-                                       </div>
+                                              </div>
+                                           </div>
+                                        </div>
+
 
 
                                        <div class="row">

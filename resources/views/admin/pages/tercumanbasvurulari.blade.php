@@ -46,7 +46,7 @@
 		         <td>
 		            @foreach($tercumans->tercumandilbilgileri as $data) {{ $data->KaynakDil}}>{{$data->HedefDil}}={{ $data->BirimFiyat }}TL</br> @endforeach
 		         </td>
-		         <td>@foreach($tercumans->tercumandilbilgileri as $data) @if($data->tercume_turu==1) Sözlü @else Yazılı @endif</br>  @endforeach </td>
+		         <td>@foreach($tercumans->tercumandilbilgileri as $data) @if($data->tercume_turu==1) Var @else Yok @endif</br>  @endforeach </td>
 		         <td> {{ mb_strtoupper($tercumans->Locasyon)}} </td>
 		         <td>
 		         	<a href="{{ route('tercumanbasvurusil',['id'=>$tercumans->id]) }}" class="btn btn-danger">SİL</a>

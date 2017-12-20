@@ -29,11 +29,28 @@
 </head>
 <body>
 
-        @include('admin.partials.head')
+        
         @include('admin.partials.sidebar')
 
          <div class="main-panel">
-        @yield('content')
+            
+                @include('admin.partials.head')
+           
+
+            <div class="content">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card row">
+                                <div class="content">
+                                @yield('content')
+                                </div>
+                            </div>
+                        </div>        
+                    </div>
+                </div>
+            </div>
       </div>
     <!-- Scripts -->
 
@@ -41,19 +58,59 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('js/moment.min.js') }}"></script>
+        <script src="{{ asset('js/moment-with-locales.js') }}"></script>
+
     <script src="{{ asset('js/bootstrap-datetimepicker.js') }}"></script>
     <script src="{{ asset('js/bootstrap-selectpicker.js') }}"></script>
-    <script src="{{ asset('js/bootstrap-checkbox-radio-switch-tags.js') }}"></script>
-    <script src="{{ asset('js/chartist.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap-notify.js') }}"></script>
-    <script src="{{ asset('js/jquery-jvectormap.js') }}"></script>
-    <script src="{{ asset('js/jquery.bootstrap.wizard.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap-table.js') }}"></script>
-    <script src="{{ asset('js/fullcalendar.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/bootstrap-checkbox-radio-switch-tags.js') }}"></script> --}}
+
+
+    <script src="{{ asset('js/jquery.datatables.js') }}"></script>
+
     <script src="{{ asset('js/light-bootstrap-dashboard.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/demo.js') }}"></script>
+
+    
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+     
+      /*$('#datatables').DataTable({
+          "order": [[ 0, "asc" ]],
+          "pagingType": "full_numbers",
+          "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+          responsive: true,
+          language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Arama Yapın",
+          }
+
+      });*/
+      var table = $('#datatables').DataTable();     
+      });
+
+    </script>
 
 
+    
+
+
+
+
+
+
+     <script type="text/javascript">
+
+        $().ready(function(){
+
+            // Init Sliders
+            demo.initFormExtendedSliders();
+
+            // Init DatetimePicker
+            demo.initFormExtendedDatetimepickers();
+        });
+    </script>
 
 
 

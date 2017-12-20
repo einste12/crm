@@ -296,8 +296,16 @@ class DashBoardController extends Controller
 
       {
 
+           $tercumanli = TercumanVeritabani::where('silindi', 0)
+                ->where(function($q) {
+          $q->where('onaydurumu', 2)
+            ->orWhere('onaydurumu', 3);
+      })
+      ->get();
+
+
         $teklif = Teklifler::find($id);
-        return view('admin.pages.devamedenedit',['teklif'=>$teklif]);
+        return view('admin.pages.devamedenedit',['teklif'=>$teklif,'tercumanmali'=>$tercumanli]);
 
 
 
@@ -876,7 +884,7 @@ public function idgonder(Request $request)
 public function gelentekliffiyatver(Request $request)
 {
             $id=request()->input('tekliffiyat');
-            $yazi=$request->icerik;
+            $yazi=$request->evrakli;
 
             dd($yazi);
             die();
@@ -912,15 +920,23 @@ public function gelentekliffiyatver(Request $request)
 }
 
 
+//ADLİYE FONKSİYONLARI
+
+
+public function adliyeisekle()
+
+{
+  return view('admin.pages.adliyeisekle');
+}
+
 
 
 public function test()
 {  
  
-$data =Auth::user()->subeler->last()->name;
+$data =TercumanVeritabani::with('tercumandilbilgileri')->get();
 
-dd($data);
-  
+return $data;
 
 
 

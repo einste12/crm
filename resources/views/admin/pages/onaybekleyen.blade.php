@@ -97,6 +97,8 @@
                  </select>
                </div> --}}
 
+               BU PROJEYE ONAY VERMEK İSTİYOR MUSUNUZ ?
+
                <div class="modal-body edit-content">
                     <input type="hidden" name="bookId" id="bookId" value=""/>
                </div>
@@ -122,7 +124,7 @@
                </div>
 <form action="{{ route('onaysil') }}" method="POST"/>
 {{ csrf_field() }}
-               <div class="form-group">
+               <div class="form-group hidden">
                  <label for="sel1">İptal Eden  Temsilciyi Seçiniz:</label>
                  <select class="form-control" name="OnayİptalEdenTemsilci">
                   @foreach($temsilci as $temsilcis)

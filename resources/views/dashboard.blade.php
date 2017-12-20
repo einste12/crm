@@ -14,8 +14,11 @@
 @endif
 
 
-
-  <table class="table table-striped">
+<div class="toolbar">
+                                  <!--        Here you can write extra buttons/actions for the toolbar              -->
+</div>
+  <div class="fresh-datatables">
+     <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
      <thead>
        <tr>
          <th>İD</th>
@@ -54,6 +57,7 @@
        @endforeach
      </tbody>
    </table>
+</div>   
 
 {{ $teklif->links() }}
 
@@ -151,12 +155,11 @@
          
 
               <div class="hidden form-group" id="evraksiz">
+                
                 <label>Müşteriye Gidicek Mail</label>
     
                     EVRAKSIZ DOKUMAN
 
-    
-      
                  Sayın <span class="ilkisim"></span>, 
                       Çevirisini yaptırmak istediğiniz dosyalarınızı bize maille gönderebilirseniz inceleyip size fiyat ve süre hakkında bilgi verebiliriz. 
 
@@ -181,6 +184,7 @@
         
                 <div class="hidden form-group" id="evrakli">
                 <label>Müşteriye Gidicek Mail</label>
+
 
                   Sayın <span id="isimSoyisim"></span>, 
                       Göndermiş olduğunuz belgenin yeminli tercüme ücreti​ <div id="evraklifiyat"></div> TL + %18 KDV’ dir.

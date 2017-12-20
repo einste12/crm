@@ -13,14 +13,14 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Dashboard PRO</a>
+					<a class="navbar-brand" href="#"></a>
 				</div>
 				<div class="collapse navbar-collapse">
 
 					<form class="navbar-form navbar-left navbar-search-form" role="search">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-search"></i></span>
-							<input type="text" value="" class="form-control" placeholder="Search...">
+							<input type="text" value="" class="form-control" placeholder="Müşteri Ara...">
 						</div>
 					</form>
 
@@ -28,45 +28,12 @@
 						<li>
 							<a href="charts.html">
 								<i class="fa fa-line-chart"></i>
-								<p>Stats</p>
+								<p>İstatistik</p>
 							</a>
 						</li>
 
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<i class="fa fa-gavel" aria-hidden="true"></i>
-								<p class="hidden-md hidden-lg">
-									Actions
-									<b class="caret"></b>
-								</p>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Create New Post</a></li>
-								<li><a href="#">Manage Something</a></li>
-								<li><a href="#">Do Nothing</a></li>
-								<li><a href="#">Submit to live</a></li>
-								<li class="divider"></li>
-								<li><a href="#">Another Action</a></li>
-							</ul>
-						</li>
 
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<i class="fa fa-bell-o"></i>
-								<span class="notification">5</span>
-								<p class="hidden-md hidden-lg">
-									Notifications
-									<b class="caret"></b>
-								</p>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Notification 1</a></li>
-								<li><a href="#">Notification 2</a></li>
-								<li><a href="#">Notification 3</a></li>
-								<li><a href="#">Notification 4</a></li>
-								<li><a href="#">Another notification</a></li>
-							</ul>
-						</li>
+						
 
 						<li class="dropdown dropdown-with-icons">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -79,31 +46,41 @@
 							<ul class="dropdown-menu dropdown-with-icons">
 								<li>
 									<a href="#">
-										<i class="pe-7s-mail"></i> Messages
+										<i class="fa fa-angle-right" aria-hidden="true"></i> Taslaklar
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<i class="pe-7s-help1"></i> Help Center
+										<i class="fa fa-angle-right" aria-hidden="true"></i> Hesap Numaraları
 									</a>
 								</li>
-								<li>
+									<li>
 									<a href="#">
-										<i class="pe-7s-tools"></i> Settings
+										<i class="fa fa-angle-right" aria-hidden="true"></i> Şube İletişim Bilgileri
 									</a>
 								</li>
-								<li class="divider"></li>
-								<li>
+									<li>
 									<a href="#">
-										<i class="pe-7s-lock"></i> Lock Screen
+										<i class="fa fa-angle-right" aria-hidden="true"></i>Logolar
 									</a>
 								</li>
-								<li>
-									<a href="#" class="text-danger">
-										<i class="pe-7s-close-circle"></i>
-										Log out
+									<li>
+									<a href="#">
+										<i class="fa fa-angle-right" aria-hidden="true"></i>Deneme Metinleri
 									</a>
 								</li>
+									<li>
+									<a href="#">
+										<i class="fa fa-angle-right" aria-hidden="true"></i>İstatistikler
+									</a>
+								</li>
+									<li>
+									<a href="{{ url('logout') }}">
+										<i class="fa fa-close" aria-hidden="true"></i> Çıkış
+									</a>
+								</li>
+							
+							
 							</ul>
 						</li>
 
