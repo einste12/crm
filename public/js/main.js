@@ -118,6 +118,36 @@ $('#edit-modal10').on('show.bs.modal', function(e) {
 });
 
 
+//ADLİYE İŞ ONAYLA
+$('#edit-modal11').on('show.bs.modal', function(e) {
+
+    var $modal = $(this),
+        Id11 = e.relatedTarget.id;
+
+         $(".modal-body #adliyedevamid").val( Id11 );
+
+});
+
+
+
+//ADLİYE İŞ SİL
+$('#edit-modal12').on('show.bs.modal', function(e) {
+
+    var $modal = $(this),
+        Id12 = e.relatedTarget.id;
+
+         $(".modal-body #adliyekayitsil").val( Id12 );
+
+});
+
+
+
+
+
+
+
+
+
 
     // İŞ EKLERKEN YANA YAZDIRMA KODU
 

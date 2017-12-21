@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 use App\Temsilciler;
 use App\Subeler;
 use App\Diller;
+use App\AdliyeTakipMahkemeler;
 use App\IptalNedenleri;
 use App\TercumanIsTakip;
 use App\TercumanVeritabani;
@@ -47,6 +48,9 @@ class AppServiceProvider extends ServiceProvider
         $diller =Diller::orderBy('sirala', 'ASC')->get();
         view()->share('diller',$diller);
 
+
+        $mahkemeler =AdliyeTakipMahkemeler::all();
+        view()->share('mahkemeler',$mahkemeler);   
 
         $subeler =Subeler::all();
         view()->share('subeler',$subeler);

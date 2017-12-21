@@ -116,8 +116,8 @@
                 <div class="collapse" id="componentsExamples3">
                     <ul class="nav">
                         <li><a href="{{ url('adliyeisekle') }}">YENİ İŞ EKLE</a></li>
-                        <li><a href="#">DEVAM EDEN İŞLER</a></li>
-                        <li><a href="#">TAMAMLANAN İŞLER</a></li>
+                        <li><a href="{{ url('adliyedevameden') }}">DEVAM EDEN İŞLER</a></li>
+                        <li><a href="{{ url('adliyetamamlanan')}}">TAMAMLANAN İŞLER</a></li>
                        
                     </ul>
                 </div>

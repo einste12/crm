@@ -7,6 +7,7 @@ use App\Teklifler;
 use Session;
 use Toastr;
 use DB;
+use App\AdliyeTakipCetveli;
 use Carbon\Carbon;
 use App\TercumanIsTakip;
 use App\Tercumandilbilgileri;
@@ -16,6 +17,7 @@ use Auth;
 use App\Subeler;
 use App\User; 
 use Alert;
+use DateTime;
 use Mail;
 
 class DashBoardController extends Controller
@@ -930,6 +932,207 @@ public function adliyeisekle()
 }
 
 
+  public function adliyeiseklepost(Request $request)
+
+            {
+
+             $date = $request->input('EvrakAlmaTarihi');  
+             $dt = new DateTime($date);
+             $newdate=$dt->format('Y-m-d H:i:s');
+
+         
+
+
+                $AdliyeTakipCetveli = new AdliyeTakipCetveli;
+                $AdliyeTakipCetveli->EvrakAlmaTarihi =$newdate;
+                $AdliyeTakipCetveli->MahkemeNo = $request->input('MahkemeNo');
+                $AdliyeTakipCetveli->MahkemeID = $request->input('MahkemeID');
+                $AdliyeTakipCetveli->EsasNo = $request->input('EsasNo');
+                $AdliyeTakipCetveli->KaynakDil = $request->input('KaynakDil');
+                $AdliyeTakipCetveli->HedefDil =$request->input('HedefDil'); 
+
+                $AdliyeTakipCetveli->TalepEdilenFiyat = $request->input('TalepEdilenFiyat');
+                $AdliyeTakipCetveli->AlinanOdeme= $request->input('AlinanOdeme');
+                $AdliyeTakipCetveli->TemsilciNot= $request->input('TemsilciNot');
+                $AdliyeTakipCetveli->TemsilciID = $request->input('TemsilciID');
+                $AdliyeTakipCetveli->OnayDurumu =1;
+                $AdliyeTakipCetveli->Silindi = 0;
+
+                
+
+                $AdliyeTakipCetveli->save();
+
+                alert()->flash('Başarıyla Kayıt Edilmiştir', 'success');
+                return redirect()->back();
+
+
+
+
+            }
+
+
+
+public function adliyedevameden()
+{
+
+
+     $adliyedevam = AdliyeTakipCetveli::where(['Silindi'=>0,'OnayDurumu'=>1])->get();
+
+     return view('admin.pages.adliyedevam',['adliyedevam'=>$adliyedevam]);
+
+
+}
+
+
+public function adliyedevamonayla(Request $request)
+{
+
+
+  $id = $request->input('adliyedevamid');
+
+             $date = $request->input('EvrakAlmaTarihi');  
+             $dt = new DateTime($date);
+             $newdate=$dt->format('Y-m-d H:i:s');
+
+
+            $adliyedevamonayla = AdliyeTakipCetveli::find($id);
+            $adliyedevamonayla->OnaylayanTemsilci=$request->input('onaylayantemsilci');
+            $adliyedevamonayla->EvrakAlmaTarihi=$newdate;
+            $adliyedevamonayla->AlinanOdeme=$request->input('AlinanOdeme');
+            $adliyedevamonayla->OnayDurumu =2;
+            $adliyedevamonayla->update();
+
+            alert()->flash('Başarıyla Onaylanmıştır', 'success');
+            return redirect()->back();
+
+
+
+}
+
+
+public function adliyekayitsil(Request $request)
+{
+
+
+
+ $id = $request->input('adliyekayitsil');
+
+ $adliyekayitsil = AdliyeTakipCetveli::find($id);
+
+ $adliyekayitsil->Silindi = 1;
+ $adliyekayitsil->update();
+
+  alert()->flash('Başarıyla Silinmiştir', 'success');
+  return redirect()->back();
+
+
+
+
+
+}
+
+public function adliyeedit($id)
+{
+
+
+
+  $data = AdliyeTakipCetveli::find($id);
+
+  return view('admin.pages.adliyeedit',['adliyedata'=>$data]);
+
+
+}
+
+
+public function adliyeupdate(Request $request,$id)
+
+{
+
+      $date = $request->input('EvrakAlmaTarihi');  
+      $dt = new DateTime($date);
+      $newdate=$dt->format('Y-m-d H:i:s');
+
+
+
+      $date = $request->input('EvrakTeslimTarihi');  
+      $dt = new DateTime($date);
+      $newdate1=$dt->format('Y-m-d H:i:s');
+
+
+
+
+
+
+
+          $update = AdliyeTakipCetveli::find($id);
+          $update->EvrakAlmaTarihi =$newdate;
+          $update->EvrakTeslimTarihi =$newdate;
+          $update->MahkemeNo = $request->input('MahkemeNo');
+          $update->MahkemeID = $request->input('MahkemeID');
+          $update->EsasNo = $request->input('EsasNo');
+          $update->KaynakDil = $request->input('KaynakDil');
+          $update->HedefDil =$request->input('HedefDil'); 
+          $update->TalepEdilenFiyat = $request->input('TalepEdilenFiyat');
+          $update->AlinanOdeme= $request->input('AlinanOdeme');
+          $update->TemsilciNot= $request->input('TemsilciNot');
+          $update->TemsilciID = $request->input('TemsilciID');
+  
+
+          $update->update();
+          
+
+
+
+
+
+
+
+
+
+
+          alert()->flash('Başarıyla Güncellenmiştir', 'success');
+          return redirect()->route('adliyedevameden');
+
+
+
+}
+
+
+
+public function adliyetamamlanan()
+
+
+{
+
+
+     $adliyetamam = AdliyeTakipCetveli::where(['Silindi'=>0,'OnayDurumu'=>2])->get();
+
+     return view('admin.pages.adliyetamam',['adliyetamam'=>$adliyetamam]);
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 public function test()
 {  
@@ -941,6 +1144,15 @@ return $data;
 
 
 }
+
+
+
+
+
+
+
+
+
 
 
 }

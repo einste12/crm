@@ -124,6 +124,17 @@ Route::get('idgonder/{id}', 'DashBoardController@idgonder')->name('idgonder');
 //ADLİYE WEB ROUTER
 
 Route::get('adliyeisekle', 'DashBoardController@adliyeisekle')->name('adliyeisekle');
+Route::post('adliyeiseklepost', 'DashBoardController@adliyeiseklepost')->name('adliyeiseklepost');
+
+Route::get('adliyedevameden', 'DashBoardController@adliyedevameden')->name('adliyedevameden');
+
+
+Route::post('adliyedevamonayla', 'DashBoardController@adliyedevamonayla')->name('adliyedevamonayla');
+Route::post('adliyekayitsil', 'DashBoardController@adliyekayitsil')->name('adliyekayitsil');
+Route::get('adliyeedit/{id}', 'DashBoardController@adliyeedit')->name('adliyeedit');
+Route::post('adliyeupdate/{id}', 'DashBoardController@adliyeupdate')->name('adliyeupdate');
+Route::get('adliyetamamlanan', 'DashBoardController@adliyetamamlanan')->name('adliyetamamlanan');
+
 
 
 
