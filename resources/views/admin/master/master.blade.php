@@ -62,8 +62,7 @@
 
     <script src="{{ asset('js/bootstrap-datetimepicker.js') }}"></script>
     <script src="{{ asset('js/bootstrap-selectpicker.js') }}"></script>
-    {{-- <script src="{{ asset('js/bootstrap-checkbox-radio-switch-tags.js') }}"></script> --}}
-
+    
 
     <script src="{{ asset('js/jquery.datatables.js') }}"></script>
 

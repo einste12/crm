@@ -44,7 +44,11 @@ class DashBoardController extends Controller
              'OnayDurumu' =>0,
           ])->whereYear('TeklifVerilenTarih','>','2017-12-31');
 
-      })->orderBy('TeklifVerilenTarih','DESC')->paginate(100);
+      })->orderBy('TeklifVerilenTarih','DESC')->get();
+
+
+
+
 
         return view('dashboard',['teklif'=>$gelenteklif]);
     }
@@ -62,7 +66,7 @@ class DashBoardController extends Controller
              'OnayDurumu' =>1,
           ])->whereYear('TeklifVerilenTarih','>','2017-12-31');
 
-      })->orderBy('TeklifVerilenTarih','DESC')->paginate(100);
+      })->orderBy('TeklifVerilenTarih','DESC')->get();
         
       
         return view('admin.pages.onaybekleyen',['onaybekleyen'=>$onaybekleyen]);
@@ -98,7 +102,7 @@ class DashBoardController extends Controller
              'silindi'     =>0,
              'OnayDurumu' =>2,
           ])->whereYear('TeklifVerilenTarih','>','2017-12-31');
-      })->with('tercuman')->orderBy('TeklifVerilenTarih','DESC')->paginate(100);
+      })->with('tercuman')->orderBy('TeklifVerilenTarih','DESC')->get();
 
 
 
@@ -111,22 +115,18 @@ class DashBoardController extends Controller
 
     public function tamamlanan()
     {
-      $devamteklif = Teklifler::where(function ($query) {
+      $tamamlananteklif = Teklifler::where(function ($query) {
 
           $query->where([
              'silindi'     =>0,
              'OnayDurumu' =>3,
           ])->whereYear('OnayVerilenTarih','>','2017-12-31');
 
-      })
-      ->select(['id','GelenTeklifTarihi','isimSoyisim','Fiyat','TeklifVerenTemsilci','Email','Telefon','KaynakDil','HedefDil','TastikSekli','MusteriTalebi','OnaylayanTemsilciID','TemsilciGelenTeklifNot','Kapora','EvrakTeslimTarihi'])
-      ->orderBy('OnayVerilenTarih','DESC')
-      ->paginate(100);
+      })->orderBy('OnayVerilenTarih','DESC')->get();
+      
 
 
-
-        $temsilci =Temsilciler::all();
-        return view('admin.pages.tamamlananteklif',['tamamlananteklif'=>$devamteklif,'temsilcisss'=>$temsilci]);
+        return view('admin.pages.tamamlananteklif',['tamamlananteklif'=>$tamamlananteklif]);
     }
 
 
@@ -143,8 +143,8 @@ class DashBoardController extends Controller
           ]);
 
       })->whereYear('iptalEtmeTarihi','>','2017-12-31')
-      ->orderBy('GelenTeklifTarihi','DESC')
-      ->paginate(100);
+      ->orderBy('GelenTeklifTarihi','DESC')->get();
+     
 
 
         return view('admin.pages.iptalteklif',['iptalteklif'=>$iptalteklif]);

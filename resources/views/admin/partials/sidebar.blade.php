@@ -34,9 +34,9 @@
 
                 <div class="collapse" id="collapseExample">
                     <ul class="nav">
-                        <li><a href="#">My Profile</a></li>
+                        {{-- <li><a href="#">My Profile</a></li>
                         <li><a href="#">Edit Profile</a></li>
-                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">Settings</a></li> --}}
                         <li><a href="{{ route('logout') }}">Çıkış Yap</a></li>
                     </ul>
                 </div>

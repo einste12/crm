@@ -13,7 +13,9 @@
     </script>
 @endif
 
-  <table class="table table-striped">
+  
+  <div class="fresh-datatables">
+    <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
      <thead>
        <tr>
          <th>Başvuru Tarihi</th>
@@ -62,8 +64,8 @@
      @endforeach
      </tbody>
    </table>
+ </div>
 
-{{ $tercuman->links() }}
 
 
 

@@ -312,13 +312,6 @@ $(document).ready(function(){
 
 
 
-var inputBox1=document.getElementById('gun');
-
-inputBox1.onkeyup=function(){
-    
-    var test = document.getElementById('isgosterme').innerHTML = inputBox1.value;
-
-}
 
 
 
@@ -326,36 +319,8 @@ inputBox1.onkeyup=function(){
 
 
 
-var inputBox=document.getElementById('saat');
 
-
-inputBox.onkeyup=function(){
-    var test=document.getElementById('saatgosterme').innerHTML = inputBox.value;
-
-}
-
-
-
-
-
-
-
-var inputBox= document.getElementById('evrakfiyati');
-
-
-inputBox.onkeyup = function(){
-    var test = document.getElementById('evraklifiyat').innerHTML = inputBox.value;
-
-}
-
-
-
-
-
-
-//gelen yazıyı almak
-
-// $(document).ready(function(){
+// $('#edit-modal6').on('show.bs.modal', function() {
 
 
 // var element = document.getElementById('evrakli');

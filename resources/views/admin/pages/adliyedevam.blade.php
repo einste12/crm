@@ -15,7 +15,8 @@
 @endif
 
 
-  <table class="table table-striped">
+  <div class="fresh-datatables">
+    <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
      <thead>
        <tr>
          <th>İD</th>
@@ -52,7 +53,7 @@
     @endforeach
      </tbody>
    </table>
-
+</div>
 
 
 <div id="edit-modal11" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -67,7 +68,7 @@
 
 
 
-                   <div class="row" >
+            <div class="row" >
               <div class="col-md-12">
             <div class="form-group">
             <label class=" control-label" for="tarih">Evrak Alma Tarihi<star>*</star></label>  

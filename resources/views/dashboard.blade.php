@@ -59,7 +59,7 @@
    </table>
 </div>   
 
-{{ $teklif->links() }}
+
 
 
 
@@ -269,5 +269,52 @@
 
 
 
+
+
+
+<script type="text/javascript">
+  
+
+var inputBox1=document.getElementById('gun');
+
+inputBox1.onkeyup=function(){
+    
+    var test = document.getElementById('isgosterme').innerHTML = inputBox1.value;
+
+}
+
+
+
+
+
+
+
+var inputBox2=document.getElementById('saat');
+
+
+inputBox2.onkeyup=function(){
+    var test2=document.getElementById('saatgosterme').innerHTML = inputBox2.value;
+
+}
+
+
+
+
+
+
+
+var inputBox= document.getElementById('evrakfiyati');
+
+
+inputBox.onkeyup = function(){
+    var test = document.getElementById('evraklifiyat').innerHTML = inputBox.value;
+
+}
+
+
+
+
+
+</script>
 
 @endsection

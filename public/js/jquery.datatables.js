@@ -3,7 +3,7 @@
 
 
 /*! DataTables 1.10.12
- * ©2008-2015 SpryMedia Ltd - datatables.net/license
+ * Â©2008-2015 SpryMedia Ltd - datatables.net/license
  */
 
 /**
@@ -1388,7 +1388,7 @@
 	// - kr - Swedish krona, Norwegian krone and Danish krone
 	// - \u2009 is thin space and \u202F is narrow no-break space, both used in many
 	//   standards as thousands separators.
-	var _re_formatted_numeric = /[',$£€¥%\u2009\u202F\u20BD\u20a9\u20BArfk]/gi;
+	var _re_formatted_numeric = /[',$Â£â‚¬Â¥%\u2009\u202F\u20BD\u20a9\u20BArfk]/gi;
 
 
 	var _empty = function ( d ) {
@@ -1737,7 +1737,7 @@
 		 * sZeroRecords - assuming that is given.
 		 */
 		if ( ! lang.sEmptyTable && zeroRecords &&
-			defaults.sEmptyTable === "No data available in table" )
+			defaults.sEmptyTable === "Veri Bulunamadı" )
 		{
 			_fnMap( lang, lang, 'sZeroRecords', 'sEmptyTable' );
 		}
@@ -11368,7 +11368,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "No data available in table",
+			"sEmptyTable": "Kayıt Bulunamadı",
 
 
 			/**
@@ -11400,7 +11400,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+			"sInfo": "Listeleniyor _START_ to _END_ of _TOTAL_ kayıt",
 
 
 			/**
@@ -11561,7 +11561,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLengthMenu": "Show _MENU_ entries",
+			"sLengthMenu": "Listele _MENU_ ",
 
 
 			/**
@@ -14496,7 +14496,7 @@
 		},
 
 		full_numbers: function ( page, pages ) {
-			return [ 'first', 'previous', _numbers(page, pages), 'next', 'last' ];
+			return [ 'first', 'Geri', _numbers(page, pages), 'next', 'last' ];
 		},
 
 		// For testing and plug-ins to use
@@ -15283,7 +15283,7 @@
 
 
 /*! DataTables Bootstrap 3 integration
- * ©2011-2015 SpryMedia Ltd - datatables.net/license
+ * Â©2011-2015 SpryMedia Ltd - datatables.net/license
  */
 
 /**
@@ -15330,7 +15330,7 @@ var DataTable = $.fn.dataTable;
 /* Set the defaults for DataTables initialisation */
 $.extend( true, DataTable.defaults, {
 	dom:
-		"<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+		"<'row'<'col-sm-3'l><'col-sm-3'f>>" +
 		"<'row'<'col-sm-12'tr>>" +
 		"<'row'<'col-sm-5'i><'col-sm-7'p>>",
 	renderer: 'bootstrap'
