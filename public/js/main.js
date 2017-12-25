@@ -314,12 +314,6 @@ $(document).ready(function(){
 
 
 
-
-
-
-
-
-
 // $('#edit-modal6').on('show.bs.modal', function() {
 
 
@@ -339,6 +333,28 @@ $(document).ready(function(){
 
 
 
+
+
+    $( document ).ready(function() {
+       $('.seciliSil').click(function(){
+        $("#secili").submit();
+       });
+    });
+
+
+
+$(document).ready(function() {
+
+$("td").click(function(e) {
+    var chk = $(this).closest("tr").find("input:checkbox").get(0);
+    if(e.target != chk)
+    {
+        
+        chk.checked = !chk.checked;
+    }
+});
+
+});
 
 
 

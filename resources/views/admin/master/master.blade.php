@@ -75,7 +75,8 @@
     <script type="text/javascript">
     $(document).ready(function() {
      
-      /*$('#datatables').DataTable({
+      $('#datatables').DataTable({
+          "stateSave": true,
           "order": [[ 0, "asc" ]],
           "pagingType": "full_numbers",
           "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
@@ -85,7 +86,7 @@
           searchPlaceholder: "Arama Yapın",
           }
 
-      });*/
+      });
       var table = $('#datatables').DataTable();     
       });
 
@@ -93,11 +94,6 @@
 
 
     
-
-
-
-
-
 
      <script type="text/javascript">
 

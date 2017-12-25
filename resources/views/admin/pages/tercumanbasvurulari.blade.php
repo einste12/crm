@@ -15,9 +15,10 @@
 
   
   <div class="fresh-datatables">
-    <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+    <table id="datatabless" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
      <thead>
        <tr>
+        <th>Çoklu Sil</th>    
          <th>Başvuru Tarihi</th>
          <th>Başvuru Amacı</th>
          <th>İSİM SOYİSİM</th>
@@ -35,12 +36,14 @@
      <tbody>
 
 
-
-       @foreach ($tercuman as $tercumans)
+ <form id="secili" method="POST" action="{{ URL::action('DashBoardController@coklutercumansil') }}"> 
+    {{ csrf_field() }}
+       @foreach ($tercumanbasvurulari as $tercumans)
 
 	       	<tr>
+             <td><input type="checkbox" value="{{$tercumans->id}}" name="checked[]"></label><br /></td>
 		         <td>{{ $tercumans->BasvuruTarihi }}</td>
-		         <td>{{ (!empty($tercumans->BasvuruAmaci))?'':'Amaç Belirtilmemiş' }}</td>
+		         <td>{{ (!empty($tercumans->BasvuruAmaci))? $tercumans->BasvuruAmaci:'Amaç Belirtilmemiş' }}</td>
 		         <td>{{ mb_strtoupper($tercumans->isimSoyisim) }}</td>
 		         <td>{{ $tercumans->Mail}}  </td>
 		         <td>{{ $tercumans->Telefon}}  </td>
@@ -62,8 +65,12 @@
 
        		</tr>
      @endforeach
-     </tbody>
-   </table>
+
+           </tbody>
+         </table>
+            <button class="btn btn-danger seciliSil" type="button">SEÇİLENLERİ SİL</button>
+      </form>
+   
  </div>
 
 
@@ -98,13 +105,6 @@
 
 
 
-
-
-
-
-
-
-	
 
 
 

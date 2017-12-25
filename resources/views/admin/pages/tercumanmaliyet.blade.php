@@ -55,7 +55,7 @@
 
 
 
-       @foreach ($tercumanmali as $tercumans)
+       @foreach ($tercumali as $tercumans)
 
 	       	<tr>
 		         
@@ -77,7 +77,7 @@
      </tbody>
    </table>
 
-{{ $tercuman->links() }}
+
 
 
 

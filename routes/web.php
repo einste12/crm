@@ -84,6 +84,9 @@ Route::get('/tercumanmaliyet', 'DashBoardController@tercumanmaliyet')->name('ter
 Route::post('tercumansil', 'DashBoardController@tercumansil')->name('tercumansil');
 
 
+Route::post('coklutercumansil', 'DashBoardController@coklutercumansil')->name('coklutercumansil');
+
+
 
 Route::post('tercumanguncelle/{id}','DashBoardController@tercumanguncelle')->name('tercumanguncelle');
 

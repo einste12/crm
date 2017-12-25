@@ -65,7 +65,7 @@
 
 
 
-       @foreach ($tercuman as $tercumans)
+       @foreach ($tercumanlist as $tercumans)
 
        <tr>
          <td>{{ $tercumans->id }}</td>
@@ -75,7 +75,7 @@
          <td>
             @foreach($tercumans->tercumandilbilgileri as $data) {{ $data->KaynakDil}}>{{$data->HedefDil}}={{ $data->BirimFiyat }}<br> @endforeach
          </td>
-         <td>@foreach($tercumans->tercumandilbilgileri as $data) {{ $data->tercume_turu}}</br>  @endforeach </td>
+         <td>@foreach($tercumans->tercumandilbilgileri as $data) @if($data->tercume_turu==1) Var @else Yok @endif</br>  @endforeach </td>
          <td> {{$tercumans->temsilciNot}} </td>
 
     <td>
@@ -91,7 +91,6 @@
    </table>
  </div>
 
-{{ $tercuman->links() }}
 
 <div id="edit-modal10" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
        <div class="modal-dialog">

@@ -14496,7 +14496,7 @@
 		},
 
 		full_numbers: function ( page, pages ) {
-			return [ 'first', 'Geri', _numbers(page, pages), 'next', 'last' ];
+			return [ 'first', 'previous', _numbers(page, pages), 'next', 'last' ];
 		},
 
 		// For testing and plug-ins to use

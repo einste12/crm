@@ -37,20 +37,11 @@ class DashBoardController extends Controller
     {
 
 
-
-      $gelenteklif = Teklifler::where(function ($query) {
-          $query->where([
-             'silindi'     =>0,
-             'OnayDurumu' =>0,
-          ])->whereYear('TeklifVerilenTarih','>','2017-12-31');
-
-      })->orderBy('TeklifVerilenTarih','DESC')->get();
-
-
-
-
-
-        return view('dashboard',['teklif'=>$gelenteklif]);
+          $gelenteklif=Teklifler::where(['silindi'=>0,'OnayDurumu'=>0])
+            ->whereYear('TeklifVerilenTarih','>','2017-12-31')
+            ->orderBy('TeklifVerilenTarih','DESC')->get();
+      
+            return view('dashboard',['teklif'=>$gelenteklif]);
     }
 
 
@@ -59,25 +50,16 @@ class DashBoardController extends Controller
 
     public function onaybekleyen()
     {
-      $onaybekleyen =Teklifler::where(function ($query) {
-
-          $query->where([
-             'silindi'     =>0,
-             'OnayDurumu' =>1,
-          ])->whereYear('TeklifVerilenTarih','>','2017-12-31');
-
-      })->orderBy('TeklifVerilenTarih','DESC')->get();
+    
+            $onaybekleyen=Teklifler::where(['silindi'=>0,'OnayDurumu'=>1])
+            ->whereYear('TeklifVerilenTarih','>','2017-12-31')
+            ->with('temsilci')
+            ->with('tercuman')
+            ->orderBy('TeklifVerilenTarih','DESC')->get();
         
       
         return view('admin.pages.onaybekleyen',['onaybekleyen'=>$onaybekleyen]);
     }
-
-
-
-
-
-
-
 
 
 
@@ -97,12 +79,11 @@ class DashBoardController extends Controller
     {
      
 
-      $devamteklif = Teklifler::where(function ($query) {
-          $query->where([
-             'silindi'     =>0,
-             'OnayDurumu' =>2,
-          ])->whereYear('TeklifVerilenTarih','>','2017-12-31');
-      })->with('tercuman')->orderBy('TeklifVerilenTarih','DESC')->get();
+      $devamteklif=Teklifler::where(['silindi'=>0,'OnayDurumu'=>2])
+    ->whereYear('TeklifVerilenTarih','>','2017-12-31')
+    ->with('temsilci')
+    ->with('tercuman')
+    ->orderBy('TeklifVerilenTarih','DESC')->get();
 
 
 
@@ -115,14 +96,11 @@ class DashBoardController extends Controller
 
     public function tamamlanan()
     {
-      $tamamlananteklif = Teklifler::where(function ($query) {
-
-          $query->where([
-             'silindi'     =>0,
-             'OnayDurumu' =>3,
-          ])->whereYear('OnayVerilenTarih','>','2017-12-31');
-
-      })->orderBy('OnayVerilenTarih','DESC')->get();
+     
+     $tamamlananteklif=Teklifler::where(['silindi'=>0,'OnayDurumu'=>3])
+    ->whereYear('TeklifVerilenTarih','>','2017-12-31')
+    ->with('temsilci2')
+    ->orderBy('TeklifVerilenTarih','DESC')->get();
       
 
 
@@ -136,17 +114,15 @@ class DashBoardController extends Controller
     {
 
 
-      $iptalteklif = Teklifler::where(function ($query) {
-
-          $query->where([
-             'silindi'=>1,
-          ]);
-
-      })->whereYear('iptalEtmeTarihi','>','2017-12-31')
-      ->orderBy('GelenTeklifTarihi','DESC')->get();
-     
 
 
+    $iptalteklif=Teklifler::where(['silindi'=>1])
+    ->whereYear('iptalEtmeTarihi','>','2017-12-31')
+    ->with('temsilci_iptal')
+    ->orderBy('GelenTeklifTarihi','DESC')->get();
+
+
+    
         return view('admin.pages.iptalteklif',['iptalteklif'=>$iptalteklif]);
     }
 
@@ -557,8 +533,43 @@ public function tercumanguncelle(Request $request,$id)
 
 
 
+
+public function coklutercumansil(Request $request)
+
+{
+
+   $checked = Request()->input('checked',[]);
+   foreach ($checked as $id) {
+       TercumanVeritabani::where("id",$id)->update(['silindi'=>1]);
+   }
+  
+ TercumanVeritabani::whereIn('id', $checked)->update(['silindi'=>1]);
+   
+ alert()->flash('Başarıyla Silinmiştir', 'success');
+ return redirect()->back();
+
+
+}
+
+
+
+
+
+
 public function tumtercumanlar(){
-  return view('admin.pages.tumtercumanlar');
+
+
+  $tercumanlist = TercumanVeritabani::where('silindi', 0)
+                ->where(function($q) {
+          $q->where('onaydurumu', 2)
+            ->orWhere('onaydurumu', 3);
+      })->with('tercumandilbilgileri')
+      ->get();
+
+
+
+
+  return view('admin.pages.tumtercumanlar',['tercumanlist'=>$tercumanlist]);
 }
 
 
@@ -581,7 +592,12 @@ public function tercumanduzenle($id)
 public function tercumanbasvurulari()
   {
 
-    return view('admin.pages.tercumanbasvurulari');
+
+     $tercumanbasvurulari=TercumanVeritabani::where(['silindi'=>0,'OnayDurumu'=>0])
+    ->whereYear('BasvuruTarihi','>','2017-12-31')
+    ->with('tercumandilbilgileri')
+    ->orderBy('BasvuruTarihi','DESC')->get();
+    return view('admin.pages.tercumanbasvurulari',['tercumanbasvurulari'=>$tercumanbasvurulari]);
 
   }
 
@@ -621,7 +637,11 @@ public function tercumanbasvurulari()
       {
 
 
-        return view('admin.pages.tercumanmaliyet');
+        $tercumanmali=TercumanVeritabani::where(['silindi'=>0,'OnayDurumu'=>3])
+        ->with('tercumandilbilgileri')
+        ->orderBy('BasvuruTarihi','DESC')->get();  
+
+        return view('admin.pages.tercumanmaliyet',['tercumali'=>$tercumanmali]);
 
 
       }
@@ -675,18 +695,12 @@ public function tercumanistakipekle()
 
 {
 
-  $tercumanlist = TercumanVeritabani::where('silindi', 0)
-                ->where(function($q) {
-          $q->where('onaydurumu', 2)
-            ->orWhere('onaydurumu', 3);
-      })
-      ->get();
 
 
 
 
 
-return view('admin.pages.tercumanistakipekle',['tercumanlist'=>$tercumanlist]);
+return view('admin.pages.tercumanistakipekle');
 
 
 }
@@ -1137,11 +1151,14 @@ public function adliyetamamlanan()
 public function test()
 {  
  
-$data =TercumanVeritabani::with('tercumandilbilgileri')->get();
+$data = Teklifler::where(['silindi'=>0,'OnayDurumu'=>3])
+->whereYear('TeklifVerilenTarih','>','2017-12-31')
+->with('temsilci2')
+->orderBy('TeklifVerilenTarih','DESC')->get()->toArray();
+
+
 
 return $data;
-
-
 
 }
 

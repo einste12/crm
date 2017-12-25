@@ -52,7 +52,7 @@
          <td>{{ $teklifler->KaynakDil }}</br>
              {{ $teklifler->HedefDil }}
        </td>
-       <td>{{ $teklifler->TastikSekli }}</td>
+       <td>@if($teklifler->TastikSekli==1) Yeminli Tercume  @elseif ($teklifler->TastikSekli==2) Noter Tasdikli Tercume @else($teklifler->TastikSekli==3) Apostil Tercume @endif</td>
        <td>DOSYA DENEME</td>
          <td>
          {{ $teklifler->Kapora }}</br>
@@ -63,7 +63,7 @@
 
          <td>
           {{ $teklifler->TemsilciGelenTeklifNot }}</br>
-          Tercüman:{{ (!empty($teklifler->tercuman['isimSoyisim']))? '' : 'BELİRTİLMEDİ'}} 
+          Tercüman:{{ (!empty($teklifler->tercuman['isimSoyisim']))? $teklifler->tercuman['isimSoyisim'] : 'BELİRTİLMEDİ'}} 
         </td>
          <td>
            <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal" class="btn btn-danger">ONAYLA</a>
@@ -79,7 +79,7 @@
    </table>
  </div>
 
-{{ $onaybekleyen->links() }}
+
 
 <div id="edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
        <div class="modal-dialog">

@@ -29,18 +29,15 @@ class AppServiceProvider extends ServiceProvider
         view()->share('iptalnedeni',$iptalsebepleri);
 
 
-        $tercuman = TercumanVeritabani::where(['silindi'=>0,'onaydurumu'=>0])
-        ->paginate(10);
+        $tercuman = TercumanVeritabani::where(['silindi'=>0,'OnayDurumu'=>0]);
         view()->share('tercuman',$tercuman);
 
 
-         $tercumanmali = TercumanVeritabani::where(['silindi'=>0,'onaydurumu'=>3])
-        ->paginate(10);
+         $tercumanmali = TercumanVeritabani::where(['silindi'=>0,'OnayDurumu'=>3]);
         view()->share('tercumanmali',$tercumanmali);
 
 
-        $tercumantakipcetveli = TercumanIsTakip::where(['silindi'=>0,'onaydurumu'=>0])
-        ->paginate(10);
+        $tercumantakipcetveli = TercumanIsTakip::where(['silindi'=>0,'OnayDurumu'=>0]);
         view()->share('tercumantakipcetveli',$tercumantakipcetveli); 
 
 
