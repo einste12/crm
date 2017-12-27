@@ -42,7 +42,8 @@
 
        <div class="col-md-12  form-group">
             <label class="control-label" for="Karakter">Mahkeme Seçiniz</label>  
-              <select name="MahkemeID" class="form-control">
+              <select name="MahkemeID" class="form-control" required="">
+                <option value="">Seçiniz</option>
                 @foreach($mahkemeler as $mahkemelers)
                   <option value="{{ $mahkemelers->id  }}">{{ $mahkemelers->MahkemeAdi  }}</option>
                  @endforeach 
@@ -58,6 +59,7 @@
        <div class="col-md-12  form-group">
          <label class="control-label" for="KaynakDil">Kaynak Dil</label>
                  <select name="KaynakDil" class="form-control">
+                  <option value="">Seçiniz</option>
                 @foreach($diller as $dillers)
                   <option value="{{ $dillers->DilAdi  }}">{{ $dillers->DilAdi  }}</option>
                  @endforeach 
@@ -67,6 +69,7 @@
       <div class="col-md-12  form-group">
          <label class="control-label" for="HedefDil">Hedef Dil  </label>
             <select name="HedefDil" class="form-control">
+              <option value="">Seçiniz</option>
                 @foreach($diller as $dillers)
                   <option value="{{ $dillers->DilAdi  }}">{{ $dillers->DilAdi  }}</option>
                  @endforeach 

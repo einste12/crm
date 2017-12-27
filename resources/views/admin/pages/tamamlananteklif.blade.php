@@ -50,8 +50,8 @@
          <td>@if($teklifler->TastikSekli==1) Yeminli Tercume  @elseif ($teklifler->TastikSekli==2) Noter Tasdikli Tercume @else($teklifler->TastikSekli==3) Apostil Tercume @endif</td>
         
           <td>
-            {{ $teklifler->Kapora }}
-            {{ $teklifler->Fiyat }}
+            {{ $teklifler->Kapora }}TL
+            {{ $teklifler->Fiyat }}TL
           </td>
 
           <td>DENEME DOSYA</td>
@@ -61,7 +61,7 @@
          <td>{{ $teklifler->TemsilciGelenTeklifNot }}</td>
          <td>
            <a href="{{ route('tamamlananedit',['id'=>$teklifler->id]) }}" class="btn btn-danger hidden">DÜZENLE</a>
-           <a href="{{ route('tamamlananyazdir',['id'=>$teklifler->id]) }}" class="btn btn-success">YAZDIR</a>
+           <a target="_blank" href="{{ route('tamamlananyazdir',['id'=>$teklifler->id]) }}" class="btn btn-success">YAZDIR</a>
            <a href="{{ route('tamamgidenmail',['id'=>$teklifler->id]) }}" class="btn btn-danger">GİDEN MAİL</a>
            
          </td>

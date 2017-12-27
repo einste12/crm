@@ -41,16 +41,16 @@
     <div class="form-group">
   <label for="comment">Giden Mail</label>
   <textarea class="form-control" rows="5" id="comment" readonly="">
-      @if($maildetay->GonderilenMailEvrakTuru==1)
-Sayın {{ $maildetay->isimSoyisim }}, 
-  Göndermiş olduğunuz belge/belgelerin tercüme+noter tasdik ücreti {{ $maildetay->Fiyat }} + %18 KDV'dir.Apostil hizmeti fiyata dahil değildir. 
-Ödemenin yapılması halinde belge/belgelerinizin tercümesi {{ $maildetay->GonderilenGun }} iş günü içerisinde teslim edilecektir.  
+      @if($tamammaildetay->GonderilenMailEvrakTuru==1)
+Sayın {{ $tamammaildetay->isimSoyisim }}, 
+  Göndermiş olduğunuz belge/belgelerin tercüme+noter tasdik ücreti {{ $tamammaildetay->Fiyat }}TL  + %18 KDV'dir.Apostil hizmeti fiyata dahil değildir. 
+Ödemenin yapılması halinde belge/belgelerinizin tercümesi {{ $tamammaildetay->GonderilenGun }} iş günü içerisinde teslim edilecektir.  
 
 Değerlendirmenize sunar, 
 İyi çalışmalar dileriz.
 
-{{ $maildetay->temsilci['isimSoyisim'] }} / Proje Koordinatörü
-Temsilci Gsm: {{ $maildetay->temsilci['Telefon']  }}
+{{ $tamammaildetay->temsilci['isimSoyisim'] }} / Proje Koordinatörü
+Temsilci Gsm: {{ $tamammaildetay->temsilci['Telefon']  }}
 Çağrı Merkezi:  444 82 86
 www.portakaltercume.com.tr
 
@@ -69,7 +69,7 @@ IBAN NO: TR860001000485758944095001
 
 @else
 
-Sayın {{ $maildetay->isimSoyisim }}, 
+Sayın {{ $tamammaildetay->isimSoyisim }}, 
 Çevirisini yaptırmak istediğiniz dosyalarınızı bize maille gönderebilirseniz inceleyip size fiyat ve süre hakkında bilgi verebiliriz. 
 
 ​1- ​Hızlı teklif almak için https://www.portakaltercume.com/fiyat-teklifi-al/ adresinden belgelerinizi bize gönderebilirsiniz.
@@ -81,8 +81,8 @@ Sayın {{ $maildetay->isimSoyisim }},
 Değerlendirmenize sunar, 
 İyi çalışmalar dileriz.
 
-{{ $maildetay->temsilci['isimSoyisim'] }} / Proje Koordinatörü
-Temsilci Gsm:  {{ $maildetay->temsilci['Telefon']  }}
+{{ $tamammaildetay->temsilci['isimSoyisim'] }} / Proje Koordinatörü
+Temsilci Gsm:  {{ $tamammaildetay->temsilci['Telefon']  }}
 Çağrı Merkezi:  444 82 86
 www.portakaltercume.com.tr
 
@@ -96,7 +96,7 @@ www.portakaltercume.com.tr
 
 
 
-<a href="{{ url('/') }}" role="button" class="btn btn-danger readonly=""">Geri Dön</button>
+<a href="{{ url('/') }}" role="button" class="btn btn-danger">Geri Dön</a>
 
 
 @endsection

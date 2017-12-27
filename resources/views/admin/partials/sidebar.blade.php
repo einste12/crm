@@ -99,9 +99,9 @@
                 </a>
                 <div class="collapse" id="componentsExamples2">
                     <ul class="nav">
-                        <li><a href="{{ route('tercumanistakipekle') }}">YENİ EKLE</a></li>
-                        <li><a href="{{ route('tercumanistakipcetveli') }}">TERCUMAN TAKİP CETVELİ</a></li>
-                        <li><a href="{{ route('lksyeeklenenler') }}">LKS YE EKLENENLER</a></li>
+                        <li><a href="{{ route('tercumanistakipekle') }}">İş Ekle</a></li>
+                        <li><a href="{{ route('tercumanistakipcetveli') }}">İş Takip Cetveli</a></li>
+                        <li><a href="{{ route('lksyeeklenenler') }}">LKS ye Eklenenler</a></li>
                        
                     </ul>
                 </div>
@@ -115,9 +115,9 @@
                 </a>
                 <div class="collapse" id="componentsExamples3">
                     <ul class="nav">
-                        <li><a href="{{ url('adliyeisekle') }}">YENİ İŞ EKLE</a></li>
-                        <li><a href="{{ url('adliyedevameden') }}">DEVAM EDEN İŞLER</a></li>
-                        <li><a href="{{ url('adliyetamamlanan')}}">TAMAMLANAN İŞLER</a></li>
+                        <li><a href="{{ url('adliyeisekle') }}">İş Ekle</a></li>
+                        <li><a href="{{ url('adliyedevameden') }}">Devam Eden İşler</a></li>
+                        <li><a href="{{ url('adliyetamamlanan')}}">Tamamlanan İşler</a></li>
                        
                     </ul>
                 </div>

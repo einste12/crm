@@ -57,7 +57,7 @@
                                           <div class="col-md-12 form-group">
                                             <label class=" control-label" for="Telefon">Telefon  </label>
                                             <div class="">
-                                                  <input  type="text"  maxlength="25" name="Telefon" id="Telefon" class="form-control input-md" placeholder="Telefon Giriniz " >
+                                                  <input  type="number"  maxlength="25" name="Telefon" id="Telefon" class="form-control input-md" placeholder="Telefon Giriniz " >
                                             </div>
                                           </div>
                                           </div>
@@ -109,14 +109,14 @@
                                            <div class="col-md-6 form-group">
                                               <label class=" control-label" for="Fiyat">Toplam Fiyat  </label>
                                               <div class="">
-                                               <input type="text" name="Fiyat" id="Fiyat" class="form-control input-md" placeholder="..TL">
+                                               <input type="number" name="Fiyat" id="Fiyat" class="form-control input-md" placeholder="..TL">
                                               </div>
                                             </div>
 
                                            <div class="col-md-6 form-group">
                                               <label class=" control-label" for="Kaparo">Kapora </label> <br />
 
-                                                    <input type="text" class="form-control input-md" name="Kapora"/>
+                                                    <input type="number" id="Kaparo" class="form-control input-md" name="Kapora"/>
 
                                             </div>
 
@@ -280,6 +280,74 @@
               
 
       }
+
+
+
+//İSİMSOYİSİM YAZDIRMA
+    var inputBox1=document.getElementById('AdSoyad');
+
+inputBox1.onkeyup=function(){
+    
+    var test = document.getElementById('madi').innerHTML = inputBox1.value;
+
+}
+
+//TELEFON ALMA
+
+    var inputBox2=document.getElementById('Telefon');
+
+inputBox2.onkeyup=function(){
+    
+    var test = document.getElementById('tel').innerHTML = inputBox2.value;
+
+}
+
+
+//EMAİL ALMA
+
+
+var inputBox3=document.getElementById('Eposta');
+
+    inputBox3.onkeyup=function(){
+    
+    var test = document.getElementById('mail').innerHTML = inputBox3.value;
+
+}
+
+
+
+//TOPLAM FİYAT
+
+var inputBox4=document.getElementById('Fiyat');
+
+    inputBox4.onkeyup=function(){
+    
+    var test = document.getElementById('fiyat').innerHTML = inputBox4.value;
+
+}
+
+
+
+//KAPARO ALMA
+var inputBox5=document.getElementById('Kaparo');
+
+    inputBox5.onkeyup=function(){
+    
+    var test = document.getElementById('kaparo').innerHTML = inputBox5.value;
+
+}
+
+
+//NOT ALMA
+var inputBox6=document.getElementById('temsilcinot');
+
+    inputBox6.onkeyup=function(){
+    
+    var test = document.getElementById('not').innerHTML = inputBox6.value;
+
+}
+
+
 
 
 </script>

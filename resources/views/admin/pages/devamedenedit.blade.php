@@ -28,15 +28,23 @@
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Kaynak Dil</label>
-      <input type="text" class="form-control"  value="{{ $teklif->KaynakDil }}" name="KaynakDil">
+        <select  name="KaynakDil" class="form-control">
+            @foreach($diller as $dillers)
+              <option  @if($teklif->HedefDil ==$dillers->DilAdi ) selected @endif value="{{ $dillers->DilAdi }}">{{ $dillers->DilAdi }}</option>
+            @endforeach  
+     </select>
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Hedef Dil</label>
-      <input type="text" class="form-control"  value="{{ $teklif->HedefDil }}"  name="HedefDil">
+        <select  name="HedefDil" class="form-control">
+            @foreach($diller as $dillers)
+              <option @if($teklif->HedefDil ==$dillers->DilAdi ) selected @endif value="{{ $dillers->DilAdi }}">{{ $dillers->DilAdi }}</option>
+            @endforeach  
+        </select>
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Kapora</label>
-      <input type="text" class="form-control"  value="{{ $teklif->Kapora }}"  name="Kapora">
+      <input type="number" class="form-control"  value="{{ $teklif->Kapora }}"  name="Kapora">
     </div>
     <div class="form-group">
      <label class=" control-label">Noter Tasdiki </label>
@@ -48,7 +56,7 @@
    </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Müşteri Talebi</label>
-      <input type="text" class="form-control"  value="{{ $teklif->MusteriTalebi }}" name="MusteriTalebi">
+      <textarea  class="form-control" name="MusteriTalebi">{{ $teklif->MusteriTalebi }}</textarea>
     </div>
     <div class="form-group hidden">
       <label for="exampleInputEmail1">Teklif Veren Temsilci</label>
@@ -56,11 +64,12 @@
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Fiyat</label>
-      <input type="text" class="form-control"  value="{{ $teklif->Fiyat }}" name="Fiyat">
+      <input type="number" class="form-control"  value="{{ $teklif->Fiyat }}" name="Fiyat">
     </div>
+    
     <div class="form-group">
-      <label for="exampleInputEmail1">Temsilci Gelen Not</label>
-      <input type="text" class="form-control"  value="{{ $teklif->TemsilciGelenTeklifNot }}"  name="TemsilciGelenTeklifNot">
+      <label for="exampleInputEmail1">Temsilci İçin Not</label>
+      <textarea  class="form-control"    name="TemsilciGelenTeklifNot">{{ $teklif->TemsilciGelenTeklifNot }}</textarea>
     </div>
     <div class="form-group">
         <label for="exampleFormControlSelect1">TERCUMAN SEÇİNİZ</label>

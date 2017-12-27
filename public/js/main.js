@@ -61,6 +61,8 @@ $('#edit-modal6').on('show.bs.modal', function(e) {
     var $modal = $(this),
         data = e.relatedTarget.id;
 
+$(".modal-body #tekliffiyat1").val( data );
+
          $.ajax({
             url: 'idgonder/'+data,
             type: 'GET',
@@ -152,17 +154,8 @@ $('#edit-modal12').on('show.bs.modal', function(e) {
     // İŞ EKLERKEN YANA YAZDIRMA KODU
 
     $(document).ready(function(){
-        $("[name='isimSoyisim']").focusout(function(){
-            $("#madi").html($(this).val());
-        });
+ 
 
-        $("[name='Telefon']").focusout(function(){
-            $("#tel").html($(this).val());
-        });
-
-        $("[name='Email']").focusout(function(){
-            $("#mail").html($(this).val());
-        });
 
         $("[name='KaynakDil']").change(function(){
             $("#kaynakdil").html($(this).val());
@@ -177,22 +170,6 @@ $('#edit-modal12').on('show.bs.modal', function(e) {
             $("#tastiksekli").html(strUser);
         });
 
-
-        $("[name='Fiyat']").focusout(function(){
-            $("#fiyat").html($(this).val()+"TL");
-        });
-
-
-
-        $("[name='Kapora'").focusout(function(){
-           $("#kaparo").html($(this).val()+"TL");
-        });
-
-
-
-        $("[name='TemsilciGelenTeklifNot'").focusout(function(){
-           $("#not").html($(this).val());
-        });
 
         $("[name='SubeID'").focusout(function(){
            $("#subeid").html($(this).val());
@@ -214,9 +191,10 @@ $(document).ready(function(){
 
         var secilen = $(this).val();
 
+
         if(secilen==2)
         {
-
+             $('.disa').prop('disabled', false);   
              $("#evraksiz").removeClass("hidden");
              $("#evrakli").addClass("hidden");
              $("#tastiksekli").addClass("hidden");
@@ -228,7 +206,7 @@ $(document).ready(function(){
 
           if(secilen==1)
         {
-
+            $('.disa').prop('disabled', false);
              $("#evrakli").removeClass("hidden");
              $("#evraksiz").addClass("hidden");
              $("#tastiksekli").removeClass("hidden");
@@ -241,7 +219,7 @@ $(document).ready(function(){
 
               if(secilen=="")
         {
-
+             $('.disa').prop('disabled', true);
              $("#evraksiz").addClass("hidden");
              $("#evrakli").addClass("hidden");
              $("#tastiksekli").addClass("hidden");
@@ -306,31 +284,6 @@ $(document).ready(function(){
 
 
 
-// FİYAT TEKLİFİ VER TEXTBOX İÇERİĞİNİ ALMAK 
-// EVRAKLI  DOSYA ALMAK
-
-
-
-
-
-
-// $('#edit-modal6').on('show.bs.modal', function() {
-
-
-// var element = document.getElementById('evrakli');
-// var text = element.innerText || element.textContent;
-// element.innerHTML = text;
-
-
-
-// console.log(text);
-
-// });
-
-
-
-
-
 
 
 
@@ -343,18 +296,6 @@ $(document).ready(function(){
 
 
 
-$(document).ready(function() {
-
-$("td").click(function(e) {
-    var chk = $(this).closest("tr").find("input:checkbox").get(0);
-    if(e.target != chk)
-    {
-        
-        chk.checked = !chk.checked;
-    }
-});
-
-});
 
 
 

@@ -36,11 +36,11 @@
           {{ $teklifler->Email }}
         </td>
          <td>
-          {{ $teklifler->Kapora }}</br>
-          {{ $teklifler->Fiyat }}
+          {{ $teklifler->Kapora }}TL</br>
+          {{ $teklifler->Fiyat }}TL
          </td>
          
-         <td>{{ $teklifler->iptalNedeni  }}  </td>
+         <td>{{ $teklifler->iptalneden['IptalSebebi']  }}  </td>
        </tr>
        @endforeach
      </tbody>

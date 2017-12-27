@@ -73,7 +73,7 @@
 	 	         </td>
                <td>
                 
-              {{ $results->tercume_turu }}
+              {{ $results->Fiyat }}TL
 
               </td>
               <td>

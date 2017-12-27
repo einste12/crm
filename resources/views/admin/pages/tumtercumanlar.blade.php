@@ -53,7 +53,7 @@
          <th>EPOSTA</th>
          <th>TELEFON</th>
          <th>ÇEVİRİ YAPTIĞI DİLLER</th>
-         <th>TERCÜME TÜRÜ</th>
+         <th>SİMULTANE</th>
          <th>TEMSİLCİ NOT</th>
          <th>İŞLEMLER</th>
 
@@ -73,7 +73,7 @@
          <td>{{ $tercumans->Mail }}</td>
          <td>{{ $tercumans->Telefon}}  </td>
          <td>
-            @foreach($tercumans->tercumandilbilgileri as $data) {{ $data->KaynakDil}}>{{$data->HedefDil}}={{ $data->BirimFiyat }}<br> @endforeach
+            @foreach($tercumans->tercumandilbilgileri as $data) {{ $data->KaynakDil}}>{{$data->HedefDil}}={{ $data->BirimFiyat }}TL<br> @endforeach
          </td>
          <td>@foreach($tercumans->tercumandilbilgileri as $data) @if($data->tercume_turu==1) Var @else Yok @endif</br>  @endforeach </td>
          <td> {{$tercumans->temsilciNot}} </td>

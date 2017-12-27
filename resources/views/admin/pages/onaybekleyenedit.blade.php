@@ -31,7 +31,7 @@
       <label for="exampleInputEmail1">Kaynak Dil</label>
         <select  name="KaynakDil" class="form-control">
             @foreach($diller as $dillers)
-              <option  @if($teklif->HedefDil ==$dillers->DilAdi ) selected @endif value="{{ $dillers->DilAdi }}">{{ $dillers->DilAdi }}</option>
+              <option  @if($teklif->KaynakDil==$dillers->DilAdi ) selected @endif value="{{ $dillers->DilAdi }}">{{ $dillers->DilAdi }}</option>
             @endforeach  
      </select>
     </div>
@@ -39,7 +39,7 @@
       <label for="exampleInputEmail1">Hedef Dil</label>
         <select  name="HedefDil" class="form-control">
             @foreach($diller as $dillers)
-              <option @if($teklif->HedefDil ==$dillers->DilAdi ) selected @endif value="{{ $dillers->DilAdi }}">{{ $dillers->DilAdi }}</option>
+              <option @if($teklif->HedefDil==$dillers->DilAdi ) selected @endif value="{{ $dillers->DilAdi }}">{{ $dillers->DilAdi }}</option>
             @endforeach  
         </select>
     </div>
@@ -53,11 +53,11 @@
    </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Kapora</label>
-      <input type="text" class="form-control"  value="{{ $teklif->Kapora }}"  name="Kapora">
+      <input type="number" class="form-control"  value="{{ $teklif->Kapora }}"  name="Kapora">
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Fiyat</label>
-      <input type="text" class="form-control"  value="{{ $teklif->Fiyat }}" name="Fiyat">
+      <input type="number" class="form-control"  value="{{ $teklif->Fiyat }}" name="Fiyat">
     </div>
    <div class="form-group">
       <label for="exampleInputEmail1">Tercuman Seçiniz</label>

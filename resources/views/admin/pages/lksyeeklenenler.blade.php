@@ -44,7 +44,7 @@
        <tr>
          <th>ID</th>
          <th>LKS EKLENME TARİHİ</th>
-         <th>İSİM SOYİSİM</th>
+         <th> TERCUMAN İSİM SOYİSİM</th>
          <th>PROJE ADI</th>
          <th>DİL</th>
          <th>KARAKTER</th>
@@ -71,8 +71,8 @@
               {{ $lksekles->KaynakDil }}></br>{{ $lksekles->HedefDil }}
              </td>
 
-              <td>{{ $lksekles->Karakter }}</td>
-		         <td>{{ $lksekles->BirimFiyat }}</td>
+              <td>{{ $lksekles->Karakter }}TL</td>
+		         <td>{{ $lksekles->BirimFiyat }}TL</td>
 		            
 		      
 		         <td>{{ $lksekles->temsilci['isimSoyisim'] }}</br>{{ $lksekles->SubeID }} </td>
@@ -88,7 +88,6 @@
      </tbody>
    </table>
 
-{{ $lksekle->links() }}
 
 
 

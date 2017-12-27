@@ -95,7 +95,7 @@ www.portakaltercume.com.tr
 
 
 
-<a href="{{ url('/') }}" role="button" class="btn btn-danger readonly=""">Geri Dön</button>
+<a href="{{ url('/') }}" role="button" class="btn btn-danger">Geri Dön</a>
 
 
 @endsection

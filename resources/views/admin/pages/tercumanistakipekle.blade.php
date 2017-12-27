@@ -29,17 +29,26 @@
        
         <div class="col-md-12  form-group">
          <label class="control-label" for="BirimFiyat">Birim Fiyat  </label>  
-            <input required="true" id="BirimFiyats" name="BirimFiyat" type="text" placeholder="Birim Fiyat Giriniz" class="sayi form-control input-md">
+            <input required="true" id="BirimFiyats" name="BirimFiyat" type="number" placeholder="Birim Fiyat Giriniz" class="sayi form-control input-md">
           
         </div>
       
         
                                            
-        <div class="col-md-12  form-group">
-          <label class=" control-label" for="tarih">Evrak Alma Tarihi <star>*</star></label>  
-            <input type="date" class="form-control" name="Evrakalmatarihi">
-        </div>
-
+        
+                                       <div class="row" >
+                                        <div class="col-md-12">
+                                              <div class="form-group">
+                                              <label class=" control-label" for="tarih">Evrak Alma Tarihi <star>*</star></label>  
+                                              <div class='input-group date'>
+                                                  <input id="tarih" required="true" placeholder="Evrak Tarihi Giriniz" name='EvrakAlmaTarihi' type='text' class="datetimepicker form-control" />
+                                                  <label for="tarih" class="input-group-addon">
+                                                      <span class="fa fa-calendar"></span>
+                                                  </label>
+                                              </div>
+                                              </div>
+                                           </div>
+                                        </div>
                                     
         
 

@@ -71,14 +71,41 @@
                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                    <h4 class="modal-title" id="myModalLabel">Teklife Fiyat Verin</h4>
                </div>
-<form action="{{ route('gelentekliffiyatver') }}" method="POST"/>
+
+
+  <script type="text/javascript">
+    
+
+    function setForm(){
+
+      var type = document.getElementById('evraktipi').value=='1'?'evrakli':'evraksiz';
+
+
+      document.getElementById('mailMetin').value = document.getElementById(type).innerHTML;
+
+      return true;
+
+
+    }
+
+
+
+
+  </script>
+
+
+
+<form action="{{ route('gelentekliffiyatver') }}" onSubmit="return setForm()" method="POST"/>
 {{ csrf_field() }}
 
 
+
+  <input type="hidden" name="mailMetin" id="mailMetin">
+
               <div class="form-group">
                 <label>Evrak tipi</label>
-                <select name="evraktipi" id="evraktipi" class="form-control">
-                    <option value="" selected="">Seçiniz</option>
+                <select name="evraktipi" id="evraktipi" class="form-control" required="">
+                    <option value="" selected="">Evrak Tipi Seçiniz</option>
                     <option value="1">Evraklı</option>
                     <option value="2">Evraksız</option>
                     
@@ -89,8 +116,9 @@
 
                 <div class="form-group" id="sube2">
                  <label for="sel1">Sube:</label>
-                 <select class="form-control" name="sube">
+                 <select class="form-control" name="sube" required="true">
                   @foreach($subeler as $subelers)
+                   <option value="">Seçiniz</option>
                    <option value="{{ $subelers->id }}">{{ $subelers->name }}</option>
                  @endforeach
                  </select>
@@ -159,57 +187,54 @@
                 <label>Müşteriye Gidicek Mail</label>
     
                     EVRAKSIZ DOKUMAN
+Sayın <span class="ilkisim"></span>, 
+Çevirisini yaptırmak istediğiniz dosyalarınızı bize maille gönderebilirseniz inceleyip size fiyat ve süre hakkında bilgi verebiliriz. 
 
-                 Sayın <span class="ilkisim"></span>, 
-                      Çevirisini yaptırmak istediğiniz dosyalarınızı bize maille gönderebilirseniz inceleyip size fiyat ve süre hakkında bilgi verebiliriz. 
+​1- ​Hızlı teklif almak için https://www.portakaltercume.com/fiyat-teklifi-al/ adresinden belgelerinizi bize gönderebilirsiniz.
 
-​                       1- ​Hızlı teklif almak için https://www.portakaltercume.com/fiyat-teklifi-al/ adresinden belgelerinizi bize gönderebilirsiniz.
+​2- Evraklarınızı ​ +90 543 953 21 75 nolu telefona WhatsApp programı üzerinden belgenizin resmini çekerek gönderebilirsiniz​.
 
-​                       2- Evraklarınızı ​ +90 543 953 21 75 nolu telefona WhatsApp programı üzerinden belgenizin resmini çekerek gönderebilirsiniz​.
+3- ​info@portakaltercume.com.tr adresine mail atabilirsiniz.
 
-                        3- ​info@portakaltercume.com.tr adresine mail atabilirsiniz.
+Değerlendirmenize sunar, 
+İyi çalışmalar dileriz.
 
-                        Değerlendirmenize sunar, 
-                        İyi çalışmalar dileriz.
-
-                        {{Auth::user()->name}} / Proje Koordinatörü
-                        Temsilci Gsm:  {{Auth::user()->number}}
-                        Çağrı Merkezi:  444 82 86
-                        www.portakaltercume.com.tr
+{{Auth::user()->name}} / Proje Koordinatörü
+Temsilci Gsm:  {{Auth::user()->number}}
+Çağrı Merkezi:  444 82 86
+www.portakaltercume.com.tr
                       
           
 
               </div> 
 
         
-                <div class="hidden form-group" id="evrakli">
-                <label>Müşteriye Gidicek Mail</label>
+    <div class="hidden form-group" id="evrakli">
+               
 
 
-                  Sayın <span id="isimSoyisim"></span>, 
-                      Göndermiş olduğunuz belgenin yeminli tercüme ücreti​ <div id="evraklifiyat"></div> TL + %18 KDV’ dir.
-                        Ödemenin yapılması halinde belge/belgelerinizin tercümesi <div id="isgosterme"></div> iş günü/<div id="saatgosterme"></div> saat içerisinde teslim edilecektir.  
+Sayın <span id="isimSoyisim"></span>, 
+Göndermiş olduğunuz belgenin yeminli tercüme ücreti​ <div id="evraklifiyat"></div> TL + %18 KDV’ dir.
+Ödemenin yapılması halinde belge/belgelerinizin tercümesi <div id="isgosterme"></div> <span class="gunText" style="display:none;">iş günü</span><div id="saatgosterme"></div> <span class="saatText" style="display:none;">saat</span> içerisinde teslim edilecektir.  
+Değerlendirmenize sunar, 
+İyi çalışmalar dileriz.
 
-                        Değerlendirmenize sunar, 
-                        İyi çalışmalar dileriz.
+{{Auth::user()->name}} / Proje Koordinatörü
+Temsilci Gsm: {{Auth::user()->number}}
+Çağrı Merkezi:  444 82 86
+www.portakaltercume.com.tr
 
-                        {{Auth::user()->name}} / Proje Koordinatörü
-                        Temsilci Gsm: {{Auth::user()->number}}
-                        Çağrı Merkezi:  444 82 86
-                        www.portakaltercume.com.tr
+FİRMAMIZIN TÜM ÖDEME KANALLARI AŞAĞIDA Kİ GİBİDİR. 
 
-                        FİRMAMIZIN TÜM ÖDEME KANALLARI AŞAĞIDA Kİ GİBİDİR. 
+1- EFT YA DA HAVALE
+HESAP ADI: PORTAKAL TERCÜME VE MEDYA A.Ş. KUVEYTTÜRK KATILIM BANKASI
+<b style="color:red;">IBAN NO: TR170020500009380768500001</b> 
 
-                        1- EFT YA DA HAVALE
-                        HESAP ADI: PORTAKAL TERCÜME VE MEDYA A.Ş. KUVEYTTÜRK KATILIM BANKASI
-                        IBAN NO: TR170020500009380768500001 
+HESAP ADI: PORTAKAL TERCÜME VE MEDYA A.Ş. ZİRAAT BANKASI
+IBAN NO: TR860001000485758944095001 
+2- İNTERNET SİTEMİZ ÜZERİNDEN VISA-MASTERCARD YA DA AMERICAN EXPRESS KREDİ KARTLARIYLA ÖDEME YAPABİLİRSİNİZ. https://www.portakaltercume.com/online-odeme/ 
 
-                        HESAP ADI: PORTAKAL TERCÜME VE MEDYA A.Ş. ZİRAAT BANKASI
-                        IBAN NO: TR860001000485758944095001 
-
-                        2- İNTERNET SİTEMİZ ÜZERİNDEN VISA-MASTERCARD YA DA AMERICAN EXPRESS KREDİ KARTLARIYLA ÖDEME YAPABİLİRSİNİZ. https://www.portakaltercume.com/online-odeme/ 
-
-                        3- MAİL ORDER SİSTEMİ İLE ÖDEME YAPABİLİRSİNİZ.(FİRMAMIZDAN FORMU TALEP EDİNİZ)
+3- MAİL ORDER SİSTEMİ İLE ÖDEME YAPABİLİRSİNİZ.(FİRMAMIZDAN FORMU TALEP EDİNİZ)
               
                       
               </div> 
@@ -222,7 +247,7 @@
                </div>
                <div class="modal-footer">
                    <button type="button" class="btn btn-danger" data-dismiss="modal">İptal</button>
-                   <button type="submit" class="btn btn-success">Teklife Fiyat Ver</button>
+                   <button type="submit" disabled="false"  class="btn btn-success disa">Teklife Fiyat Ver</button>
                </div>
 
 </form>
@@ -286,9 +311,6 @@ inputBox1.onkeyup=function(){
 
 
 
-
-
-
 var inputBox2=document.getElementById('saat');
 
 
@@ -311,7 +333,27 @@ inputBox.onkeyup = function(){
 
 }
 
+$(function(){
+  $('#teslimzamani').change(function(){
+      if( $(this).val() == '2'){
+          $('#isgosterme').html('');
+          $('input[name="isgunu"]').val('');
 
+
+        $('.saatText').show();
+        $('.gunText').hide();
+      }
+      if( $(this).val() == '1'){
+        $('#saatgosterme').html('');
+        $('input[name="issaati"]').val('');
+
+         $('.saatText').hide();
+         $('.gunText').show();
+
+      }
+      console.log($(this).val());
+  })
+})
 
 
 

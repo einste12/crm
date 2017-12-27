@@ -53,7 +53,7 @@
                      <div class="col-md-12 form-group">
                         <label class=" control-label" for="Lokasyon">Lokasyon<span class="red">*</span></label>
                         <div class="">
-                              <input id="Lokasyon" name="Lokasyon" type="text" placeholder="Lokasyon Giriniz" class="form-control input-md" required>
+                              <input id="Lokasyon" name="Lokasyon" type="text" placeholder="Lokasyon Giriniz" class="form-control input-md">
                         </div>
                      </div>
                  </div>
@@ -100,7 +100,7 @@
                     <div class="">
                     <select id="TercumeTuru" name="TercumeTuru" class="form-control" required>
                                 <option value="0">Yazılı Tercume</option>
-                                <option value="1" selected="">Sözlü Tercume</option>
+                                <option value="1">Sözlü Tercume</option>
                           </select>
                     </div>
                     </div>

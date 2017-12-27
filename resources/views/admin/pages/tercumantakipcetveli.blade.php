@@ -20,7 +20,7 @@
        <tr>
          <th>ID</th>
          <th>EKLENME TARİHİ</th>
-         <th>TERCUMAN İSİM SOYİSİM</th>
+         <th>TERCUMAN</th>
          <th>PROJE ADI</th>
          <th>DİL</th>
          <th>KARAKTER</th>
@@ -50,7 +50,7 @@
              </td>
 
               <td>{{ $tercumantakipcetvelis->Karakter }}</td>
-		         <td>{{ $tercumantakipcetvelis->BirimFiyat }}</td>
+		         <td>{{ $tercumantakipcetvelis->BirimFiyat }}TL</td>
 		            
 		        
 		         <td>{{ $tercumantakipcetvelis->temsilci['isimSoyisim'] }}</br>{{ $tercumantakipcetvelis->SubeID }} </td>

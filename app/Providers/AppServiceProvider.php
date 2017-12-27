@@ -37,9 +37,7 @@ class AppServiceProvider extends ServiceProvider
         view()->share('tercumanmali',$tercumanmali);
 
 
-        $tercumantakipcetveli = TercumanIsTakip::where(['silindi'=>0,'OnayDurumu'=>0]);
-        view()->share('tercumantakipcetveli',$tercumantakipcetveli); 
-
+    
 
  
         $diller =Diller::orderBy('sirala', 'ASC')->get();

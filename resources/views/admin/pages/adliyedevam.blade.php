@@ -26,7 +26,7 @@
          <th>DİLLER</th>
          <th>TALEP EDİLEN FİYAT</th>
          <th>ALINAN ÖDEME</th>
-         <th>İLGİLİ KİŞİ</th>
+         <th>TEMSİLCİ</th>
          <th>NOT</th>
          <th>İŞLEMLER</th>
        </tr>
@@ -40,7 +40,7 @@
          <td>{{ $adliyedevams->EsasNo }}</td>
          <td>{{ $adliyedevams->KaynakDil }}>{{ $adliyedevams->HedefDil }}</td>
          <td>{{ $adliyedevams->TalepEdilenFiyat }}</td>
-         <td>{{ $adliyedevams->AlinanOdeme }}</td>
+         <td>{{ $adliyedevams->AlinanOdeme }}TL</td>
          <td>{{ $adliyedevams->temsilci['isimSoyisim']}}</td>
          <td>{{ $adliyedevams->TemsilciNot }}</td>
          <td>

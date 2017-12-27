@@ -1,4 +1,4 @@
-@extends('admin.master.master')
+,@extends('admin.master.master')
 
 @section('content')
 
@@ -76,10 +76,13 @@ www.portakaltercume.com.tr
 @endif
 
   </textarea>
+
+
+
 </div>
 
 
-<a href="{{ url('/') }}" role="button" class="btn btn-danger readonly=""">Geri Dön</button>
 
 
+<a href="{{ url('dashboard') }}" role="button" class="btn btn-danger">Geri Dön</a>
 @endsection

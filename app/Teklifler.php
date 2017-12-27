@@ -45,4 +45,13 @@ public function temsilci_iptal()
   return $this->hasOne('App\Temsilciler','id','iptalEdenTemsilciID');
 }
 
+
+
+public function iptalneden()
+{
+  return $this->hasOne('App\IptalNedenleri','id','iptalNedeni');
+}
+
+
+
 }

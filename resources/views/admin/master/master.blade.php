@@ -83,7 +83,7 @@
           responsive: true,
           language: {
           search: "_INPUT_",
-          searchPlaceholder: "Arama Yapın",
+          searchPlaceholder: "Arama Yapınız",
           }
 
       });

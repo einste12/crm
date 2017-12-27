@@ -69,7 +69,7 @@
 	 	         </td>
               <td>
                 
-              {{ $results->BirimFiyat }}
+              {{ $results->BirimFiyat }}TL
 
               </td>
        		</tr>

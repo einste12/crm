@@ -53,8 +53,8 @@
          </td>
 
 
-         <td>{{ $teklifler->Fiyat }}</br>
-              {{$teklifler->Kapora}}
+         <td>{{ $teklifler->Fiyat }}TL</br>
+              {{$teklifler->Kapora}}TL
           </td>
          <td>{{ $teklifler->TemsilciGelenTeklifNot }}</td>
          <td>{{ $teklifler->tercuman['isimSoyisim'] }}</td>
@@ -62,7 +62,7 @@
            <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal2">ONAYLA</a>
            <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal9">SİL</a>
            <a href="{{ route('devamedenedit',['id'=>$teklifler->id]) }}" class="btn btn-danger">DÜZENLE</a>
-           <a href="{{ route('devamedenyazdir',['id'=>$teklifler->id]) }}" class="btn btn-success">YAZDIR</a>
+           <a target="_blank" href="{{ route('devamedenyazdir',['id'=>$teklifler->id]) }}" class="btn btn-success">YAZDIR</a>
            <a href="{{ route('devamgidenmail',['id'=>$teklifler->id]) }}" class="btn btn-danger">GİDEN MAİL</a>
 
          </td>
@@ -86,23 +86,29 @@
 <form action="{{ route('tekliftamamla') }}" method="POST"/>
 {{ csrf_field() }}
 
+            <div class="row" >
+                                        <div class="col-md-12">
+                                              <div class="form-group">
+                                              <label class=" control-label" for="tarih">Evrak Teslim Tarihi <star>*</star></label>  
+                                              <div class='input-group date'>
+                                                  <input id="tarih" required="true" placeholder="Evrak Teslim Tarihini Giriniz." name='EvrakTeslimTarihi' type='text' class="datetimepicker form-control" />
+                                                  <label for="tarih" class="input-group-addon">
+                                                      <span class="fa fa-calendar"></span>
+                                                  </label>
+                                              </div>
+                                              </div>
+                                           </div>
+                                        </div>
 
-            <div class="form-group">
 
-                <label for="self1">Evrak Teslim Tarihi</label>
-                <input type="date" name="EvrakTeslimTarihi" class="form-control">
-
-            </div>
-
-
-               <div class="form-group">
+          {{--      <div class="form-group">
                  <label for="sel1">Onaylayan Temsilciyi Seçiniz:</label>
                  <select class="form-control" name="devamionaylayantemsilci">
                   @foreach($temsilci as $temsilcis)
                    <option value="{{ $temsilcis->id }}">{{ $temsilcis->isimSoyisim }}</option>
                  @endforeach
                  </select>
-               </div>
+               </div> --}}
 
                <div class="modal-body edit-content">
                     <input type="hidden" name="devamedenid" id="devamedenid" value=""/>
@@ -129,14 +135,14 @@
                </div>
 <form action="{{ route('devamsil') }}" method="POST"/>
 {{ csrf_field() }}
-               <div class="form-group">
+            {{--    <div class="form-group">
                  <label for="sel1">İptal Eden  Temsilciyi Seçiniz:</label>
                  <select class="form-control" name="DevamİptalEdenTemsilci">
                   @foreach($temsilci as $temsilcis)
                    <option value="{{ $temsilcis->id }}">{{ $temsilcis->isimSoyisim }}</option>
                  @endforeach
                  </select>
-               </div>
+               </div> --}}
                <div class="form-group">
                  <label for="sel1">İptal Sebepleri:</label>
                  <select class="form-control" name="Devamiptalnedeni">

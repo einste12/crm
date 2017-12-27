@@ -74,7 +74,7 @@
 	 	         </td>
              <td>{{ $results->Karakter }}</td>
               <td>
-              {{ $results->BirimFiyat }}
+              {{ $results->BirimFiyat }}TL
               </td>
               <td>{{ $results->isimSoyisim }}</td>
               <td>{{ $results->TercumanTakipNot}}</td>

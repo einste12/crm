@@ -119,6 +119,7 @@ class DashBoardController extends Controller
     $iptalteklif=Teklifler::where(['silindi'=>1])
     ->whereYear('iptalEtmeTarihi','>','2017-12-31')
     ->with('temsilci_iptal')
+    ->with('iptalneden')
     ->orderBy('GelenTeklifTarihi','DESC')->get();
 
 
@@ -234,19 +235,23 @@ class DashBoardController extends Controller
 
     public function tekliftamamla(Request $request){
 
+            $date = $request->input('EvrakTeslimTarihi');  
+             $dt = new DateTime($date);
+             $newdate=$dt->format('Y-m-d H:i:s');
+
 
             $id = request()->input('devamedenid');
 
             $temsilci = request()->input('devamionaylayantemsilci');
-            $EvrakTeslimTarihi=request()->input('EvrakTeslimTarihi');
+            
 
             $teklif = Teklifler::find($id);
 
-            $teklif->EvrakTeslimTarihi  =$EvrakTeslimTarihi;
-            $teklif->OnaylayanTemsilciID=$temsilci;
+            $teklif->EvrakTeslimTarihi  =$newdate;
+            $teklif->OnaylayanTemsilciID=Auth::user()->id;
             $teklif->OnayDurumu =3;
             $teklif->update();
-            alert()->flash('Başarıyla Güncellenmiştir', 'success');
+            alert()->flash('Başarıyla Onaylanmıştır', 'success');
             return redirect()->route('tamamlanan');
 
 
@@ -257,7 +262,7 @@ class DashBoardController extends Controller
 
       $id = $request->input('devamedensil');
       $devamsil = Teklifler::find($id);
-      $devamsil->iptalEdenTemsilciID=$request->input('DevamİptalEdenTemsilci');
+      $devamsil->iptalEdenTemsilciID=Auth::user()->id;
       $devamsil->iptalNedeni=$request->input('Devamiptalnedeni');
       $devamsil->silindi=1;
       $devamsil->update();
@@ -298,7 +303,7 @@ class DashBoardController extends Controller
           $input = $request->all();
           $update->update($input);
           alert()->flash('Başarıyla Güncellenmiştir', 'success');
-          return redirect()->route('devameden');
+          return redirect()->back();
         }
 
 
@@ -409,6 +414,10 @@ class DashBoardController extends Controller
       public function tamamgidenmail($id){
       
          $tamammail=Teklifler::find($id);
+
+
+
+
          return view('admin.pages.tamamgidenmail',['tamammaildetay'=>$tamammail]);
 
        }
@@ -696,11 +705,16 @@ public function tercumanistakipekle()
 {
 
 
+  $tercumanlist = TercumanVeritabani::where('silindi', 0)
+                ->where(function($q) {
+          $q->where('onaydurumu', 2)
+            ->orWhere('onaydurumu', 3);
+      })->with('tercumandilbilgileri')
+      ->get();
 
 
 
-
-return view('admin.pages.tercumanistakipekle');
+return view('admin.pages.tercumanistakipekle',['tercumanlist'=>$tercumanlist]);
 
 
 }
@@ -709,9 +723,13 @@ return view('admin.pages.tercumanistakipekle');
 public function tercumanformistakipekle(Request $request)
 
 {
+              $date = $request->input('EvrakAlmaTarihi');  
+              $dt = new DateTime($date);
+             $newdate=$dt->format('Y-m-d H:i:s');
+
 
                               $TercumanIsTakip = new TercumanIsTakip;
-                              $TercumanIsTakip->EklenmeTarih = date('Y-m-d H:i:s');
+                              $TercumanIsTakip->EklenmeTarih = $newdate;
                               $TercumanIsTakip->TercumanAdi = $request->input('tercumanismi');
                               $TercumanIsTakip->ProjeAdi = $request->input('ProjeAdi');
                               $TercumanIsTakip->KaynakDil = $request->input('KaynakDil');
@@ -722,7 +740,7 @@ public function tercumanformistakipekle(Request $request)
                               $TercumanIsTakip->SubeID =Auth::user()->subeler->last()->name;
                               $TercumanIsTakip->TercumanTakipNot = $request->input('TercumanTakipNot');
                               $TercumanIsTakip->OnayDurumu = 0;
-                              $TercumanIsTakip->Silindi = 0;
+                              $TercumanIsTakip->silindi = 0;
                               $TercumanIsTakip->save();
 
 
@@ -739,7 +757,12 @@ return redirect()->back();
 public function tercumanistakipcetveli()
 {
 
-   return  view('admin.pages.tercumantakipcetveli');
+
+
+   $tercumanistakipcetveli=TercumanIsTakip::where(['silindi'=>0,'OnayDurumu'=>0])
+        ->with('temsilci')
+        ->orderBy('OnayTarihi','DESC')->get();   
+   return  view('admin.pages.tercumantakipcetveli',['tercumantakipcetveli'=>$tercumanistakipcetveli]);
 
 }
 
@@ -748,7 +771,7 @@ public function tercumanistakipcetveli()
 public function tercumanistakipcetvelisil($id)
 {
 
-  TercumanIsTakip::find($id)->update(['Silindi' => 1]);
+  TercumanIsTakip::find($id)->update(['silindi' => 1]);
 
   alert()->flash('Başarıyla Silindi', 'success');
   return redirect()->back();
@@ -784,7 +807,7 @@ public function lksekle(Request $request)
   TercumanIsTakip::find($id)->update(['OnayDurumu' => 1,'OnayTarihi'=>$onaytarihi]);
 
     alert()->flash('LKS ye Başarıyla Eklendi', 'success'); 
-   return redirect()->route('tercumanistakipcetveli');
+   return redirect()->back();
 
 
 }
@@ -818,8 +841,11 @@ public function lksyeeklenenler()
 {
 
 
-  $lksyeeklenenler = TercumanIsTakip::paginate(10);  
+ 
 
+   $lksyeeklenenler=TercumanIsTakip::where(['silindi'=>0,'OnayDurumu'=>1])
+        ->with('temsilci')
+        ->orderBy('EklenmeTarih','DESC')->get();   
   return view('admin.pages.lksyeeklenenler',['lksekle'=>$lksyeeklenenler]);
 }
 
@@ -885,9 +911,6 @@ public function idgonder(Request $request)
 
   
 
-
-
-
   return response()->json( ['user'=>$user]);
 
 
@@ -900,20 +923,21 @@ public function idgonder(Request $request)
 public function gelentekliffiyatver(Request $request)
 {
             $id=request()->input('tekliffiyat');
-            $yazi=$request->evrakli;
+         
+            $yazi=$request->mailMetin;
 
-            dd($yazi);
-            die();
+            $data = strip_tags($yazi);
+
 
 
 
             $teklif = Teklifler::find($id);
 
-            Mail::raw($yazi, function($message) use($teklif)
+            Mail::raw($data, function($message) use($teklif)
               {
                 $message->from('info@portakalmedya.com', 'Portakal Tercume Mesajı');
 
-                $message->to($teklif->Email)->cc('Portakal Tercume Mesajı');
+                $message->to($teklif->Email)->cc($teklif->Email);
               });
 
 
@@ -929,8 +953,8 @@ public function gelentekliffiyatver(Request $request)
 
             $teklif->update();
 
-            alert()->flash('Başarıyla Güncellenmiş Ve E-Posta Atılmıştır', 'success');  
-            return redirect()->route('devameden');
+            alert()->flash('Teklif Verilmiştir.', 'success');  
+            return redirect()->route('onaybekleyen');
 
 
 }

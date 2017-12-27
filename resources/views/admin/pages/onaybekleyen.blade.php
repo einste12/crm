@@ -55,8 +55,8 @@
        <td>@if($teklifler->TastikSekli==1) Yeminli Tercume  @elseif ($teklifler->TastikSekli==2) Noter Tasdikli Tercume @else($teklifler->TastikSekli==3) Apostil Tercume @endif</td>
        <td>DOSYA DENEME</td>
          <td>
-         {{ $teklifler->Kapora }}</br>
-         {{ $teklifler->Fiyat }}</td>
+         {{ $teklifler->Kapora }}TL</br>
+         {{ $teklifler->Fiyat }}TL</td>
 
          <td>{{ $teklifler->MusteriTalebi }}</td>
 
@@ -69,7 +69,7 @@
            <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal" class="btn btn-danger">ONAYLA</a>
            <a href="#myModal" data-toggle="modal" id="{{ $teklifler->id }}" data-target="#edit-modal8" class="btn btn-danger">SİL</a>
            <a href="{{ route('onaybekleyenedit',['id'=>$teklifler->id]) }}" class="btn btn-danger">GÜNCELLE</a>
-           <a href="{{ route('onaybekleyenyazdir',['id'=>$teklifler->id]) }}" class="btn btn-danger">YAZDIR</a>
+           <a target="_blank" href="{{ route('onaybekleyenyazdir',['id'=>$teklifler->id]) }}" class="btn btn-danger">YAZDIR</a>
            <a href="{{ route('onaygidenmail',['id'=>$teklifler->id]) }}" class="btn btn-danger">GİDEN MAİL</a>
 
          </td>
