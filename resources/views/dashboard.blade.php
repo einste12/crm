@@ -199,8 +199,8 @@ Sayın <span class="ilkisim"></span>,
 Değerlendirmenize sunar, 
 İyi çalışmalar dileriz.
 
-{{Auth::user()->name}} / Proje Koordinatörü
-Temsilci Gsm:  {{Auth::user()->number}}
+<b style="color:red;">{{Auth::user()->name}}</b> / Proje Koordinatörü
+Temsilci Gsm:  <b style="color:red;">{{Auth::user()->number}}</b>
 Çağrı Merkezi:  444 82 86
 www.portakaltercume.com.tr
                       
@@ -219,8 +219,8 @@ Göndermiş olduğunuz belgenin yeminli tercüme ücreti​ <div id="evraklifiya
 Değerlendirmenize sunar, 
 İyi çalışmalar dileriz.
 
-{{Auth::user()->name}} / Proje Koordinatörü
-Temsilci Gsm: {{Auth::user()->number}}
+<b style="color:red;">{{Auth::user()->name}}</b> / Proje Koordinatörü
+Temsilci Gsm: <b style="color:red;">{{Auth::user()->number}}</b>
 Çağrı Merkezi:  444 82 86
 www.portakaltercume.com.tr
 

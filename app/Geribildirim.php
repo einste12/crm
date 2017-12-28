@@ -6,7 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Geribildirim extends Model
 {
-  public $timestamp ="false";
+  public $timestamps ="false";
+
+
+
+
+      protected $fillable = [
+      'isimSoyisim', 'Telefon','Mail','Kategori','Resim','Mesaj','Neden','Cevap','Tarih',
+    
+    ];
+
+
+
+
 
   protected $table = 'geribildirim';
 }

@@ -50,4 +50,36 @@
 
 
 
+
+
+<script type="text/javascript">
+  
+
+    $(document).ready(function() {
+     
+      $('#datatables').DataTable({
+          "ordering": false,
+          "stateSave": true,  
+          "pagingType": "full_numbers",
+          "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+          responsive: true,
+          dom: 'Bfrtip',
+          buttons: [
+              'excelHtml5',
+
+          ],
+          language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Arama Yapınız",
+          }
+
+
+      });
+        var table = $('#datatables').DataTable();     
+      });
+
+</script>
+
+
+
 @endsection

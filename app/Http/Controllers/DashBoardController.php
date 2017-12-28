@@ -13,6 +13,7 @@ use App\TercumanIsTakip;
 use App\Tercumandilbilgileri;
 use App\Temsilciler;
 use App\TercumanVeritabani;
+use App\Geribildirim;
 use Auth;
 use App\Subeler;
 use App\User; 
@@ -712,8 +713,7 @@ public function tercumanistakipekle()
       })->with('tercumandilbilgileri')
       ->get();
 
-
-
+  
 return view('admin.pages.tercumanistakipekle',['tercumanlist'=>$tercumanlist]);
 
 
@@ -1157,6 +1157,15 @@ public function adliyetamamlanan()
 
 
 
+public function geribildirimformu()
+{
+
+
+
+  $gb=Geribildirim::all();
+  return view('admin.pages.geribildirimformu',['gb'=>$gb]);
+
+}
 
 
 

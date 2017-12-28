@@ -142,6 +142,7 @@ Route::get('adliyetamamlanan', 'DashBoardController@adliyetamamlanan')->name('ad
 
 
 
+Route::get('geribildirimformu', 'DashBoardController@geribildirimformu')->name('geribildirimformu');
 
 
 

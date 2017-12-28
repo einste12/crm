@@ -24,11 +24,11 @@
             </div>
             <div class="info">
                 <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                    {{ Auth::user()->name }}
+                 <p style="color:green;">HOŞGELDİNİZ</p>  {{ strtoupper(Auth::user()->name) }}
 
                 </a>
                   <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                    {{ Auth::user()->subeler->last()->name }}
+                 GİRDİĞİNİZ ŞUBE <p class="sube" style="color:red;">{{ Auth::user()->subeler->last()->name }}</p>
 
                   </a>
 
@@ -122,6 +122,15 @@
                     </ul>
                 </div>
             </li>
+            <li> 
+                <a href="{{ route('geribildirimformu') }}">
+                    
+                    <i class="fa fa-commenting-o" aria-hidden="true"></i><p>GERİ BİLDİRİM FORMU</p>
+                </a>
+            </li>
+
+
+
 
         </ul>
   </div>

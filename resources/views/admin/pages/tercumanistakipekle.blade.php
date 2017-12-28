@@ -17,12 +17,36 @@
 
 <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 <legend>Tercuman İş Takip Ekle</legend>
+
+        
+
+       <div class="col-md-12  form-group">
+         <label class="control-label" for="KaynakDil">Kaynak Dil</label>
+                 <select name="KaynakDil" class="form-control">
+                @foreach($diller as $dillers)
+                  <option value="{{ $dillers->DilAdi  }}">{{ $dillers->DilAdi  }}</option>
+                 @endforeach 
+              </select>
+       </div>
+
+      <div class="col-md-12  form-group">
+         <label class="control-label" for="HedefDil">Hedef Dil  </label>
+            <select name="HedefDil" class="form-control">
+                @foreach($diller as $dillers)
+                  <option value="{{ $dillers->DilAdi  }}">{{ $dillers->DilAdi  }}</option>
+                 @endforeach 
+              </select>
+              
+       </div>
+
+  
+
     
         <div class="col-md-12  form-group">
            <label class="control-label">Tercuman İsmi</label>
-              <select name="tercumanismi" class="form-control">
+              <select name="tercumanismi" class="form-control" id="TercumanAdi">
                 @foreach($tercumanlist as $tercumanlist1)
-                  <option value="{{ $tercumanlist1->isimSoyisim  }}">{{ $tercumanlist1->isimSoyisim  }}</option>
+    <option   @foreach($tercumanlist1->tercumandilbilgileri as $data2) karakterfiyati="{{ $data2->BirimFiyat }}" @endforeach value="{{ $tercumanlist1->isimSoyisim  }}">{{ $tercumanlist1->isimSoyisim  }}</option>
                  @endforeach 
               </select>
         </div>
@@ -30,6 +54,12 @@
         <div class="col-md-12  form-group">
          <label class="control-label" for="BirimFiyat">Birim Fiyat  </label>  
             <input required="true" id="BirimFiyats" name="BirimFiyat" type="number" placeholder="Birim Fiyat Giriniz" class="sayi form-control input-md">
+
+             <script>
+                $(document).on("change","#TercumanAdi",function(){
+                    $("#BirimFiyats").val($(this).children(":selected").attr("karakterfiyati"));
+                });
+            </script>
           
         </div>
       
@@ -62,25 +92,6 @@
             <input required="true" id="Karakters" name="Karakter" type="number" placeholder="Karakter Sayısını Giriniz" class=" form-control input-md">
        </div>
 
-
-       <div class="col-md-12  form-group">
-         <label class="control-label" for="KaynakDil">Kaynak Dil</label>
-                 <select name="KaynakDil" class="form-control">
-                @foreach($diller as $dillers)
-                  <option value="{{ $dillers->DilAdi  }}">{{ $dillers->DilAdi  }}</option>
-                 @endforeach 
-              </select>
-       </div>
-
-      <div class="col-md-12  form-group">
-         <label class="control-label" for="HedefDil">Hedef Dil  </label>
-            <select name="HedefDil" class="form-control">
-                @foreach($diller as $dillers)
-                  <option value="{{ $dillers->DilAdi  }}">{{ $dillers->DilAdi  }}</option>
-                 @endforeach 
-              </select>
-              
-       </div>
 
    {{--       
          <div class="col-md-12 form-group">

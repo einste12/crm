@@ -24,7 +24,15 @@
    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js">
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
+
+ 
+
+
+  
+
+
+
+ 
  
 </head>
 <body>
@@ -65,6 +73,16 @@
     
 
     <script src="{{ asset('js/jquery.datatables.js') }}"></script>
+     <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+  
+    
+
+
+    
+
+
 
     <script src="{{ asset('js/light-bootstrap-dashboard.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
@@ -72,25 +90,7 @@
 
     
 
-    <script type="text/javascript">
-    $(document).ready(function() {
-     
-      $('#datatables').DataTable({
-          "stateSave": true,
-          "order": [[ 0, "asc" ]],
-          "pagingType": "full_numbers",
-          "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-          responsive: true,
-          language: {
-          search: "_INPUT_",
-          searchPlaceholder: "Arama Yapınız",
-          }
-
-      });
-      var table = $('#datatables').DataTable();     
-      });
-
-    </script>
+  
 
 
     

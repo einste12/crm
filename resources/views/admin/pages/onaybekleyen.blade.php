@@ -162,8 +162,43 @@
 
 
 
+<script type="text/javascript">
+  
+
+    $(document).ready(function() {
+     
+      $('#datatables').DataTable({
+          "ordering": false,
+          "stateSave": true,
+
+          "pagingType": "full_numbers",
+          "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+          responsive: true,
+          dom: 'Bfrtip',
+          buttons: [
+              
+                {
+                extend: 'excelHtml5',
+                exportOptions: {
+                    columns: [0,1,2,3,4,5,6,7,8,9]
+                }
+            },
 
 
+
+
+          ],
+          language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Arama Yapınız",
+          }
+
+
+      });
+        var table = $('#datatables').DataTable();     
+      });
+
+</script>
 
 
 
